@@ -1,20 +1,9 @@
 import location from "../../../img/location.png";
 import community from "../../../img/people.png";
 import chat from "../../../img/chat.png";
+import { CommunityType } from "../../../models/type";
 
-interface Groups {
-  img: string;
-  tag1: string;
-  tag2: string;
-  area: string;
-  groupName: string;
-  people: number;
-  recentChat: string;
-  isPopular: boolean;
-  isNew: boolean;
-}
-
-export default function PopularCommunityCard({img, tag1, tag2, area, groupName, people, recentChat, isPopular, isNew}: Groups) {
+export default function PopularCommunityCard({id, img, tag1, tag2, area, groupName, people, recentChat, isPopular, isNew}: CommunityType) {
   return (
     <div className='border-2 w-[290px] h-[90px] rounded-[10px] relative'>
         <div className='absolute top-[5px] left-[5px] border-2 rounded-[10px] w-[90px] h-[75px] text-[10px] text-center'>{img}</div>

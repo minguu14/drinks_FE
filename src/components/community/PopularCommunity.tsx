@@ -1,70 +1,13 @@
-import { useState } from "react";
 import PopularCommunityCard from "./popularCommunityCard/PopularCommunityCard";
 import { Link } from "react-router-dom";
+import { CommunityType } from "../../models/type";
 
-interface CommunityType {
-    id: string;
-    img: string;
-    tag1: string;
-    tag2: string;
-    area: string;
-    groupName: string;
-    people: number;
-    recentChat: string;
-    isPopular: boolean;
-    isNew: boolean;
+interface PopularCommunityType {
+  popularCommunity: CommunityType[];
 }
 
-export default function PopularCommunity() {
-  const [popularCommunity, setPopularCommunity] = useState<CommunityType[]>([{
-    id: "1",
-    img: "community1.png",
-    tag1: "소주",
-    tag2: "맥주",
-    area: "서울",
-    groupName: "치얼스",
-    people: 3,
-    recentChat: "10분 전 마지막 대화",
-    isPopular: true,
-    isNew: false,
-  },
-  {
-    id: "2",
-    img: "community2.png",
-    tag1: "와인",
-    tag2: "양주",
-    area: "인천",
-    groupName: "한잔합시다",
-    people: 5,
-    recentChat: "5분 전 마지막 대화",
-    isPopular: true,
-    isNew: false,
-  },
-  {
-    id: "3",
-    img: "community2.png",
-    tag1: "와인",
-    tag2: "양주",
-    area: "인천",
-    groupName: "한잔하조",
-    people: 5,
-    recentChat: "5분 전 마지막 대화",
-    isPopular: true,
-    isNew: false,
-  },
-  {
-    id: "4",
-    img: "community2.png",
-    tag1: "와인",
-    tag2: "양주",
-    area: "인천",
-    groupName: "한잔하조",
-    people: 5,
-    recentChat: "5분 전 마지막 대화",
-    isPopular: true,
-    isNew: false,
-  }
-]);
+export default function PopularCommunity({popularCommunity}: PopularCommunityType) {
+  
 
   return (
     <div className="flex-col justify-between w-[600px]">
@@ -75,9 +18,10 @@ export default function PopularCommunity() {
       <Link to='/popularCommunity'><span className="text-[10px]">전체보기</span></Link>
       </div>
       <div className="flex flex-wrap gap-4 mt-5">
-        { popularCommunity.map((popular) => (
+        { popularCommunity.slice(0,4).map((popular) => (
             <PopularCommunityCard
             key={popular.id}
+            id={popular.id}
             img={popular.img}
             tag1={popular.tag1}  
             tag2={popular.tag2}  
