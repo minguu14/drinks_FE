@@ -39,9 +39,15 @@ jobs:
 
       # 도커이미지 빌드하고 허브로 푸쉬
       - name: Build and push
-        run: |
-          docker buildx build --platform linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:${{ steps.docker_meta.outputs.version }} --push .
-          
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/arm64/v8
+          push: true
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
+
       # 도커이미지 EC2 에서 pull 그리고 컨테이너 실행
       - name: Deploy to OCI
         uses: appleboy/ssh-action@master
