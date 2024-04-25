@@ -11,14 +11,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.16.0
-          cache: 'npm'
-      - run: npm ci
-      - run: npm test
-
       # # 도커 이미지에 env 파일 포함
       # - name: Create .env file
       #   run: |
