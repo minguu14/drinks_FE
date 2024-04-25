@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # # 도커 이미지에 env 파일 포함
       # - name: Create .env file
@@ -36,7 +36,7 @@ jobs:
 
       # 도커 빌드 관련 셋업
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       # 내 도커허브 로그인
       - name: Login to DockerHub
