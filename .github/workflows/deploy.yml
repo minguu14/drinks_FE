@@ -55,7 +55,7 @@ jobs:
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/publishtest-deploy:cache
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:cache
           cache-to: type=inline
 
       # 도커이미지 EC2 에서 pull 그리고 컨테이너 실행
