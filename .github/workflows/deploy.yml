@@ -16,8 +16,8 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-        run: npm ci
-        run: npm test
+      - run: npm ci
+      - run: npm test
 
       # # 도커 이미지에 env 파일 포함
       # - name: Create .env file
