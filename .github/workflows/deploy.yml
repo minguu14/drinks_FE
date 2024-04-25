@@ -40,7 +40,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64
+          platforms: linux/amd64, linux/arm64
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
@@ -53,7 +53,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull --platform linux/amd64 ${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:main
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:main
             docker stop web || true
             docker rm web || true
             docker run -d --name web -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:main
