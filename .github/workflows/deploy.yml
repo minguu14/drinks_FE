@@ -6,9 +6,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+          with:
+           node-version: 18
+           cache: 'npm'
+        run: npm ci
+        run: npm test
 
       # # 도커 이미지에 env 파일 포함
       # - name: Create .env file
@@ -24,15 +33,6 @@ jobs:
           tag-semver: |
             {{version}}
             {{major}}.{{minor}}
-
-      # npm 캐시 설정
-      - name: Cache npm modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
 
       # 도커 빌드 관련 셋업
       - name: Set up Docker Buildx
@@ -55,8 +55,6 @@ jobs:
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:cache
-          cache-to: type=inline
 
       # 도커이미지 EC2 에서 pull 그리고 컨테이너 실행
       - name: Deploy to OCI
