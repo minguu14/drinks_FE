@@ -1,14 +1,9 @@
+import communityStore from "../../store/store";
 import PopularCommunityCard from "./popularCommunityCard/PopularCommunityCard";
 import { Link } from "react-router-dom";
-import { CommunityType } from "../../models/type";
 
-interface PopularCommunityType {
-  popularCommunity: CommunityType[];
-}
-
-export default function PopularCommunity({popularCommunity}: PopularCommunityType) {
-  
-
+export default function PopularCommunity() {
+  const { community } = communityStore();
   return (
     <div className="flex-col justify-between w-[600px]">
       <div className="flex justify-between">
@@ -17,8 +12,9 @@ export default function PopularCommunity({popularCommunity}: PopularCommunityTyp
       </span>
       <Link to='/popularCommunity'><span className="text-[10px]">전체보기</span></Link>
       </div>
+      { community.length ?
       <div className="flex flex-wrap gap-4 mt-5">
-        { popularCommunity.slice(0,4).map((popular) => (
+        { community.slice(0,4).map((popular) => (
             <PopularCommunityCard
             key={popular.id}
             id={popular.id}
@@ -35,6 +31,11 @@ export default function PopularCommunity({popularCommunity}: PopularCommunityTyp
           )) 
         }
       </div>
+      :
+      <div className="flex justify-center mt-[70px]">
+        <div>모임이 없습니다</div>
+      </div>
+      }
     </div>
   );
 }
