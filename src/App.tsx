@@ -1,4 +1,5 @@
 import "./App.css";
+
 import { Outlet, Route, Routes } from "react-router-dom";
 import Main from "./pages/Main";
 import PopularCommunity from "./pages/PopularCommunity";
@@ -19,6 +20,7 @@ const LayOut = () => {
     </div>
   )
 }
+
 
 function App() {
 const [newCommunity, setNewCommunity] = useState<CommunityType[]>([{
