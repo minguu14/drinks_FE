@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import NewCommunityCard from "./newCommunityCard/NewCommunityCard";
+import communityStore from "../../store/store";
 import { CommunityType } from "../../models/type";
+import { useEffect, useState } from "react";
 
-interface NewCommunityType {
-  newCommunity: CommunityType[];
-}
+export default function NewCommunity() {
+  const { community } = communityStore();
+  const [newCommunity, setNewCommunity] = useState<CommunityType[]>([]);
 
-export default function NewCommunity({newCommunity}: NewCommunityType) {
+  useEffect(()=> {
+    const newbieFilter = community.filter(newbie => newbie.isNew);
+    setNewCommunity(newbieFilter);
+    },[community])
+    
   return (
     <div className="flex-col justify-between w-[600px] mt-10">
       <div className="flex justify-between">
@@ -15,24 +21,33 @@ export default function NewCommunity({newCommunity}: NewCommunityType) {
       </span>
       <Link to='/NewCommunity'><span className="text-[10px]">전체보기</span></Link>
       </div>
+      { newCommunity.find((newbie) => newbie.isNew) ?
       <div className="flex flex-wrap gap-4 mt-5">
-        { newCommunity.map((newbie) => (
-            <NewCommunityCard 
+        { newCommunity.slice(0,4).map((newbie) => (
+            newbie.isNew &&
+            <NewCommunityCard
             key={newbie.id}
             id={newbie.id}
             img={newbie.img}
-            tag1={newbie.tag1}
+            description={newbie.description}
+            tag1={newbie.tag1}  
             tag2={newbie.tag2}  
             area={newbie.area}  
-            groupName={newbie.groupName}
-            people={newbie.people}
+            communityName={newbie.communityName}  
+            member={newbie.member}  
             recentChat={newbie.recentChat}  
+            isPublic={newbie.isPublic}
             isPopular={newbie.isPopular}  
             isNew={newbie.isNew}  
             />
           )) 
         }
       </div>
+      :
+      <div className="flex justify-center mt-[70px]">
+        <div>모임이 없습니다</div>
+      </div>
+      }
     </div>
   );
 }
