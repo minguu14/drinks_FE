@@ -3,7 +3,7 @@ import right from "../../img/right.png";
 
 export default function Nav() {
   return (
-    <nav className='flex justify-center items-center'>
+  <nav className='flex justify-center items-center mt-[150px]'>
     <div className='mr-3'>
     <img src={left} alt="leftArrow" />
     </div>
