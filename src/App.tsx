@@ -9,6 +9,7 @@ import Announcement from "./pages/Announcement";
 import Header from "./components/header/Header";
 import CreateCommunity from "./pages/CreateCommunity";
 import MyCommunity from "./pages/MyCommunity";
+import Community from "./pages/Community/Community";
 
 const LayOut = () => {
   return(
@@ -31,7 +32,8 @@ function App() {
         <Route path="/newCommunity" element={<NewCommunity/>}></Route>
         <Route path="/announcement" element={<Announcement/>}></Route>
         <Route path="/createCommunity" element={<CreateCommunity/>}></Route>
-        <Route path="/myCommunity:id" element={<MyCommunity/>}></Route>
+        <Route path="/myCommunity" element={<MyCommunity/>}></Route>
+        <Route path="/community/:id" element={<Community/>}></Route>
       </Route>
     </Routes>
   );
