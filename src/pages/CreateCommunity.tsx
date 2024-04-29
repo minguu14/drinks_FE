@@ -1,3 +1,4 @@
+import uuid from "react-uuid";
 import { Link } from "react-router-dom";
 import communityStore from "../store/store";
 import { ChangeEvent, useState } from "react";
@@ -8,6 +9,19 @@ import image3 from "../img/image3.jpg"
 export default function CreateCommunity() {
   const { createCommunity } = communityStore();
   const [myImage, setMyImage] = useState<string>(image1);
+  const [communityName, setCommunityName] = useState<string>('');
+  const [communityArea, setCommunityArea] = useState<string>('');
+  const [communityDescription, setCommunityDescription] = useState<string>('');
+  const [checkValue, setCheckValue] = useState<string>("public");
+
+  const communityPublic = (e: ChangeEvent<HTMLInputElement>) => {
+    let checkItem = document.getElementsByName("checkType");
+    Array.prototype.forEach.call(checkItem, function (el) {
+      el.checked = false;
+    });
+    e.target.checked = true;
+    setCheckValue(e.target.defaultValue);
+  }
 
   const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -16,6 +30,18 @@ export default function CreateCommunity() {
       setMyImage(imageUrl);
     }
   };
+
+  const onChangeDescription = (e: ChangeEvent<HTMLInputElement>) => {
+    setCommunityDescription(e.target.value);
+  }
+
+  const onChangeCommunityName = (e: ChangeEvent<HTMLInputElement>) => {
+    setCommunityName(e.target.value);
+  }
+
+  const onChangeCommunityArea = (e: ChangeEvent<HTMLInputElement>) => {
+    setCommunityArea(e.target.value);
+  }
 
   const clickImage = (image: string) => {
     switch(image){
@@ -38,6 +64,7 @@ export default function CreateCommunity() {
           type="text"
           placeholder="이름을 입력해주세요"
           className="border-b-2 w-[1300px] h-[50px] mb-20"
+          onChange={onChangeCommunityName}
         />
         <div className="flex">
           <div className="border-2 w-[350px] h-[250px]">
@@ -69,6 +96,7 @@ export default function CreateCommunity() {
           type="text"
           placeholder="모임에 대해 간단한 설명을 입력해주세요"
           className="border-b-2 w-[1300px] h-[50px] mb-10"
+          onChange={onChangeDescription}
         />
 
         <p className="text-[20px] mt-20 mb-10">모임 지역</p>
@@ -76,20 +104,35 @@ export default function CreateCommunity() {
           type="text"
           placeholder="지역을 입력해주세요"
           className="border-b-2 w-[1300px] h-[50px] mb-10"
+          onChange={onChangeCommunityArea}
         />
         <p className="text-[20px] mt-20">모임 공개</p>
         <div className="flex mt-10 gap-x-[130px]">
           <div className="p-2">
             <div className="flex items-center gap-x-2">
-              <span>공개</span>
-              <input type="checkbox" className="w-[25px] h-[25px]" />
+              <label htmlFor="communityPublic">공개</label>
+              <input 
+              type="checkbox" 
+              id="communityPublic"
+              name="checkType"
+              value="public"
+              onChange={(e)=>communityPublic(e)}
+              checked={checkValue === "public"}
+              className="w-[25px] h-[25px]" />
             </div>
             <div className="text-[10px] mt-2">모두에게 공개됩니다</div>
           </div>
           <div className="p-2">
             <div className="flex items-center gap-x-2">
-              <span>비공개</span>
-              <input type="checkbox" className="w-[25px] h-[25px]" />
+            <label htmlFor="communityPrivate">비공개</label>
+              <input 
+              type="checkbox" 
+              id="communityPrivate"
+              name="checkType"
+              value="private"
+              onChange={(e)=>communityPublic(e)}
+              checked={checkValue === "private"}
+              className="w-[25px] h-[25px]" />
             </div>
             <div className="text-[10px] mt-2">
               모임에 가입한 사람만 게시물을 볼 수 있습니다
@@ -122,20 +165,22 @@ export default function CreateCommunity() {
               취소
             </button>
           </Link>
-          <Link to="/myCommunity">
+          <Link to="/">
             <button
               onClick={() =>
                 createCommunity({
-                  id: "1",
+                  id: uuid(),
                   img: myImage,
+                  description: communityDescription,
                   tag1: "소주",
                   tag2: "맥주",
-                  area: "서울",
-                  groupName: "치얼스",
-                  people: 3,
+                  area: communityArea,
+                  communityName: communityName,
+                  member: 1,
                   recentChat: "10분 전 마지막 대화",
-                  isPopular: true,
-                  isNew: false,
+                  isPublic: checkValue,
+                  isPopular: false,
+                  isNew: true,
                 })
               }
               className="w-[150px] h-[80px] rounded-[10px] bg-blue-500 text-white text-[20px]"

@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react";
+import { CommunityType } from "../../models/type";
 import communityStore from "../../store/store";
 import PopularCommunityCard from "./popularCommunityCard/PopularCommunityCard";
 import { Link } from "react-router-dom";
 
 export default function PopularCommunity() {
   const { community } = communityStore();
+  const [popularCommunity, setPopularCommunity] = useState<CommunityType[]>([]);
+
+  useEffect(()=> {
+    const popularFilter = community.filter(popular => popular.isPopular);
+    setPopularCommunity(popularFilter);
+    },[community])
   return (
     <div className="flex-col justify-between w-[600px]">
       <div className="flex justify-between">
@@ -12,19 +20,22 @@ export default function PopularCommunity() {
       </span>
       <Link to='/popularCommunity'><span className="text-[10px]">전체보기</span></Link>
       </div>
-      { community.length ?
+      { popularCommunity.length ?
       <div className="flex flex-wrap gap-4 mt-5">
-        { community.slice(0,4).map((popular) => (
+        { popularCommunity.slice(0,4).map((popular) => (
+            popular.isPopular &&
             <PopularCommunityCard
             key={popular.id}
             id={popular.id}
             img={popular.img}
+            description={popular.description}
             tag1={popular.tag1}  
             tag2={popular.tag2}  
-            area={popular.area}  
-            groupName={popular.groupName}  
-            people={popular.people}  
-            recentChat={popular.recentChat}  
+            area={popular.area}
+            communityName={popular.communityName}  
+            member={popular.member}  
+            recentChat={popular.recentChat}
+            isPublic={popular.isPublic}
             isPopular={popular.isPopular}  
             isNew={popular.isNew}  
             />
