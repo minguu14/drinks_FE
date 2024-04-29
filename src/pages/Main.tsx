@@ -4,13 +4,8 @@ import Announcement from "../components/announcement/Announcement";
 import Nav from "../components/nav/Nav";
 import PopularCommunity from "../components/community/PopularCommunity";
 import NewCommunity from "../components/community/NewCommunity";
-import { CommunityType } from "../models/type";
 
-interface MainCommunity {
-  newCommunity: CommunityType[];
-}
-
-export default function Main({newCommunity}: MainCommunity) {
+export default function Main() {
   
   return (
     <div className="App">
@@ -25,7 +20,6 @@ export default function Main({newCommunity}: MainCommunity) {
           <Recipe/>
           {/* 새싹모임 */}
           <NewCommunity
-          newCommunity={newCommunity}
           />
           {/* 공지사항 */}
           <Announcement/>
