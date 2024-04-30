@@ -25,8 +25,8 @@ import top8 from "../img/TOP8.png";
 import top9 from "../img/TOP9.png";
 import top10 from "../img/TOP10.png";
 import 따봉 from "../img/따봉.png";
-import textPicture from "../img/예시 술 이미지.webp";
-import 소주 from "../img/소주이미지.webp";
+import textPicture from "../img/예시 술 이미지.webp";
+import 소주 from "../img/소주이미지.webp"
 import 맥주 from "../img/맥주이미지.webp";
 import 와인 from "../img/와인이미지.webp";
 import 사케 from "../img/사케이미지.webp";

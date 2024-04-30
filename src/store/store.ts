@@ -14,20 +14,20 @@ const communityStore = create<CommunityStoreType>()(
     community: [],
     selectedCommunity: {
       id: "",
-      img: "",
+      thumbnail_url: "",
       description: "",
       tag1: "",
       tag2: "",
       area: "",
       communityName: "",
       member: 1,
-      recentChat: "",
+      last_chat_time: "",
       isPublic: "",
       isPopular: false,
       isNew: true,
     },
     createCommunity: (by: CommunityType) => set((state) => ({community: state.community.concat(by)}), false, 'createCommunity'),
-    selectCommunity: (by: CommunityType) => set(({selectedCommunity: by}))
+    selectCommunity: (by: CommunityType) => set(({selectedCommunity: by}), false, 'selectCommunity'),
   }))
 );
 
