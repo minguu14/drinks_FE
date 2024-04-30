@@ -27,14 +27,14 @@ export default function PopularCommunity() {
                 <NewCommunityCard
                 key={newbie.id}
                 id={newbie.id}
-                img={newbie.img}
+                thumbnail_url={newbie.thumbnail_url}
                 description={newbie.description}
                 tag1={newbie.tag1}  
                 tag2={newbie.tag2}  
                 area={newbie.area}  
                 communityName={newbie.communityName}  
                 member={newbie.member}  
-                recentChat={newbie.recentChat}
+                last_chat_time={newbie.last_chat_time}
                 isPublic={newbie.isPublic}
                 isPopular={newbie.isPopular}  
                 isNew={newbie.isNew}  
@@ -45,14 +45,14 @@ export default function PopularCommunity() {
               <NewCommunityCard
               key={newbie.id}
               id={newbie.id}
-              img={newbie.img}
+              thumbnail_url={newbie.thumbnail_url}
               description={newbie.description}
               tag1={newbie.tag1}  
               tag2={newbie.tag2}  
               area={newbie.area}
               communityName={newbie.communityName}  
               member={newbie.member}  
-              recentChat={newbie.recentChat}  
+              last_chat_time={newbie.last_chat_time}  
               isPublic={newbie.isPublic}
               isPopular={newbie.isPopular}  
               isNew={newbie.isNew}  

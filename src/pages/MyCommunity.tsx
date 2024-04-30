@@ -13,7 +13,7 @@ export default function MyCommunity() {
     <div className="flex mt-[200px] mb-10 relative">
       {/* 모임정보 */}
       <div className="ml-[80px] fixed left-3">
-        <div className="w-[250px] h-[250px] border-4"><img src={community[0].img} alt="communityProfile" className="w-full h-full"/></div>
+        <div className="w-[250px] h-[250px] border-4"><img src={community[0].thumbnail_url} alt="communityProfile" className="w-full h-full"/></div>
         <div className="flex items-center mt-10">
           <div className="w-[75px] h-[75px] border-2 rounded-[50%] items-center justify-center"></div>
           <div className="flex-col ml-3">
