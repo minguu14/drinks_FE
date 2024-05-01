@@ -10,10 +10,10 @@ import {
 } from "@ant-design/icons";
 import "swiper/css";
 import "swiper/css/navigation";
-import sujungbang from "../img/수정방.jpeg";
-import 오늘밤하이볼 from "../img/오늘 밤 하이볼.jpeg";
-import 강릉 from "../img/강릉 블루오션 하이볼.jpeg";
-import 벚꽃 from "../img/벚꽃 칵테일.jpeg";
+import sujungbang from "../img/sujungbang.jpeg";
+import tonightHighball from "../img/tonightHighball.jpeg";
+import bluehigball from "../img/bluehighball.jpeg";
+import carryCocktail from "../img/carryCocktail.jpeg";
 import top1 from "../img/TOP1.png";
 import top2 from "../img/TOP2.png";
 import top3 from "../img/TOP3.png";
@@ -24,15 +24,16 @@ import top7 from "../img/TOP7.png";
 import top8 from "../img/TOP8.png";
 import top9 from "../img/TOP9.png";
 import top10 from "../img/TOP10.png";
-import 따봉 from "../img/따봉.png";
-import textPicture from "../img/예시 술 이미지.webp";
-import 소주 from "../img/소주이미지.webp";
-import 맥주 from "../img/맥주이미지.webp";
-import 와인 from "../img/와인이미지.webp";
-import 사케 from "../img/사케이미지.webp";
-import 보드카 from "../img/보드카이미지.webp";
-import 위스키 from "../img/위스키이미지.webp";
-import 막걸리 from "../img/막걸리이미지.webp";
+import good from "../img/good.png";
+import alcoholicTest from "../img/alcoholicTest.webp";
+import soju from "../img/soju.webp";
+import beer from "../img/beer.webp";
+import wine from "../img/wine.webp";
+import sake from "../img/sake.webp";
+import vodka from "../img/vodka.webp";
+import whiskey from "../img/whiskey.webp";
+import makgeorlli from "../img/makgeorlli.webp";
+
 import LikeButton from "../components/LikeButton";
 
 export default function RecipesPage() {
@@ -51,140 +52,140 @@ export default function RecipesPage() {
   const [twoPage, setTwoPage] = useState(false);
 
   const items = [
-    { id: 1, title: "제목 1", image: textPicture },
-    { id: 2, title: "제목 2", image: textPicture },
-    { id: 3, title: "제목 3", image: textPicture },
-    { id: 4, title: "제목 4", image: textPicture },
-    { id: 5, title: "제목 5", image: textPicture },
-    { id: 6, title: "제목 6", image: textPicture },
-    { id: 7, title: "제목 7", image: textPicture },
-    { id: 8, title: "제목 8", image: textPicture },
-    { id: 9, title: "제목 9", image: textPicture },
-    { id: 10, title: "제목 10", image: textPicture },
-    { id: 11, title: "제목 11", image: textPicture },
-    { id: 12, title: "제목 12", image: textPicture },
-    { id: 13, title: "제목 13", image: textPicture },
-    { id: 14, title: "제목 14", image: textPicture },
-    { id: 15, title: "제목 15", image: textPicture },
+    { id: 1, title: "제목 1", image: alcoholicTest },
+    { id: 2, title: "제목 2", image: alcoholicTest },
+    { id: 3, title: "제목 3", image: alcoholicTest },
+    { id: 4, title: "제목 4", image: alcoholicTest },
+    { id: 5, title: "제목 5", image: alcoholicTest },
+    { id: 6, title: "제목 6", image: alcoholicTest },
+    { id: 7, title: "제목 7", image: alcoholicTest },
+    { id: 8, title: "제목 8", image: alcoholicTest },
+    { id: 9, title: "제목 9", image: alcoholicTest },
+    { id: 10, title: "제목 10", image: alcoholicTest },
+    { id: 11, title: "제목 11", image: alcoholicTest },
+    { id: 12, title: "제목 12", image: alcoholicTest },
+    { id: 13, title: "제목 13", image: alcoholicTest },
+    { id: 14, title: "제목 14", image: alcoholicTest },
+    { id: 15, title: "제목 15", image: alcoholicTest },
   ];
   const sojuItems = [
-    { id: 1, title: "제목 1", image: 소주 },
-    { id: 2, title: "제목 2", image: 소주 },
-    { id: 3, title: "제목 3", image: 소주 },
-    { id: 4, title: "제목 4", image: 소주 },
-    { id: 5, title: "제목 5", image: 소주 },
-    { id: 6, title: "제목 6", image: 소주 },
-    { id: 7, title: "제목 7", image: 소주 },
-    { id: 8, title: "제목 8", image: 소주 },
-    { id: 9, title: "제목 9", image: 소주 },
-    { id: 10, title: "제목 10", image: 소주 },
-    { id: 11, title: "제목 11", image: 소주 },
-    { id: 12, title: "제목 12", image: 소주 },
-    { id: 13, title: "제목 13", image: 소주 },
-    { id: 14, title: "제목 14", image: 소주 },
-    { id: 15, title: "제목 15", image: 소주 },
+    { id: 1, title: "제목 1", image: soju },
+    { id: 2, title: "제목 2", image: soju },
+    { id: 3, title: "제목 3", image: soju },
+    { id: 4, title: "제목 4", image: soju },
+    { id: 5, title: "제목 5", image: soju },
+    { id: 6, title: "제목 6", image: soju },
+    { id: 7, title: "제목 7", image: soju },
+    { id: 8, title: "제목 8", image: soju },
+    { id: 9, title: "제목 9", image: soju },
+    { id: 10, title: "제목 10", image: soju },
+    { id: 11, title: "제목 11", image: soju },
+    { id: 12, title: "제목 12", image: soju },
+    { id: 13, title: "제목 13", image: soju },
+    { id: 14, title: "제목 14", image: soju },
+    { id: 15, title: "제목 15", image: soju },
   ];
   const beerItems = [
-    { id: 1, title: "제목 1", image: 맥주 },
-    { id: 2, title: "제목 2", image: 맥주 },
-    { id: 3, title: "제목 3", image: 맥주 },
-    { id: 4, title: "제목 4", image: 맥주 },
-    { id: 5, title: "제목 5", image: 맥주 },
-    { id: 6, title: "제목 6", image: 맥주 },
-    { id: 7, title: "제목 7", image: 맥주 },
-    { id: 8, title: "제목 8", image: 맥주 },
-    { id: 9, title: "제목 9", image: 맥주 },
-    { id: 10, title: "제목 10", image: 맥주 },
-    { id: 11, title: "제목 11", image: 맥주 },
-    { id: 12, title: "제목 12", image: 맥주 },
-    { id: 13, title: "제목 13", image: 맥주 },
-    { id: 14, title: "제목 14", image: 맥주 },
-    { id: 15, title: "제목 15", image: 맥주 },
+    { id: 1, title: "제목 1", image: beer },
+    { id: 2, title: "제목 2", image: beer },
+    { id: 3, title: "제목 3", image: beer },
+    { id: 4, title: "제목 4", image: beer },
+    { id: 5, title: "제목 5", image: beer },
+    { id: 6, title: "제목 6", image: beer },
+    { id: 7, title: "제목 7", image: beer },
+    { id: 8, title: "제목 8", image: beer },
+    { id: 9, title: "제목 9", image: beer },
+    { id: 10, title: "제목 10", image: beer },
+    { id: 11, title: "제목 11", image: beer },
+    { id: 12, title: "제목 12", image: beer },
+    { id: 13, title: "제목 13", image: beer },
+    { id: 14, title: "제목 14", image: beer },
+    { id: 15, title: "제목 15", image: beer },
   ];
   const wineItems = [
-    { id: 1, title: "제목 1", image: 와인 },
-    { id: 2, title: "제목 2", image: 와인 },
-    { id: 3, title: "제목 3", image: 와인 },
-    { id: 4, title: "제목 4", image: 와인 },
-    { id: 5, title: "제목 5", image: 와인 },
-    { id: 6, title: "제목 6", image: 와인 },
-    { id: 7, title: "제목 7", image: 와인 },
-    { id: 8, title: "제목 8", image: 와인 },
-    { id: 9, title: "제목 9", image: 와인 },
-    { id: 10, title: "제목 10", image: 와인 },
-    { id: 11, title: "제목 11", image: 와인 },
-    { id: 12, title: "제목 12", image: 와인 },
-    { id: 13, title: "제목 13", image: 와인 },
-    { id: 14, title: "제목 14", image: 와인 },
-    { id: 15, title: "제목 15", image: 와인 },
+    { id: 1, title: "제목 1", image: wine },
+    { id: 2, title: "제목 2", image: wine },
+    { id: 3, title: "제목 3", image: wine },
+    { id: 4, title: "제목 4", image: wine },
+    { id: 5, title: "제목 5", image: wine },
+    { id: 6, title: "제목 6", image: wine },
+    { id: 7, title: "제목 7", image: wine },
+    { id: 8, title: "제목 8", image: wine },
+    { id: 9, title: "제목 9", image: wine },
+    { id: 10, title: "제목 10", image: wine },
+    { id: 11, title: "제목 11", image: wine },
+    { id: 12, title: "제목 12", image: wine },
+    { id: 13, title: "제목 13", image: wine },
+    { id: 14, title: "제목 14", image: wine },
+    { id: 15, title: "제목 15", image: wine },
   ];
   const sakeItems = [
-    { id: 1, title: "제목 1", image: 사케 },
-    { id: 2, title: "제목 2", image: 사케 },
-    { id: 3, title: "제목 3", image: 사케 },
-    { id: 4, title: "제목 4", image: 사케 },
-    { id: 5, title: "제목 5", image: 사케 },
-    { id: 6, title: "제목 6", image: 사케 },
-    { id: 7, title: "제목 7", image: 사케 },
-    { id: 8, title: "제목 8", image: 사케 },
-    { id: 9, title: "제목 9", image: 사케 },
-    { id: 10, title: "제목 10", image: 사케 },
-    { id: 11, title: "제목 11", image: 사케 },
-    { id: 12, title: "제목 12", image: 사케 },
-    { id: 13, title: "제목 13", image: 사케 },
-    { id: 14, title: "제목 14", image: 사케 },
-    { id: 15, title: "제목 15", image: 사케 },
+    { id: 1, title: "제목 1", image: sake },
+    { id: 2, title: "제목 2", image: sake },
+    { id: 3, title: "제목 3", image: sake },
+    { id: 4, title: "제목 4", image: sake },
+    { id: 5, title: "제목 5", image: sake },
+    { id: 6, title: "제목 6", image: sake },
+    { id: 7, title: "제목 7", image: sake },
+    { id: 8, title: "제목 8", image: sake },
+    { id: 9, title: "제목 9", image: sake },
+    { id: 10, title: "제목 10", image: sake },
+    { id: 11, title: "제목 11", image: sake },
+    { id: 12, title: "제목 12", image: sake },
+    { id: 13, title: "제목 13", image: sake },
+    { id: 14, title: "제목 14", image: sake },
+    { id: 15, title: "제목 15", image: sake },
   ];
   const vodkaItems = [
-    { id: 1, title: "제목 1", image: 보드카 },
-    { id: 2, title: "제목 2", image: 보드카 },
-    { id: 3, title: "제목 3", image: 보드카 },
-    { id: 4, title: "제목 4", image: 보드카 },
-    { id: 5, title: "제목 5", image: 보드카 },
-    { id: 6, title: "제목 6", image: 보드카 },
-    { id: 7, title: "제목 7", image: 보드카 },
-    { id: 8, title: "제목 8", image: 보드카 },
-    { id: 9, title: "제목 9", image: 보드카 },
-    { id: 10, title: "제목 10", image: 보드카 },
-    { id: 11, title: "제목 11", image: 보드카 },
-    { id: 12, title: "제목 12", image: 보드카 },
-    { id: 13, title: "제목 13", image: 보드카 },
-    { id: 14, title: "제목 14", image: 보드카 },
-    { id: 15, title: "제목 15", image: 보드카 },
+    { id: 1, title: "제목 1", image: vodka },
+    { id: 2, title: "제목 2", image: vodka },
+    { id: 3, title: "제목 3", image: vodka },
+    { id: 4, title: "제목 4", image: vodka },
+    { id: 5, title: "제목 5", image: vodka },
+    { id: 6, title: "제목 6", image: vodka },
+    { id: 7, title: "제목 7", image: vodka },
+    { id: 8, title: "제목 8", image: vodka },
+    { id: 9, title: "제목 9", image: vodka },
+    { id: 10, title: "제목 10", image: vodka },
+    { id: 11, title: "제목 11", image: vodka },
+    { id: 12, title: "제목 12", image: vodka },
+    { id: 13, title: "제목 13", image: vodka },
+    { id: 14, title: "제목 14", image: vodka },
+    { id: 15, title: "제목 15", image: vodka },
   ];
   const whiskeyItems = [
-    { id: 1, title: "제목 1", image: 위스키 },
-    { id: 2, title: "제목 2", image: 위스키 },
-    { id: 3, title: "제목 3", image: 위스키 },
-    { id: 4, title: "제목 4", image: 위스키 },
-    { id: 5, title: "제목 5", image: 위스키 },
-    { id: 6, title: "제목 6", image: 위스키 },
-    { id: 7, title: "제목 7", image: 위스키 },
-    { id: 8, title: "제목 8", image: 위스키 },
-    { id: 9, title: "제목 9", image: 위스키 },
-    { id: 10, title: "제목 10", image: 위스키 },
-    { id: 11, title: "제목 11", image: 위스키 },
-    { id: 12, title: "제목 12", image: 위스키 },
-    { id: 13, title: "제목 13", image: 위스키 },
-    { id: 14, title: "제목 14", image: 위스키 },
-    { id: 15, title: "제목 15", image: 위스키 },
+    { id: 1, title: "제목 1", image: whiskey },
+    { id: 2, title: "제목 2", image: whiskey },
+    { id: 3, title: "제목 3", image: whiskey },
+    { id: 4, title: "제목 4", image: whiskey },
+    { id: 5, title: "제목 5", image: whiskey },
+    { id: 6, title: "제목 6", image: whiskey },
+    { id: 7, title: "제목 7", image: whiskey },
+    { id: 8, title: "제목 8", image: whiskey },
+    { id: 9, title: "제목 9", image: whiskey },
+    { id: 10, title: "제목 10", image: whiskey },
+    { id: 11, title: "제목 11", image: whiskey },
+    { id: 12, title: "제목 12", image: whiskey },
+    { id: 13, title: "제목 13", image: whiskey },
+    { id: 14, title: "제목 14", image: whiskey },
+    { id: 15, title: "제목 15", image: whiskey },
   ];
   const makgeolliItems = [
-    { id: 1, title: "제목 1", image: 막걸리 },
-    { id: 2, title: "제목 2", image: 막걸리 },
-    { id: 3, title: "제목 3", image: 막걸리 },
-    { id: 4, title: "제목 4", image: 막걸리 },
-    { id: 5, title: "제목 5", image: 막걸리 },
-    { id: 6, title: "제목 6", image: 막걸리 },
-    { id: 7, title: "제목 7", image: 막걸리 },
-    { id: 8, title: "제목 8", image: 막걸리 },
-    { id: 9, title: "제목 9", image: 막걸리 },
-    { id: 10, title: "제목 10", image: 막걸리 },
-    { id: 11, title: "제목 11", image: 막걸리 },
-    { id: 12, title: "제목 12", image: 막걸리 },
-    { id: 13, title: "제목 13", image: 막걸리 },
-    { id: 14, title: "제목 14", image: 막걸리 },
-    { id: 15, title: "제목 15", image: 막걸리 },
+    { id: 1, title: "제목 1", image: makgeorlli },
+    { id: 2, title: "제목 2", image: makgeorlli },
+    { id: 3, title: "제목 3", image: makgeorlli },
+    { id: 4, title: "제목 4", image: makgeorlli },
+    { id: 5, title: "제목 5", image: makgeorlli },
+    { id: 6, title: "제목 6", image: makgeorlli },
+    { id: 7, title: "제목 7", image: makgeorlli },
+    { id: 8, title: "제목 8", image: makgeorlli },
+    { id: 9, title: "제목 9", image: makgeorlli },
+    { id: 10, title: "제목 10", image: makgeorlli },
+    { id: 11, title: "제목 11", image: makgeorlli },
+    { id: 12, title: "제목 12", image: makgeorlli },
+    { id: 13, title: "제목 13", image: makgeorlli },
+    { id: 14, title: "제목 14", image: makgeorlli },
+    { id: 15, title: "제목 15", image: makgeorlli },
   ];
 
   const showAllPage = () => {
@@ -298,13 +299,13 @@ export default function RecipesPage() {
               <img src={top1} alt="rangking" className="absolute z-20" />
               <div className="flex  justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[35px] left-[45px] z-0">
                 <LikeButton></LikeButton>
-                <img src={오늘밤하이볼} alt="오늘밤하이볼" className="" />
+                <img src={tonightHighball} alt="tonightHighball" className="" />
               </div>
               <div className="text-[23px] relative top-[43px] left-[45px]  w-[230px] h-[64px] text-center">
                 오늘 밤 한잔
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
@@ -316,13 +317,13 @@ export default function RecipesPage() {
               <img src={top2} alt="top2" className="absolute z-20" />
               <div className="flex  justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[35px] left-[45px] z-0">
                 <LikeButton></LikeButton>
-                <img src={강릉} alt="강릉" className=" " />
+                <img src={bluehigball} alt="bluehigball" className=" " />
               </div>
               <div className="text-[23px] relative top-[43px] left-[45px]  w-[230px] h-[64px] text-center">
-                강릉 블루오션 하이볼
+                bluehigball 블루오션 하이볼
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
@@ -341,7 +342,7 @@ export default function RecipesPage() {
                 간아~ 가즈아~ 가즈아~ 수정방 들어간다~
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
@@ -349,18 +350,18 @@ export default function RecipesPage() {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            {/* <img src={벚꽃} alt="벚꽃" /> */}
+            {/* <img src={carryCocktail} alt="carryCocktail" /> */}
             <div>
               <img src={top4} alt="top4" className="absolute z-20" />
               <div className="flex  justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[35px] left-[45px] z-0">
                 <LikeButton></LikeButton>
-                <img src={벚꽃} alt="벚꽃" className=" " />
+                <img src={carryCocktail} alt="carryCocktail" className=" " />
               </div>
               <div className="text-[23px] relative top-[43px] left-[45px]  w-[230px] h-[64px] text-center">
-                오빠랑 벚꽃 한 잔🌸
+                오빠랑 carryCocktail 한 잔🌸
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
@@ -372,13 +373,17 @@ export default function RecipesPage() {
               <img src={top5} alt="top5" className="absolute z-20" />
               <div className="flex  justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[35px] left-[45px] z-0">
                 <LikeButton></LikeButton>
-                <img src={오늘밤하이볼} alt="오늘밤하이볼" className=" " />
+                <img
+                  src={tonightHighball}
+                  alt="tonightHighball"
+                  className=" "
+                />
               </div>
               <div className="text-[23px] relative top-[43px] left-[45px]  w-[230px] h-[64px] text-center">
                 오늘 밤 한잔
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
@@ -390,13 +395,13 @@ export default function RecipesPage() {
               <img src={top6} alt="top6" className="absolute z-20" />
               <div className="flex  justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[35px] left-[45px] z-0">
                 <LikeButton></LikeButton>
-                <img src={강릉} alt="강릉" className=" " />
+                <img src={bluehigball} alt="bluehigball" className=" " />
               </div>
               <div className="text-[23px] relative top-[43px] left-[45px]  w-[230px] h-[64px] text-center">
-                강릉 블루오션 하이볼
+                bluehigball 블루오션 하이볼
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
@@ -415,7 +420,7 @@ export default function RecipesPage() {
                 간아~ 가즈아~ 가즈아~ 수정방 들어간다~
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
@@ -423,18 +428,18 @@ export default function RecipesPage() {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            {/* <img src={벚꽃} alt="벚꽃" /> */}
+            {/* <img src={carryCocktail} alt="carryCocktail" /> */}
             <div>
               <img src={top8} alt="top8" className="absolute z-20" />
               <div className="flex  justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[35px] left-[45px] z-0">
                 <LikeButton></LikeButton>
-                <img src={벚꽃} alt="벚꽃" className=" " />
+                <img src={carryCocktail} alt="carryCocktail" className=" " />
               </div>
               <div className="text-[23px] relative top-[43px] left-[45px]  w-[230px] h-[64px] text-center">
-                오빠랑 벚꽃 한 잔🌸
+                오빠랑 carryCocktail 한 잔🌸
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
@@ -447,13 +452,17 @@ export default function RecipesPage() {
               <img src={top9} alt="top9" className="absolute z-20" />
               <div className="flex  justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[35px] left-[45px] z-0">
                 <LikeButton></LikeButton>
-                <img src={오늘밤하이볼} alt="오늘밤하이볼" className=" " />
+                <img
+                  src={tonightHighball}
+                  alt="tonightHighball"
+                  className=" "
+                />
               </div>
               <div className="text-[23px] relative top-[43px] left-[45px]  w-[230px] h-[64px] text-center">
                 오늘 밤 한잔
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
@@ -466,13 +475,13 @@ export default function RecipesPage() {
 
               <div className="flex  justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[35px] left-[45px] z-0">
                 <LikeButton></LikeButton>
-                <img src={강릉} alt="강릉" className=" " />
+                <img src={bluehigball} alt="bluehigball" className=" " />
               </div>
               <div className="text-[23px] relative top-[43px] left-[45px]  w-[230px] h-[64px] text-center">
-                강릉 블루오션 하이볼
+                bluehigball 블루오션 하이볼
               </div>
               <div className="flex flex- row relative top-[43px] left-[45px]">
-                <img src={따봉} alt="좋아요" className="mr-2" />
+                <img src={good} alt="좋아요" className="mr-2" />
                 <div className="text-[#FFB739] text-[22px] relative top-1">
                   {goodConunt}
                 </div>
