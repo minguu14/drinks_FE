@@ -33,6 +33,7 @@ import sake from "../img/sake.webp";
 import vodka from "../img/vodka.webp";
 import whiskey from "../img/whiskey.webp";
 import makgeorlli from "../img/makgeorlli.webp";
+
 import LikeButton from "../components/LikeButton";
 
 export default function RecipesPage() {

@@ -1,14 +1,20 @@
 export interface CommunityType {
     id: string;
-    img: string;
+    thumbnail_url: string;
     description: string;
     tag1: string;
     tag2: string;
     area: string;
     communityName: string;
     member: number;
-    recentChat: string;
+    last_chat_time: string;
     isPublic: string;
     isPopular: boolean;
     isNew: boolean;
+}
+
+export interface FormValue {
+    title: string;
+    description: string;
+    area: string;
 }

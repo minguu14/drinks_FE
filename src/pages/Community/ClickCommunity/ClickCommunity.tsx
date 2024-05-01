@@ -16,7 +16,7 @@ export default function ClickCommunity() {
       <div className="flex mt-[200px] mb-10 relative">
       {/* 모임정보 */}
       <div className="ml-[80px] fixed left-3">
-        <div className="w-[250px] h-[250px] border-4"><img src={selectedCommunity.img} alt="communityProfile" className="w-full h-full"/></div>
+        <div className="w-[250px] h-[250px] border-4"><img src={selectedCommunity.thumbnail_url} alt="communityProfile" className="w-full h-full"/></div>
         <div className="flex items-center mt-10">
           <div className="w-[75px] h-[75px] border-2 rounded-[50%] items-center justify-center"></div>
           <div className="flex-col ml-3">
@@ -64,7 +64,7 @@ export default function ClickCommunity() {
     <div className="flex mt-[200px] mb-10 relative">
       {/* 모임정보 */}
       <div className="ml-[80px] fixed left-3">
-        <div className="w-[250px] h-[250px] border-4"><img src={selectedCommunity.img} alt="communityProfile" className="w-full h-full"/></div>
+        <div className="w-[250px] h-[250px] border-4"><img src={selectedCommunity.thumbnail_url} alt="communityProfile" className="w-full h-full"/></div>
         <div className="flex items-center mt-10">
           <div className="w-[75px] h-[75px] border-2 rounded-[50%] items-center justify-center"></div>
           <div className="flex-col ml-3">
@@ -92,7 +92,7 @@ export default function ClickCommunity() {
         <img src={setting} alt="setting" className="w-[35px] h-[35px] mt-[50px]" />
       </div>
       {/* 모임피드 */}
-      <div className="absolute left-[650px] top-[300px] text-[20px]">
+      <div className="absolute left-[850px] top-[250px] text-[20px]">
         <p>모임에서 비공개로 설정하였습니다.</p>
         <p>게시물을 보려면 모임에 가입해주세요.</p>
       </div>
