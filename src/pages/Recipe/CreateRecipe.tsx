@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { CameraOutlined } from "@ant-design/icons";
+import { createRecipe } from "../../Api/axios";
 
 type foodIngredientField = {
   id: number;
@@ -137,6 +139,31 @@ export default function CreateRecipe() {
       return step;
     });
     setFoodStep(updatedSteps);
+  };
+  // 데이터를 서버에 전송하는 함수
+  const handleSubmit = async () => {
+    const response = await createRecipe(
+      imageUrl,
+      createRecipeName,
+      createRecipeIntroduce,
+      sojuType,
+      beerType,
+      wineType,
+      sakeType,
+      vodkaType,
+      whiskeyType,
+      makgeolliType,
+      foodIngredient,
+      foodStep
+    );
+
+    if (response) {
+      console.log("Recipe created successfully:", response);
+      // 성공 처리, 예를 들어 알림 표시나 페이지 이동 등
+    } else {
+      console.error("Failed to create recipe");
+      // 실패 처리, 예를 들어 에러 메시지 표시 등
+    }
   };
 
   return (
@@ -361,12 +388,17 @@ export default function CreateRecipe() {
         ))}
       </section>
       <div className="ml-[404px] w-[1115px] flex justify-center my-20 ">
-        <button className="w-[166px] h-[66px] border-2 rounded-lg border-sky-500 bg-sky-200 text-2xl flex justify-center items-center mr-6">
+        <button
+          className="w-[166px] h-[66px] border-2 rounded-lg border-sky-500 bg-sky-200 text-2xl flex justify-center items-center mr-6"
+          onClick={handleSubmit}
+        >
           저 장
         </button>
-        <button className="w-[166px] h-[66px] border-2 rounded-lg border-sky-500 bg-sky-200 text-2xl flex justify-center items-center">
-          취 소
-        </button>
+        <Link to="/">
+          <button className="w-[166px] h-[66px] border-2 rounded-lg border-sky-500 bg-sky-200 text-2xl flex justify-center items-center">
+            취 소
+          </button>
+        </Link>
       </div>
     </div>
   );
