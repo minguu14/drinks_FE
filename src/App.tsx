@@ -11,6 +11,7 @@ import CreateCommunity from "./pages/CreateCommunity";
 import MyCommunity from "./pages/MyCommunity";
 import Community from "./pages/Community/Community";
 import CreateRecipe from "./pages/Recipe/CreateRecipe";
+import EditRecipe from "./pages/Recipe/EditRecipe";
 
 const LayOut = () => {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/myCommunity" element={<MyCommunity />}></Route>
         <Route path="/community/:id" element={<Community />}></Route>
         <Route path="/recipe/createrecipe" element={<CreateRecipe />}></Route>
+        <Route path="/recipe/editrecipe" element={<EditRecipe />}></Route>
       </Route>
     </Routes>
   );
