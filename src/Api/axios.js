@@ -36,3 +36,18 @@ export const createRecipe = async (
     return "failed to login";
   }
 };
+
+// user recipe list
+export const UserRecipeList = async (refreshToken) => {
+  try {
+    const response = await axios.get(
+      "http://43.202.87.84/members/findUsername",
+      {
+        params: { refreshToken },
+      }
+    );
+    return response.data;
+  } catch {
+    return "error";
+  }
+};

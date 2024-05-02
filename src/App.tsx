@@ -12,6 +12,7 @@ import MyCommunity from "./pages/MyCommunity";
 import Community from "./pages/Community/Community";
 import CommunityMember from "./pages/CommunityMember/CommunityMember";
 import CreateRecipe from "./pages/Recipe/CreateRecipe";
+import EditRecipe from "./pages/Recipe/EditRecipe";
 
 const LayOut = () => {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/popularCommunity/community/:id" element={<Community/>}></Route>
         <Route path="/communityMember" element={<CommunityMember/>}></Route>
         <Route path="/recipe/createrecipe" element={<CreateRecipe />}></Route>
+        <Route path="/recipe/editrecipe" element={<EditRecipe />}></Route>
       </Route>
     </Routes>
   );
