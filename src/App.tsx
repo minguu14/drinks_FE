@@ -7,9 +7,10 @@ import RecipesPage from "./pages/RecipesPage";
 import NewCommunity from "./pages/NewCommunity";
 import Announcement from "./pages/Announcement";
 import Header from "./components/header/Header";
-import CreateCommunity from "./pages/CreateCommunity";
+import CreateCommunity from "./pages/CreateCommunity/CreateCommunity";
 import MyCommunity from "./pages/MyCommunity";
 import Community from "./pages/Community/Community";
+import CommunityMember from "./pages/CommunityMember/CommunityMember";
 import CreateRecipe from "./pages/Recipe/CreateRecipe";
 
 const LayOut = () => {
@@ -33,6 +34,8 @@ function App() {
         <Route path="/createCommunity" element={<CreateCommunity />}></Route>
         <Route path="/myCommunity" element={<MyCommunity />}></Route>
         <Route path="/community/:id" element={<Community />}></Route>
+        <Route path="/popularCommunity/community/:id" element={<Community/>}></Route>
+        <Route path="/communityMember" element={<CommunityMember/>}></Route>
         <Route path="/recipe/createrecipe" element={<CreateRecipe />}></Route>
       </Route>
     </Routes>
