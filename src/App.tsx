@@ -11,6 +11,7 @@ import CreateCommunity from "./pages/CreateCommunity/CreateCommunity";
 import MyCommunity from "./pages/MyCommunity";
 import Community from "./pages/Community/Community";
 import CommunityMember from "./pages/CommunityMember/CommunityMember";
+import CreateRecipe from "./pages/Recipe/CreateRecipe";
 
 const LayOut = () => {
   return (
@@ -22,21 +23,20 @@ const LayOut = () => {
 };
 
 function App() {
-
   return (
     <Routes>
-      <Route path="/" element={<LayOut/>}>
+      <Route path="/" element={<LayOut />}>
         <Route index element={<Main />}></Route>
         <Route path="/popularCommunity" element={<PopularCommunity />}></Route>
-         <Route path="/recipe" element={<RecipesPage />}></Route>
-        <Route path="/newCommunity" element={<NewCommunity/>}></Route>
-        <Route path="/announcement" element={<Announcement/>}></Route>
-        <Route path="/createCommunity" element={<CreateCommunity/>}></Route>
-        <Route path="/myCommunity" element={<MyCommunity/>}></Route>
-        <Route path="/community/:id" element={<Community/>}></Route>
+        <Route path="/recipe" element={<RecipesPage />}></Route>
+        <Route path="/newCommunity" element={<NewCommunity />}></Route>
+        <Route path="/announcement" element={<Announcement />}></Route>
+        <Route path="/createCommunity" element={<CreateCommunity />}></Route>
+        <Route path="/myCommunity" element={<MyCommunity />}></Route>
+        <Route path="/community/:id" element={<Community />}></Route>
         <Route path="/popularCommunity/community/:id" element={<Community/>}></Route>
         <Route path="/communityMember" element={<CommunityMember/>}></Route>
-
+        <Route path="/recipe/createrecipe" element={<CreateRecipe />}></Route>
       </Route>
     </Routes>
   );
