@@ -1,9 +1,7 @@
 import location from "../../../img/location.png";
-import memberIcon from "../../../img/people.png";
-import chatIcon from "../../../img/chat.png";
 import king from "../../../img/king.png";
 import { CommunityType } from "../../../models/type";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import communityStore from "../../../store/store";
 
 export default function PopularCommunityCard({id, thumbnail_url, tag1, tag2, area, communityName, member, last_chat_time, isPopular, isNew}: CommunityType) {
