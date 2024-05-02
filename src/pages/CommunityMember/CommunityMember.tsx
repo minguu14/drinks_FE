@@ -1,14 +1,14 @@
-import setting from "../../../img/setting.png";
-import communityChat from "../../../img/communityChat.png";
-import schedule from "../../../img/schedule.png";
-import beer from "../../../img/beer.png";
-import PostCard from "../../../components/community/postCard/PostCard";
-import communityStore from "../../../store/store"
-import JoinModal from "../../../components/modals/JoinModal";
+import setting from "../../img/setting.png";
+import communityChat from "../../img/communityChat.png";
+import schedule from "../../img/schedule.png";
+import beer from "../../img/beer.png";
+import communityStore from "../../store/store"
+import JoinModal from "../../components/modals/JoinModal";
 import { useState } from "react";
-import CommunityInfo from "../../../components/community/CommunityInfo/CommunityInfo";
+import CommunityInfo from "../../components/community/CommunityInfo/CommunityInfo";
+import MemberLists from "./MemberLists/MemberLists";
 
-export default function ClickCommunity() {
+export default function CommunityMember() {
     const { selectedCommunity } = communityStore();
     const [joinModal, setJoinModal] = useState(false);
   return (
@@ -27,11 +27,7 @@ export default function ClickCommunity() {
       </div>
       {/* 모임피드 */}
       <div className="flex-col absolute left-[650px]">
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
+         <MemberLists/>
       </div>
       {/* 사이드기능 */}
       <div className="mr-[80px] mt-[650px] fixed right-1">

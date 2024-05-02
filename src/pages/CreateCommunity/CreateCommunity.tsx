@@ -1,21 +1,28 @@
 import uuid from "react-uuid";
 import { Link, useNavigate } from "react-router-dom";
-import communityStore from "../store/store";
+import communityStore from "../../store/store";
 import { ChangeEvent, useState } from "react";
-import image1 from "../img/image1.jpg"
-import image2 from "../img/image2.jpg"
-import image3 from "../img/image3.jpg"
+import image1 from "../../img/image1.jpg"
+import image2 from "../../img/image2.jpg"
+import image3 from "../../img/image3.jpg"
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FormValue } from "../models/type";
+import { FormValue } from "../../models/type";
+import Tag from "./Tag/Tag";
 
 export default function CreateCommunity() {
   const { createCommunity } = communityStore();
   const [myImage, setMyImage] = useState<string>(image1);
   const [checkValue, setCheckValue] = useState<string>("public");
   const [selectedTag, setSelectedTag] = useState<string>("");
+  const [tagError, setTagError] = useState<string>("");
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm<FormValue>();
+
   const onSubmit: SubmitHandler<FormValue> = data => {
+    if (!selectedTag) {
+      setTagError("태그를 선택해주세요!");
+      return;
+    }
     createCommunity({
       id: uuid(),
       thumbnail_url: myImage,
@@ -63,14 +70,6 @@ export default function CreateCommunity() {
     }
   };
 
-  const handleTagClick = (tag: string) => {
-    if (selectedTag === tag) {
-      setSelectedTag("");
-    } else {
-      setSelectedTag(tag);
-    }
-  };
-
   const clickImage = (image: string) => {
     switch(image){
         case 'image1': setMyImage(image1);
@@ -91,15 +90,15 @@ export default function CreateCommunity() {
         <input
           type="text"
           id="title"
-          placeholder="이름을 입력해주세요"
+          placeholder="모임 이름을 입력해주세요"
           className="border-b-2 w-[1300px] h-[50px] mb-2 p-2"
-          {...register('title', {required: true, maxLength: 5})}
+          {...register('title', {required: true, maxLength: 10})}
         />
         {errors.title && errors.title.type === 'required' && (
           <p className="text-red-500">모임 이름을 입력해주세요!</p>
         )}
         {errors.title && errors.title.type === 'maxLength' && (
-          <p className="text-red-500">모임 이름을 5자 이내로 입력해주세요!</p>
+          <p className="text-red-500">모임 이름을 10자 이내로 입력해주세요!</p>
         )}
         <div className="flex mt-20">
           <div className="border-2 w-[350px] h-[250px]">
@@ -132,20 +131,20 @@ export default function CreateCommunity() {
           id="description"
           placeholder="모임에 대해 간단한 설명을 입력해주세요"
           className="border-b-2 w-[1300px] h-[50px] mb-10 p-2"
-          {...register('description', {required: true, maxLength: 50})}
+          {...register('description', {required: true, maxLength: 100})}
         />
         {errors.description && errors.description.type === 'required' && (
           <p className="text-red-500">모임에 대한 설명을 입력해주세요!</p>
         )}
         {errors.description && errors.description.type === 'maxLength' && (
-          <p className="text-red-500">모임에 대한 설명을 50자 이내로 입력해주세요!</p>
+          <p className="text-red-500">모임에 대한 설명을 100자 이내로 입력해주세요!</p>
         )}
 
         <label htmlFor="area"><p className="text-[20px] mt-20 mb-10">모임 지역</p></label>
         <input
           type="text"
           id="area"
-          placeholder="지역을 입력해주세요"
+          placeholder="모임 지역을 입력해주세요 ex) 인천 or 부평구"
           className="border-b-2 w-[1300px] h-[50px] mb-10 p-2"
           {...register('area', {required: true, maxLength: 3})}
         />
@@ -191,18 +190,18 @@ export default function CreateCommunity() {
         </div>
 
         <p className="mt-10 text-[20px]">태그</p>
-        <div className="flex mt-10 mb-20 gap-x-4">
-        { tags.map((tag) => (
-          <div
-            className={`w-[60px] h-[25px] border-2 rounded-[10px] text-center cursor-pointer ${selectedTag === tag ? "bg-red-300" : ""}`}
-            onClick={() => handleTagClick(tag)}
-          >
-              {tag}
-            </div>
+        <div className="flex mt-10 mb-10 gap-x-4">
+        { tags.map((tag, index) => (
+          <Tag
+          key={index}
+          tag={tag}
+          selectedTag={selectedTag}
+          setSelectedTag={setSelectedTag}
+          />
         ))
         }
         </div>
-
+        {tagError && <p className="text-red-500">{tagError}</p>}
         <div className="flex justify-center gap-x-10 mb-20">
           <Link to="/">
             <button className="w-[150px] h-[80px] rounded-[10px] bg-red-500 text-white text-[20px]">
