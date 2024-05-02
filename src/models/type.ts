@@ -18,3 +18,16 @@ export interface FormValue {
     description: string;
     area: string;
 }
+
+interface UserProfile {
+    image: string;
+    nickname: string;
+}
+
+export interface UserType {
+    id: string;
+    profile: UserProfile;
+    userId: string;
+    authority: string;
+    state: boolean;
+}
