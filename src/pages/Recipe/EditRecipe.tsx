@@ -36,6 +36,7 @@ const items = {
   foodStep: [{ id: 1, value: "test", imageUrl: "alcoholicTesdt" }],
 };
 
+console.log(items);
 export default function EditRecipe() {
   const [imageUrl, setImageUrl] = useState<string>(items.imageUrl);
   const [createRecipeName, setCreateRecipeName] = useState<string>(
