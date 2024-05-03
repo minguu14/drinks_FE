@@ -31,3 +31,10 @@ export interface UserType {
     authority: string;
     state: boolean;
 }
+
+export interface ChatRoomType {
+    id: string;
+    roomName: string;
+    thumbnailUrl: string;
+    initialMembers: string;
+}

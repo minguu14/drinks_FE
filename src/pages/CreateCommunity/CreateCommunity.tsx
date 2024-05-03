@@ -1,6 +1,6 @@
 import uuid from "react-uuid";
 import { Link, useNavigate } from "react-router-dom";
-import communityStore from "../../store/store";
+import communityStore from "../../stores/community";
 import { ChangeEvent, useState } from "react";
 import image1 from "../../img/image1.jpg"
 import image2 from "../../img/image2.jpg"

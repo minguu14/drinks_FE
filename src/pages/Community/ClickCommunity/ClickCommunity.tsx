@@ -3,24 +3,32 @@ import communityChat from "../../../img/communityChat.png";
 import schedule from "../../../img/schedule.png";
 import beer from "../../../img/beer.png";
 import PostCard from "../../../components/community/postCard/PostCard";
-import communityStore from "../../../store/store"
+import communityStore from "../../../stores/community"
 import JoinModal from "../../../components/modals/JoinModal";
-import { useState } from "react";
 import CommunityInfo from "../../../components/community/CommunityInfo/CommunityInfo";
+import Chat from "../../../components/modals/chat/Chat";
+import modalStore from "../../../stores/modal";
+import CreateRoom from "../../../components/modals/chat/createroom/CreateRoom";
 
 export default function ClickCommunity() {
     const { selectedCommunity } = communityStore();
-    const [joinModal, setJoinModal] = useState(false);
+    const { modals, modalControl } = modalStore();
+
+    const chatOpen = () => {
+      modalControl("chat");
+    }
+
   return (
     <div>
       {
       selectedCommunity.isPublic === 'public' ?
       <div className="flex mt-[200px] mb-10 relative">
-      {joinModal && <JoinModal setJoinModal={setJoinModal} selectedCommunity={selectedCommunity}/>}
+      {modals.joinModal && <JoinModal modalControl={modalControl} selectedCommunity={selectedCommunity}/>}
+      {modals.createChatRoomModal && <CreateRoom />}
       {/* 모임정보 */}
       <div className="ml-[80px] fixed left-3">
         <CommunityInfo selectedCommunity={selectedCommunity}/>
-        <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=>setJoinModal(true)}>
+        <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=> modalControl("join")}>
           가입하기
         </button>
         <img src={setting} alt="setting" className="w-[35px] h-[35px] mt-[50px]" />
@@ -37,9 +45,10 @@ export default function ClickCommunity() {
       <div className="mr-[80px] mt-[650px] fixed right-1">
         <div className="flex gap-x-[30px]">
           <img src={beer} alt="beer" />
-          <img src={schedule} alt="schedule" />
-          <img src={communityChat} alt="communityChat" />
+          <img src={schedule} alt="schedule"/>
+          <img src={communityChat} alt="communityChat" onClick={()=>modalControl("chat")}/>
         </div>
+        {modals.chatModal && <Chat modals={modals} modalControl={modalControl}/>}
       </div>
     </div>
     : 
@@ -47,7 +56,7 @@ export default function ClickCommunity() {
       {/* 모임정보 */}
       <div className="ml-[80px] fixed left-3">
       <CommunityInfo selectedCommunity={selectedCommunity}/>
-        <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white">
+        <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=>modalControl("join")}>
           가입하기
         </button>
         <img src={setting} alt="setting" className="w-[35px] h-[35px] mt-[50px]" />
@@ -61,9 +70,10 @@ export default function ClickCommunity() {
       <div className="mr-[80px] mt-[650px] fixed right-1">
         <div className="flex gap-x-[30px]">
           <img src={beer} alt="beer" />
-          <img src={schedule} alt="schedule" />
-          <img src={communityChat} alt="communityChat" />
+          <img src={schedule} alt="schedule"/>
+          <img src={communityChat} alt="communityChat" onClick={chatOpen}/>
         </div>
+        {modals.chatModal && <Chat modals={modals} modalControl={modalControl}/>}
       </div>
     </div>
     }

@@ -4,7 +4,7 @@ import memberIcon from "../../../img/people.png";
 import chatIcon from "../../../img/chat.png";
 import king from "../../../img/king.png";
 import { CommunityType } from "../../../models/type";
-import communityStore from "../../../store/store";
+import communityStore from "../../../stores/community";
 
 export default function NewCommunityCard({id, thumbnail_url, tag1, tag2, area, communityName, member, last_chat_time, isPopular, isNew}: CommunityType) {
 
