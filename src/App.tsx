@@ -1,5 +1,4 @@
 import "./App.css";
-
 import { Outlet, Route, Routes } from "react-router-dom";
 import Main from "./pages/Main";
 import PopularCommunity from "./pages/PopularCommunity";
@@ -13,6 +12,8 @@ import Community from "./pages/Community/Community";
 import CommunityMember from "./pages/CommunityMember/CommunityMember";
 import CreateRecipe from "./pages/Recipe/CreateRecipe";
 import EditRecipe from "./pages/Recipe/EditRecipe";
+import RecipeDetail from "./pages/Recipe/RecipeDetail";
+import AlcoholicCategory from "./components/AlcoholicCategory/AlcoholicCategory";
 
 const LayOut = () => {
   return (
@@ -35,10 +36,15 @@ function App() {
         <Route path="/createCommunity" element={<CreateCommunity />}></Route>
         <Route path="/myCommunity" element={<MyCommunity />}></Route>
         <Route path="/community/:id" element={<Community />}></Route>
-        <Route path="/popularCommunity/community/:id" element={<Community/>}></Route>
-        <Route path="/communityMember" element={<CommunityMember/>}></Route>
+        <Route
+          path="/popularCommunity/community/:id"
+          element={<Community />}
+        ></Route>
+        <Route path="/communityMember" element={<CommunityMember />}></Route>
         <Route path="/recipe/createrecipe" element={<CreateRecipe />}></Route>
         <Route path="/recipe/editrecipe" element={<EditRecipe />}></Route>
+        <Route path="/recipe/RecipeDetail" element={<RecipeDetail />}></Route>
+        <Route path="/recipe/test" element={<AlcoholicCategory />}></Route>
       </Route>
     </Routes>
   );
