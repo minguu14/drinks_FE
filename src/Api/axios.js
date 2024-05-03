@@ -16,7 +16,7 @@ export const createRecipe = async (
   foodStep
 ) => {
   try {
-    const result = await axios.post("http://43.202.87.84/members/login", {
+    const result = await axios.post("/api/recipes", {
       imageUrl,
       createRecipeName,
       createRecipeIntroduce,
@@ -40,12 +40,9 @@ export const createRecipe = async (
 // user recipe list
 export const UserRecipeList = async (refreshToken) => {
   try {
-    const response = await axios.get(
-      "http://43.202.87.84/members/findUsername",
-      {
-        params: { refreshToken },
-      }
-    );
+    const response = await axios.get("", {
+      params: { refreshToken },
+    });
     return response.data;
   } catch {
     return "error";
