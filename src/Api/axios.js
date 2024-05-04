@@ -16,7 +16,7 @@ export const createRecipe = async (
   foodStep
 ) => {
   try {
-    const result = await axios.post("/api/recipes", {
+    const result = await axios.post("/api/api/recipes/create", {
       imageUrl,
       createRecipeName,
       createRecipeIntroduce,
@@ -36,6 +36,8 @@ export const createRecipe = async (
     return "failed to login";
   }
 };
+
+console.log(createRecipe);
 
 // user recipe list
 export const UserRecipeList = async (refreshToken) => {
