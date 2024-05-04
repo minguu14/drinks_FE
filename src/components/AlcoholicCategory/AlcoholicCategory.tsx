@@ -116,7 +116,7 @@ export default function AlcoholicCategory() {
             beerPage ? "text-sky-600" : ""
           } hover:border-b-4 border-sky-300`}
         >
-          맥 주.
+          맥 주
         </li>
         <li
           onClick={showWinePage}
