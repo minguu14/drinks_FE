@@ -9,7 +9,7 @@ export default function PopularCommunityCard({id, thumbnail_url, tag1, tag2, are
   const { community, selectCommunity } = communityStore();
 
   const selectedItem = () => {
-    const [filterItem] = community.filter((item) => item.id === id);
+    const [filterItem] = community.filter(item => item.id === id);
     selectCommunity(filterItem);
   }
 
@@ -32,7 +32,7 @@ export default function PopularCommunityCard({id, thumbnail_url, tag1, tag2, are
             </div>
             <div className="flex flex-col mr-1">
               <div className='text-[13px] mt-1'>{communityName}</div>
-              <div className='text-[10px] self-end'>{member} / 100</div>
+              <div className='text-[10px] self-end'>{member.length} / 100</div>
               <div className="flex justify-between items-center">
                 <div className="flex">
                   <img src={king} alt="king" className="w-[14px] h-[14px]"/>

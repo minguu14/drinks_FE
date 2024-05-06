@@ -1,3 +1,19 @@
+export interface MemberType {
+    id: string;
+    userId: string;
+    password: string;
+    email: string;
+    name: string;
+    birthdate: string;
+    carrier: string;
+    phone_number: string;
+    verification_code: string;
+    profile_picture: string;
+    gender: string;
+    introduction: string;
+    mbti: string;
+}
+
 export interface CommunityType {
     id: string;
     thumbnail_url: string;
@@ -6,7 +22,7 @@ export interface CommunityType {
     tag2: string;
     area: string;
     communityName: string;
-    member: number;
+    member: MemberType[];
     last_chat_time: string;
     isPublic: string;
     isPopular: boolean;

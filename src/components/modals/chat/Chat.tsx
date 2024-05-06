@@ -29,7 +29,7 @@ export default function Chat({modalControl}: ModalStoreType) {
   },[])
 
   return (
-    <div className="border border-black rounded-[10px] w-[490px] h-[685px] absolute top-[-690px] right-[30px]">
+    <div className="border border-black rounded-[10px] w-[490px] h-[685px] absolute top-[-690px] right-[-25px]">
         <div className="flex justify-between p-10">
             <span className="text-[32px]">채팅</span>
             <img src={addChatRoom} alt="addChatRoom" className="cursor-pointer" onClick={()=>modalControl('create')}/>

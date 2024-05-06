@@ -9,22 +9,31 @@ import CommunityInfo from "../../../components/community/CommunityInfo/Community
 import Chat from "../../../components/modals/chat/Chat";
 import modalStore from "../../../stores/modal";
 import CreateRoom from "../../../components/modals/chat/createroom/CreateRoom";
+import JoinRoom from "../../../components/modals/chat/joinroom/JoinRoom";
+import InviteRoomMember from "../../../components/modals/chat/room_member/inviteRoomMember/InviteRoomMember";
 
 export default function ClickCommunity() {
     const { selectedCommunity } = communityStore();
     const { modals, modalControl } = modalStore();
 
-    const chatOpen = () => {
-      modalControl("chat");
+    const handleChat = () => {
+      if(Object.values(modals).some((modal) => modal === true))
+      {
+        modalControl('closeAll');
+      }else{
+        modalControl("chat");
+      }
     }
 
   return (
     <div>
       {
+      // 모임 공개
       selectedCommunity.isPublic === 'public' ?
       <div className="flex mt-[200px] mb-10 relative">
       {modals.joinModal && <JoinModal modalControl={modalControl} selectedCommunity={selectedCommunity}/>}
-      {modals.createChatRoomModal && <CreateRoom />}
+      {modals.createChatRoomModal && <CreateRoom modals={modals} modalControl={modalControl}/>}
+      {modals.inviteRoomMember && <InviteRoomMember modals={modals} modalControl={modalControl}/>}
       {/* 모임정보 */}
       <div className="ml-[80px] fixed left-3">
         <CommunityInfo selectedCommunity={selectedCommunity}/>
@@ -46,11 +55,14 @@ export default function ClickCommunity() {
         <div className="flex gap-x-[30px]">
           <img src={beer} alt="beer" />
           <img src={schedule} alt="schedule"/>
-          <img src={communityChat} alt="communityChat" onClick={()=>modalControl("chat")}/>
+          <img src={communityChat} alt="communityChat" onClick={handleChat}/>
         </div>
         {modals.chatModal && <Chat modals={modals} modalControl={modalControl}/>}
+        {modals.joinRoomModal && <JoinRoom modals={modals} modalControl={modalControl}/>}
       </div>
     </div>
+    
+    // 모임 비공개
     : 
     <div className="flex mt-[200px] mb-10 relative">
       {/* 모임정보 */}
@@ -71,9 +83,10 @@ export default function ClickCommunity() {
         <div className="flex gap-x-[30px]">
           <img src={beer} alt="beer" />
           <img src={schedule} alt="schedule"/>
-          <img src={communityChat} alt="communityChat" onClick={chatOpen}/>
+          <img src={communityChat} alt="communityChat" onClick={handleChat}/>
         </div>
         {modals.chatModal && <Chat modals={modals} modalControl={modalControl}/>}
+        {modals.joinRoomModal && <JoinRoom modals={modals} modalControl={modalControl}/>}
       </div>
     </div>
     }

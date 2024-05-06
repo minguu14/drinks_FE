@@ -31,7 +31,7 @@ export default function CreateCommunity() {
       tag2: "술 취향 타입",
       area: data.area,
       communityName: data.title,
-      member: 1,
+      member: [],
       last_chat_time: "10분 전 마지막 대화",
       isPublic: checkValue,
       isPopular: true,

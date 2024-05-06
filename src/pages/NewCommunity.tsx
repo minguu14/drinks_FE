@@ -10,7 +10,7 @@ export default function PopularCommunity() {
   const [isMore, setIsMore] = useState(false);
   
   useEffect(()=> {
-  const newbieFilter = community.filter(newbie => newbie.isNew);
+  const newbieFilter = community.filter((newbie) => newbie.isNew);
   setNewCommunity(newbieFilter);
   },[community])
 

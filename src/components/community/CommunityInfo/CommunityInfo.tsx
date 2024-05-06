@@ -31,7 +31,7 @@ export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
                 className="w-[20px] h-[20px] cursor-pointer"
                 onClick={() => navigate('/communityMember')}
               />
-              <div>{selectedCommunity.member}/100</div>
+              <div>{selectedCommunity.member.length}/100</div>
             </div>
           </div>
           <div className="flex">

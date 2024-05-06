@@ -7,22 +7,6 @@ import MemberSetting from "../../modals/MemberSetting";
 export default function MemberCard({id, profile, userId, authority, state}: UserType) {
   const [memberModal, setMemberModal] = useState(false);
   return (
-    // <div className="border-b-2 py-5">
-    //   <div className="flex justify-between items-center">
-    //     <input type="checkbox" className="ml-5 w-[15px] h-[15px]" />
-    //     <div className="flex items-center gap-x-2">
-    //     <div className="border rounded-[50%] w-[40px] h-[40px]"></div>
-    //     <span>모임장</span>
-    //     </div>
-    //     <span>아이디</span>
-    //     <span>모임장</span>
-    //     <div className="flex gap-x-5">
-    //       <span>승인</span>
-    //       <span>거절</span>
-    //     </div>
-    //     <img src={postSetting} alt="postSetting" className="mr-5"/>
-    //   </div>
-    // </div>
     <tr className="border-b">
           <td className="text-center">
             <input type="checkbox" className="w-[20px] h-[20px]"/>

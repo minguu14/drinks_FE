@@ -1,14 +1,14 @@
 import { ChangeEvent, useState } from "react";
-import modalStore from "../../../../stores/modal"
 import InviteMemberCard from "../../../community/inviteMemberCard/InviteMemberCard";
 import uuid from "react-uuid";
+import { ModalStoreType } from "../../../../stores/modal";
 
 export interface InviteMembersType {
     id: string;
     userName: string;
 }
 
-export default function CreateRoom() {
+export default function CreateRoom({modals, modalControl}: ModalStoreType) {
   const [myImage, setMyImage] = useState<string>("");
   const [inviteMembers, setInviteMembers] = useState<InviteMembersType[]>([
     {
@@ -28,7 +28,7 @@ export default function CreateRoom() {
         userName: "유리",
     },
   ]);
-  const { modalControl } = modalStore();
+  
   const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     if (file) {
