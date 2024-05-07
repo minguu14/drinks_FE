@@ -14,6 +14,8 @@ import CreateRecipe from "./pages/Recipe/CreateRecipe";
 import EditRecipe from "./pages/Recipe/EditRecipe";
 import RecipeDetail from "./pages/Recipe/RecipeDetail";
 import AlcoholicCategory from "./components/AlcoholicCategory/AlcoholicCategory";
+import SignUp from "./pages/Login/SignUp";
+import Login from "./pages/Login/Login";
 
 const LayOut = () => {
   return (
@@ -46,6 +48,8 @@ function App() {
         <Route path="/recipe/RecipeDetail" element={<RecipeDetail />}></Route>
         <Route path="/recipe/test" element={<AlcoholicCategory />}></Route>
       </Route>
+      <Route path="/login/SignUp" element={<SignUp></SignUp>}></Route>
+      <Route path="/Login" element={<Login></Login>}></Route>
     </Routes>
   );
 }

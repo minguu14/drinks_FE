@@ -10,7 +10,7 @@ type foodIngredientField = {
 
 type Step = {
   id: number;
-  value: string;
+  description: string;
   imageUrl: string;
 };
 
@@ -26,12 +26,12 @@ export default function CreateRecipe() {
   const [whiskeyType, setWhiskeyType] = useState(false);
   const [makgeolliType, setMakgeolliType] = useState(false);
   const [foodIngredient, setFoodIngredient] = useState([
-    { id: 1, value: "", value2: "" },
+    { id: 1, ingredientname: "", quantity: "" },
   ]);
   const [foodStep, setFoodStep] = useState<Step[]>([
-    { id: 1, value: "", imageUrl: "" },
+    { id: 1, description: "", imageUrl: "" },
   ]);
-  console.log(createRecipeIntroduce);
+  console.log(foodIngredient);
 
   const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -58,7 +58,11 @@ export default function CreateRecipe() {
   };
   // 재료정보 추가, 삭제
   const addFoodIngredient = () => {
-    const newData = { id: foodIngredient.length + 1, value: "", value2: "" };
+    const newData = {
+      id: foodIngredient.length + 1,
+      ingredientname: "",
+      quantity: "",
+    };
     setFoodIngredient([...foodIngredient, newData]);
   };
 
@@ -74,7 +78,7 @@ export default function CreateRecipe() {
   ) => {
     const updatedFoodIngredient = foodIngredient.map((data, idx) => {
       if (idx === index) {
-        return { ...data, value: e.target.value };
+        return { ...data, ingredientname: e.target.value };
       }
       return data;
     });
@@ -87,7 +91,7 @@ export default function CreateRecipe() {
   ) => {
     const updatedFoodIngredient = foodIngredient.map((data, idx) => {
       if (idx === index) {
-        return { ...data, value2: e.target.value };
+        return { ...data, quantity: e.target.value };
       }
       return data;
     });
@@ -96,7 +100,7 @@ export default function CreateRecipe() {
 
   // 제조순서 추가, 삭제
   const addFoodStep = () => {
-    const newData = { id: foodStep.length + 1, value: "", imageUrl: "" };
+    const newData = { id: foodStep.length + 1, description: "", imageUrl: "" };
     setFoodStep([...foodStep, newData]);
   };
 
@@ -134,7 +138,7 @@ export default function CreateRecipe() {
   ) => {
     const updatedSteps = foodStep.map((step, idx) => {
       if (idx === index) {
-        return { ...step, value: e.target.value };
+        return { ...step, description: e.target.value };
       }
       return step;
     });
