@@ -53,6 +53,7 @@ export const UserRecipeList = async (refreshToken) => {
   }
 };
 
+
 export const SignUpApi = async (name, userId, password, email) => {
   try {
     const response = await axios.post("/api/sighup", {
@@ -77,3 +78,4 @@ export const CheckUserId = async (userId) => {
     return "error";
   }
 };
+

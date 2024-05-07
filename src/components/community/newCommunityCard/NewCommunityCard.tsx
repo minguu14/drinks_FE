@@ -4,14 +4,14 @@ import memberIcon from "../../../img/people.png";
 import chatIcon from "../../../img/chat.png";
 import king from "../../../img/king.png";
 import { CommunityType } from "../../../models/type";
-import communityStore from "../../../store/store";
+import communityStore from "../../../stores/community";
 
 export default function NewCommunityCard({id, thumbnail_url, tag1, tag2, area, communityName, member, last_chat_time, isPopular, isNew}: CommunityType) {
 
   const { community, selectCommunity } = communityStore();
 
   const selectedItem = () => {
-    const [filterItem] = community.filter((item) => item.id === id);
+    const [filterItem] = community.filter(item => item.id === id);
     selectCommunity(filterItem);
   }
 
@@ -46,7 +46,7 @@ export default function NewCommunityCard({id, thumbnail_url, tag1, tag2, area, c
               <div className='text-[13px] mt-1'>{communityName}</div>
               <div className="flex gap-x-1 self-end">
               <img src={memberIcon} alt="member" className="w-[12px] h-[12px]"/>
-              <div className='text-[10px]'>{member} / 100</div>
+              <div className='text-[10px]'>{member.length} / 100</div>
               </div>
               <div className="flex justify-between items-center">
                 <div className="flex gap-x-1">
