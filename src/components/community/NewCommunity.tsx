@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import NewCommunityCard from "./newCommunityCard/NewCommunityCard";
-import communityStore from "../../store/store";
+import communityStore from "../../stores/community";
 import { CommunityType } from "../../models/type";
 import { useEffect, useState } from "react";
 

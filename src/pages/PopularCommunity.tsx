@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PopularCommunityCard from "../components/community/popularCommunityCard/PopularCommunityCard";
 import { Link } from "react-router-dom";
-import communityStore from "../store/store";
+import communityStore from "../stores/community";
 import { CommunityType } from "../models/type";
 
 export default function PopularCommunity() {
@@ -10,7 +10,7 @@ export default function PopularCommunity() {
   const [isMore, setIsMore] = useState(false);
   
   useEffect(()=> {
-  const popularFilter = community.filter(popular => popular.isPopular);
+  const popularFilter = community.filter((popular) => popular.isPopular);
   setPopularCommunity(popularFilter);
   },[community])
 
