@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import communityStore from "../store/store";
+import communityStore from "../stores/community";
 import { CommunityType } from "../models/type";
 import NewCommunityCard from "../components/community/newCommunityCard/NewCommunityCard";
 
@@ -10,7 +10,7 @@ export default function PopularCommunity() {
   const [isMore, setIsMore] = useState(false);
   
   useEffect(()=> {
-  const newbieFilter = community.filter(newbie => newbie.isNew);
+  const newbieFilter = community.filter((newbie) => newbie.isNew);
   setNewCommunity(newbieFilter);
   },[community])
 

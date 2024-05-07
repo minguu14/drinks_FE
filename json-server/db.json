@@ -1,0 +1,64 @@
+{
+  "community": [
+    {
+      "id": "916f3dea-ddb3-2ae0-de7d-2ff3c9deed67",
+      "thumbnail_url": "blob:http://localhost:3001/fd58f656-08a3-4871-b321-01f0851e78af",
+      "description": "바르셀로나입니다.",
+      "tag1": "샴페인",
+      "tag2": "술 취향 타입",
+      "area": "캄프누",
+      "communityName": "바르셀로나",
+      "member": [
+        {
+          "id": "1",
+          "userId": "aodrn123",
+          "password": "123123",
+          "email": "aodrn123@gmail.com",
+          "name": "맹구",
+          "birthdate": "19990909",
+          "carrier": "kt",
+          "phone_number": "01000000000",
+          "verification_code": "123456",
+          "profile_picture": "img",
+          "gender": "남성",
+          "introduction": "맹구입니다.",
+          "mbti": "???"
+        }
+      ],
+      "last_chat_time": "10분 전 마지막 대화",
+      "isPublic": "public",
+      "isPopular": true,
+      "isNew": false
+    },
+    {
+      "id": "0316c3fe-17b5-4836-2f3c-31fe8f948e88",
+      "thumbnail_url": "blob:http://localhost:3001/4cf913a0-8978-435d-84db-de23556bf796",
+      "description": "아스날입니다.",
+      "tag1": "맥주",
+      "tag2": "술 취향 타입",
+      "area": "런던",
+      "communityName": "아스날",
+      "member": [
+        {
+          "id": "5",
+          "userId": "dbfl123",
+          "password": "123123",
+          "email": "dbfl123@gmail.com",
+          "name": "유리",
+          "birthdate": "19990909",
+          "carrier": "kt",
+          "phone_number": "01000000000",
+          "verification_code": "123456",
+          "profile_picture": "img",
+          "gender": "여성",
+          "introduction": "유리입니다.",
+          "mbti": "???"
+        }
+      ],
+      "last_chat_time": "10분 전 마지막 대화",
+      "isPublic": "public",
+      "isPopular": true,
+      "isNew": false
+    }
+  ]
+}
