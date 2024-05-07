@@ -7,7 +7,6 @@ export interface CommunityStoreType {
     community: CommunityType[]
     selectedCommunity: CommunityType
     fetchCommunity: () => void
-    createCommunity: (by: CommunityType) => void
     selectCommunity: (by: CommunityType) => void
 }
 
@@ -32,7 +31,6 @@ const communityStore = create<CommunityStoreType>()(
       const res = await getCommunity();
       set({community: res});
     },
-    createCommunity: (by: CommunityType) => set((state) => ({community: state.community.concat(by)}), false, 'createCommunity'),
     selectCommunity: (by: CommunityType) => set(({selectedCommunity: by}), false, 'selectCommunity'),
   }))
 );

@@ -11,11 +11,12 @@ import modalStore from "../../../stores/modal";
 import CreateRoom from "../../../components/modals/chat/createroom/CreateRoom";
 import JoinRoom from "../../../components/modals/chat/joinroom/JoinRoom";
 import InviteRoomMember from "../../../components/modals/chat/room_member/inviteRoomMember/InviteRoomMember";
+import userStore from "../../../stores/user";
 
 export default function ClickCommunity() {
-    const { selectedCommunity } = communityStore();
+    const { selectedCommunity, community } = communityStore();
     const { modals, modalControl } = modalStore();
-
+    const { loginUser } = userStore();
     const handleChat = () => {
       if(Object.values(modals).some((modal) => modal === true))
       {
@@ -37,9 +38,16 @@ export default function ClickCommunity() {
       {/* 모임정보 */}
       <div className="ml-[80px] fixed left-3">
         <CommunityInfo selectedCommunity={selectedCommunity}/>
-        <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=> modalControl("join")}>
-          가입하기
-        </button>
+        {selectedCommunity.member.some((m) => m.id === loginUser.id) ?
+          <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=> modalControl("join")}>
+            글쓰기
+          </button>
+          :
+          <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=> modalControl("join")}>
+            가입하기
+          </button>
+        }
+        
         <img src={setting} alt="setting" className="w-[35px] h-[35px] mt-[50px]" />
       </div>
       {/* 모임피드 */}

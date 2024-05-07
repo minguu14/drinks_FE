@@ -15,7 +15,7 @@ export default function Main() {
   const { loginCheck, getUsers } = userStore();
   const [Users, setUsers] = useState<MemberType[]>([
     {
-      id: uuid(),
+      id: "1",
       userId: 'aodrn123',
       password: '123123',
       email: 'aodrn123@gmail.com',
@@ -30,7 +30,7 @@ export default function Main() {
       mbti: '???',
     },
     {
-      id: uuid(),
+      id: "2",
       userId: 'Wkdrn123',
       password: '123123',
       email: 'Wkdrn123@gmail.com',
@@ -45,7 +45,7 @@ export default function Main() {
       mbti: '???',
     },
     {
-      id: uuid(),
+      id: "3",
       userId: 'cjftn123',
       password: '123123',
       email: 'cjftn123@gmail.com',
@@ -60,7 +60,7 @@ export default function Main() {
       mbti: '???',
     },
     {
-      id: uuid(),
+      id: "4",
       userId: 'gnsdl123',
       password: '123123',
       email: 'gnsdl123@gmail.com',
@@ -75,7 +75,7 @@ export default function Main() {
       mbti: '???',
     },
     {
-      id: uuid(),
+      id: "5",
       userId: 'dbfl123',
       password: '123123',
       email: 'dbfl123@gmail.com',
@@ -94,12 +94,13 @@ export default function Main() {
 const login = (email: string) => {
   const loginUser = Users.find(user => user.email === email);
   loginCheck(loginUser);
+  console.log(loginUser);
 }
 
 useEffect(() => {
   fetchCommunity();
   getUsers(Users);
-  login('aodrn123@gmail.com');
+  login('dbfl123@gmail.com');
 },[])
 
   return (

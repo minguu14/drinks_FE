@@ -2,6 +2,7 @@ import { CommunityType } from "../../../models/type";
 import member from "../../../img/people.png";
 import king from "../../../img/king.png"
 import { useNavigate } from "react-router-dom";
+import userStore from "../../../stores/user";
 
 interface CommunityInfoType {
     selectedCommunity: CommunityType;
@@ -36,7 +37,7 @@ export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
           </div>
           <div className="flex">
             <img src={king} alt="king" className="w-[20px] h-[20px]" />
-            <div>모임장</div>
+            <div>{selectedCommunity.member[0].name}</div>
           </div>
         </div>
       </div>
