@@ -20,7 +20,10 @@ export default function PopUp({
         <p>{text1}</p>
         <p>{text2}</p>
       </div>
-      <button className="w-[220px] h-[70px] bg-[#0064B2] rounded-lg text-white">
+      <button
+        className="w-[220px] h-[70px] bg-[#0064B2] rounded-lg text-white"
+        onClick={onButtonClick}
+      >
         완료
       </button>
     </div>
