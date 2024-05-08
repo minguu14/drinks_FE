@@ -34,6 +34,18 @@ export const createCommunity = async (
       isPopular,
       isNew,
     })
-    console.log(rqs)
     return rqs;
+}
+
+export const joinCommunity = async (updateCommunity:CommunityType) => {
+    const rqs = await axios.put(`http://localhost:3000/community/${updateCommunity.id}`,{
+        ...updateCommunity,
+    })
+    return rqs;
+}
+
+
+export const getUser = async () => {
+    const res = await axios<MemberType[]>("http://localhost:3000/users");
+    return res.data;
 }
