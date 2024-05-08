@@ -11,6 +11,7 @@ import redPassword from "../../img/redPassword.png";
 import redEmail from "../../img/redEmail.png";
 import brokenCup from "../../img/brokenCup.png";
 import PopUp from "../../components/PopUp/PopUp";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface SignUp {
   name: string;
@@ -20,14 +21,21 @@ interface SignUp {
 }
 
 export default function SignUp() {
-  const [name, setName] = useState("");
-  const [userId, setUserId] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [checkName, setCheckName] = useState(true);
   const [checkUserId, setCheckUserId] = useState(true);
   const [checkPassword, setCheckPassword] = useState(true);
   const [checkEmail, setCheckEmail] = useState(true);
+  const [success, setSuccess] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [showSameId, setShowSameId] = useState(false);
+  const [navLogin, setNavLogin] = useState(false);
+  const [available, setAvailable] = useState(false);
+
+  const navigate = useNavigate();
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -42,15 +50,16 @@ export default function SignUp() {
     setEmail(e.target.value);
   };
 
+  // 중복 확인
   const CheckSubmit = async () => {
     const response = await CheckUserId(userId);
+    console.log(response.available);
+    setAvailable(response.available);
 
-    if (response) {
-      console.log("Recipe created successfully:", response);
-      // 성공 처리, 예를 들어 알림 표시나 페이지 이동 등
+    if (response.available == true) {
+      setShowPopUp(true);
     } else {
-      console.error("Failed to create recipe");
-      // 실패 처리, 예를 들어 에러 메시지 표시 등
+      setShowSameId(true);
     }
   };
   // 데이터를 서버에 전송하는 함수
@@ -59,18 +68,31 @@ export default function SignUp() {
     setCheckUserId(userId !== "");
     setCheckPassword(password !== "");
     setCheckEmail(email !== "");
-
-    if (checkName && checkUserId && checkPassword && checkEmail) {
+    console.log(available);
+    if (checkName && checkUserId && checkPassword && checkEmail && available) {
       const response = await SignUpApi(name, userId, password, email);
 
       if (response) {
         console.log("Recipe created successfully:", response);
         // 성공 처리, 예를 들어 알림 표시나 페이지 이동 등
+        setSuccess(true);
       } else {
         console.error("Failed to create recipe");
         // 실패 처리, 예를 들어 에러 메시지 표시 등
       }
+    } else if (available === false) {
+      setCheckUserId(false);
     }
+  };
+  const handShowPopUp = () => {
+    setShowPopUp(false);
+    setShowSameId(false);
+    setCheckUserId(true);
+  };
+
+  const naviLogin = () => {
+    setNavLogin(false);
+    navigate("/login");
   };
   return (
     <div className="flex flex-col justify-center items-center">
@@ -206,17 +228,36 @@ export default function SignUp() {
         가입하기
       </button>
 
-      <PopUp title="중복 확인" text1="같은 아이디가 있습니다." text2=""></PopUp>
-      <PopUp
-        title="중복 확인"
-        text1="사용 가능한 아이디입니다."
-        text2=""
-      ></PopUp>
-      <PopUp
-        title="가입 완료"
-        text1="한잔하조 가입을 환영합니다."
-        text2="한잔하러 갈까요?"
-      ></PopUp>
+      {showSameId && (
+        <div className="absolute w-full h-full  flex justify-center items-center bg-white ">
+          <PopUp
+            title="중복 확인"
+            text1="같은 아이디가 있습니다."
+            text2=""
+            onButtonClick={handShowPopUp}
+          ></PopUp>
+        </div>
+      )}
+      {showPopUp && (
+        <div className="absolute w-full h-full  flex justify-center items-center bg-white ">
+          <PopUp
+            title="중복 확인"
+            text1="사용 가능한 아이디입니다."
+            text2=""
+            onButtonClick={handShowPopUp}
+          ></PopUp>
+        </div>
+      )}
+      {success && (
+        <div className="absolute w-full h-full  flex justify-center items-center bg-white ">
+          <PopUp
+            title="가입 완료"
+            text1="한잔하조 가입을 환영합니다."
+            text2="한잔하러 갈까요?"
+            onButtonClick={naviLogin}
+          ></PopUp>
+        </div>
+      )}
     </div>
   );
 }

@@ -53,9 +53,10 @@ export const UserRecipeList = async (refreshToken) => {
   }
 };
 
+// 회원가입
 export const SignUpApi = async (name, userId, password, email) => {
   try {
-    const response = await axios.post("/api/sighup", {
+    const response = await axios.post("/api/signup", {
       userId: userId,
       password: password,
       email: email,
@@ -67,13 +68,59 @@ export const SignUpApi = async (name, userId, password, email) => {
   }
 };
 
+// 아이디 중복 확인
 export const CheckUserId = async (userId) => {
   try {
-    const response = await axios.post("/api/users/signup", {
-      userId: userId,
-    });
+    const response = await axios.post("/api/signup/check-userid", { userId });
+    return {
+      available: true,
+      message: "사용 가능한 아이디입니다.",
+    };
+  } catch (error) {
+    if (error.response && error.response.status === 409) {
+      return {
+        available: false,
+        message: "이미 사용 중인 아이디입니다.",
+      };
+    }
+    return {
+      available: false,
+      message: "오류가 발생했습니다.",
+    };
+  }
+};
+
+// 로그인
+export const LoginApi = async (userId, password) => {
+  try {
+    const response = await axios.post("/api/login", { userId, password });
     return response.data;
   } catch {
-    return "error";
+    return "failed to login";
+  }
+};
+
+// export const LoginApi = async (userId, password) => {
+//   try {
+//     const response = await axios.post("/login", { userId, password });
+//     const { accessToken, refreshToken } = response.data;
+
+//     // Access Token과 Refresh Token을 각각 저장
+//     localStorage.setItem("access", accessToken);
+//     localStorage.setItem("refresh", refreshToken);
+
+//     return { accessToken, refreshToken };
+//   } catch (error) {
+//     console.error("Login failed:", error);
+//     return "failed to login";
+//   }
+// };
+// 아이디 찾기
+export const FindIdApi = async (name, email) => {
+  try {
+    const response = await axios.post("/api/find-userId", { name, email });
+    return response.data;
+  } catch {
+    return "failed to login";
   }
 };
