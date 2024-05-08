@@ -1,39 +1,20 @@
 import { ChangeEvent, useState } from "react";
 import InviteMemberCard from "../../../community/inviteMemberCard/InviteMemberCard";
-import uuid from "react-uuid";
 import { ModalStoreType } from "../../../../stores/modal";
-
-export interface InviteMembersType {
-    id: string;
-    userName: string;
-}
+import communityStore from "../../../../stores/community";
+import { MemberType } from "../../../../models/type";
 
 export default function CreateRoom({modals, modalControl}: ModalStoreType) {
   const [myImage, setMyImage] = useState<string>("");
-  const [inviteMembers, setInviteMembers] = useState<InviteMembersType[]>([
-    {
-        id: uuid(),
-        userName: "짱구",
-    },
-    {
-        id: uuid(),
-        userName: "철수",
-    },
-    {
-        id: uuid(),
-        userName: "훈이",
-    },
-    {
-        id: uuid(),
-        userName: "유리",
-    },
-  ]);
+  const { selectedCommunity } = communityStore();
+  const [inviteMembers, setInviteMembers] = useState<MemberType[]>(selectedCommunity.member);
   
   const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setMyImage(imageUrl);
+      //URL.revokeObjectURL(imageUrl)
     }
   };
   
@@ -42,7 +23,7 @@ export default function CreateRoom({modals, modalControl}: ModalStoreType) {
         <div className="w-[690px] h-[750px] border-2 rounded-[10px] bg-white">
             <div className="flex flex-col items-center justify-center mt-10 mx-[95px]">
                 <label htmlFor="fileInput" className="border-4 rounded-[10px] w-[200px] h-[200px]">
-                    {myImage && <img src={myImage} alt="myImage" className="object-cover"/>}
+                    {myImage && <img src={myImage} alt="myImage" className="w-[full] h-[full]"/>}
                     <input type="file"
                     id="fileInput"
                     onChange={onChangeImage}
@@ -59,7 +40,7 @@ export default function CreateRoom({modals, modalControl}: ModalStoreType) {
                         <InviteMemberCard
                         key={member.id}
                         id={member.id}
-                        userName={member.userName}
+                        name={member.name}
                         />
                       ))
                     }

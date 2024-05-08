@@ -12,6 +12,7 @@ export default function PopularCommunity() {
     const popularFilter = community.filter(popular => popular.isPopular);
     setPopularCommunity(popularFilter);
     },[community])
+    
   return (
     <div className="flex-col justify-between w-[600px]">
       <div className="flex justify-between">

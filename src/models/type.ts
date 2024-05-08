@@ -1,17 +1,17 @@
 export interface MemberType {
     id: string;
-    userId: string;
-    password: string;
-    email: string;
+    userId?: string;
+    password?: string;
+    email?: string;
     name: string;
-    birthdate: string;
-    carrier: string;
-    phone_number: string;
-    verification_code: string;
-    profile_picture: string;
-    gender: string;
-    introduction: string;
-    mbti: string;
+    birthdate?: string;
+    carrier?: string;
+    phone_number?: string;
+    verification_code?: string;
+    profile_picture?: string;
+    gender?: string;
+    introduction?: string;
+    mbti?: string;
 }
 
 export interface CommunityType {

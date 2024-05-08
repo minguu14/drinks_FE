@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { CommunityType } from '../models/type';
-import { getCommunity } from '../Api/community';
+import { CommunityType, MemberType } from '../models/type';
+import { getCommunity, joinCommunity } from '../Api/community';
 
 export interface CommunityStoreType {
     community: CommunityType[]

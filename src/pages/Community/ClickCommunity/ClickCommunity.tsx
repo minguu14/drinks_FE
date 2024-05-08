@@ -12,9 +12,10 @@ import CreateRoom from "../../../components/modals/chat/createroom/CreateRoom";
 import JoinRoom from "../../../components/modals/chat/joinroom/JoinRoom";
 import InviteRoomMember from "../../../components/modals/chat/room_member/inviteRoomMember/InviteRoomMember";
 import userStore from "../../../stores/user";
+import { useEffect } from "react";
 
 export default function ClickCommunity() {
-    const { selectedCommunity, community } = communityStore();
+    const { selectedCommunity, community, selectCommunity } = communityStore();
     const { modals, modalControl } = modalStore();
     const { loginUser } = userStore();
     const handleChat = () => {
@@ -25,6 +26,11 @@ export default function ClickCommunity() {
         modalControl("chat");
       }
     }
+
+    useEffect(() => {
+    const [filterItem] = community.filter(item => item.id === selectedCommunity.id);
+    selectCommunity(filterItem);
+    },[community])
 
   return (
     <div>
