@@ -4,9 +4,22 @@ import Announcement from "../components/announcement/Announcement";
 import Nav from "../components/nav/Nav";
 import PopularCommunity from "../components/community/PopularCommunity";
 import NewCommunity from "../components/community/NewCommunity";
+import { useEffect, useState } from "react";
+import communityStore from "../stores/community";
+import userStore from "../stores/user";
+import { useNavigate } from "react-router-dom";
 
 export default function Main() {
-  
+  const { fetchCommunity } = communityStore();
+  const { loginUser } = userStore();
+  const navigate = useNavigate();
+
+useEffect(() => {
+  console.log(loginUser);
+  if(!loginUser) navigate('/login');
+  fetchCommunity();
+},[loginUser])
+
   return (
     <div className="App">
       {/* 네브 */}

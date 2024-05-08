@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CommunityType } from "../../models/type";
-import communityStore from "../../store/store";
+import communityStore from "../../stores/community";
 import PopularCommunityCard from "./popularCommunityCard/PopularCommunityCard";
 import { Link } from "react-router-dom";
 
@@ -12,6 +12,7 @@ export default function PopularCommunity() {
     const popularFilter = community.filter(popular => popular.isPopular);
     setPopularCommunity(popularFilter);
     },[community])
+    
   return (
     <div className="flex-col justify-between w-[600px]">
       <div className="flex justify-between">

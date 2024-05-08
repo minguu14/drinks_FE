@@ -1,42 +1,45 @@
 import uuid from "react-uuid";
 import { Link, useNavigate } from "react-router-dom";
-import communityStore from "../../store/store";
+import communityStore from "../../stores/community";
 import { ChangeEvent, useState } from "react";
 import image1 from "../../img/image1.jpg"
 import image2 from "../../img/image2.jpg"
 import image3 from "../../img/image3.jpg"
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FormValue } from "../../models/type";
+import { FormValue, MemberType } from "../../models/type";
 import Tag from "./Tag/Tag";
+import { createCommunity } from "../../Api/community";
+import userStore from "../../stores/user";
 
 export default function CreateCommunity() {
-  const { createCommunity } = communityStore();
   const [myImage, setMyImage] = useState<string>(image1);
   const [checkValue, setCheckValue] = useState<string>("public");
   const [selectedTag, setSelectedTag] = useState<string>("");
   const [tagError, setTagError] = useState<string>("");
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm<FormValue>();
+  const { loginUser } = userStore();
 
   const onSubmit: SubmitHandler<FormValue> = data => {
     if (!selectedTag) {
       setTagError("태그를 선택해주세요!");
       return;
     }
-    createCommunity({
-      id: uuid(),
-      thumbnail_url: myImage,
-      description: data.description,
-      tag1: selectedTag,
-      tag2: "술 취향 타입",
-      area: data.area,
-      communityName: data.title,
-      member: 1,
-      last_chat_time: "10분 전 마지막 대화",
-      isPublic: checkValue,
-      isPopular: true,
-      isNew: false,
-    })
+    
+    createCommunity(
+      uuid(),
+      myImage,
+      data.description,
+      selectedTag,
+      "술 취향 타입",
+      data.area,
+      data.title,
+      [loginUser],
+      "10분 전 마지막 대화",
+      checkValue,
+      true,
+      false,
+    )
     navigate('/');
   }
 
@@ -67,7 +70,18 @@ export default function CreateCommunity() {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setMyImage(imageUrl);
+      URL.revokeObjectURL(imageUrl)
     }
+    
+    // const file = e.target.files && e.target.files[0];
+    // if (file) {
+    //   const reader = new FileReader();
+    //   reader.onload = () => {
+    //     const imageUrl = reader.result as string;
+    //     setMyImage(imageUrl);
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
   };
 
   const clickImage = (image: string) => {

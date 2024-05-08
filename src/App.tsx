@@ -18,6 +18,7 @@ import SignUp from "./pages/Login/SignUp";
 import Login from "./pages/Login/Login";
 import FindId from "./pages/Login/FindId";
 
+
 const LayOut = () => {
   return (
     <div>
@@ -32,6 +33,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LayOut />}>
         <Route index element={<Main />}></Route>
+        <Route path="/login" element={<LoginTest />}></Route>
         <Route path="/popularCommunity" element={<PopularCommunity />}></Route>
         <Route path="/recipe" element={<RecipesPage />}></Route>
         <Route path="/newCommunity" element={<NewCommunity />}></Route>

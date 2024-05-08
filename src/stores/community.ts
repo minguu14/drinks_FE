@@ -1,11 +1,12 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { CommunityType } from '../models/type';
+import { CommunityType, MemberType } from '../models/type';
+import { getCommunity, joinCommunity } from '../Api/community';
 
 export interface CommunityStoreType {
     community: CommunityType[]
     selectedCommunity: CommunityType
-    createCommunity: (by: CommunityType) => void
+    fetchCommunity: () => void
     selectCommunity: (by: CommunityType) => void
 }
 
@@ -20,15 +21,21 @@ const communityStore = create<CommunityStoreType>()(
       tag2: "",
       area: "",
       communityName: "",
-      member: 1,
+      member: [],
       last_chat_time: "",
       isPublic: "",
       isPopular: false,
       isNew: true,
     },
-    createCommunity: (by: CommunityType) => set((state) => ({community: state.community.concat(by)}), false, 'createCommunity'),
+    fetchCommunity: async () => {
+      const res = await getCommunity();
+      set({community: res});
+    },
     selectCommunity: (by: CommunityType) => set(({selectedCommunity: by}), false, 'selectCommunity'),
   }))
 );
 
+
+
 export default communityStore;
+

@@ -5,7 +5,7 @@ import communityChat from "../img/communityChat.png";
 import schedule from "../img/schedule.png";
 import beer from "../img/beer.png";
 import PostCard from "../components/community/postCard/PostCard";
-import communityStore from "../store/store";
+import communityStore from "../stores/community";
 
 export default function MyCommunity() {
   const { community } = communityStore();

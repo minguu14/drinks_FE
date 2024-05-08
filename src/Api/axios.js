@@ -124,3 +124,4 @@ export const FindIdApi = async (name, email) => {
     return "failed to login";
   }
 };
+
