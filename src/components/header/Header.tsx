@@ -5,8 +5,16 @@ import search from "../../img/search.png";
 import mask from "../../img/mask.png";
 import sun from "../../img/sun.png";
 import { Link } from "react-router-dom";
+import userStore from "../../stores/user";
+import { MemberType } from "../../models/type";
+import { useState } from "react";
 
 export default function Header() {
+  const [user, setUser] = useState<MemberType>()
+  const { loginCheck } = userStore();
+  const logOutTest = () => {
+    loginCheck(user);
+  }
   return (
     <header className="flex items-center justify-between mb-5 fixed top-0 bg-white z-50">
       <Link to="/">
@@ -40,7 +48,7 @@ export default function Header() {
           <img src={mask} alt="scrap" className="mr-[10px]" />
         </Link>
         <img src={scrap} alt="scrap" className="mr-[10px]" />
-        <img src={info} alt="info" />
+        <img src={info} alt="info" onClick={logOutTest}/>
       </div>
     </header>
   );

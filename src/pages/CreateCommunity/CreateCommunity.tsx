@@ -70,7 +70,18 @@ export default function CreateCommunity() {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setMyImage(imageUrl);
+      URL.revokeObjectURL(imageUrl)
     }
+    
+    // const file = e.target.files && e.target.files[0];
+    // if (file) {
+    //   const reader = new FileReader();
+    //   reader.onload = () => {
+    //     const imageUrl = reader.result as string;
+    //     setMyImage(imageUrl);
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
   };
 
   const clickImage = (image: string) => {
