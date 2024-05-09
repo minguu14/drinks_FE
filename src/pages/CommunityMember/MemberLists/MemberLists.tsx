@@ -3,50 +3,10 @@ import MemberCard from "../../../components/community/memberCard/MemberCard";
 import search from "../../../img/search.png";
 import uuid from "react-uuid";
 import { UserType } from "../../../models/type";
+import communityStore from "../../../stores/community";
 
 export default function MemberLists() {
-    const [applicant, setApplicant] = useState<UserType[]>([
-      {
-        id: uuid(),
-        profile: {
-            image: "url",
-            nickname: "맹구"
-        },
-        userId: "aodrn123",
-        authority: "모임장",
-        state: true,
-      },
-      {
-        id: uuid(),
-        profile: {
-            image: "url",
-            nickname: "짱구"
-        },
-        userId: "Wkdrn123",
-        authority: "일반멤버",
-        state: true,
-      },
-      {
-        id: uuid(),
-        profile: {
-            image: "url",
-            nickname: "철수"
-        },
-        userId: "cjftn123",
-        authority: "일반멤버",
-        state: true,
-      },
-      {
-        id: uuid(),
-        profile: {
-            image: "url",
-            nickname: "훈이"
-        },
-        userId: "gnsdl123",
-        authority: "일반멤버",
-        state: false,
-      },
-  ])
+    const { selectedCommunity } = communityStore();
   return (
     <div className="w-[660px] h-[700px] border-2 border-black">
     <p className="p-5 text-[20px]">멤버</p>
@@ -75,7 +35,7 @@ export default function MemberLists() {
       </thead>
       <tbody>
         {
-          applicant.map((list) => (
+          selectedCommunity.member.map((list) => (
             <MemberCard
             key={list.id}
             id={list.id}

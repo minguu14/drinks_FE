@@ -16,7 +16,7 @@ export default function Main() {
 
 useEffect(() => {
   console.log(loginUser);
-  if(!loginUser) navigate('/login');
+  if(!loginUser) navigate('/logintest');
   fetchCommunity();
 },[loginUser])
 

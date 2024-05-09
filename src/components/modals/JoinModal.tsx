@@ -1,6 +1,5 @@
-import { useEffect } from "react"
 import { joinCommunity } from "../../Api/community"
-import { CommunityType } from "../../models/type"
+import { CommunityType, UserType } from "../../models/type"
 import communityStore from "../../stores/community"
 import userStore from "../../stores/user"
 
@@ -18,7 +17,16 @@ export default function JoinModal({modalControl, selectedCommunity}: JoinModalTy
             if(join.id === selectedCommunity.id) {
                 return {
                     ...join,
-                    member: [...join.member, loginUser]
+                    member: [...join.member, {
+                        id: loginUser.id,
+                        profile: {
+                            image: loginUser.profile_picture,
+                            nickname: loginUser.name,
+                        },
+                        userId: loginUser.userId,
+                        authority: "일반멤버",
+                        state: false,
+                    }]
                 }
             }
             return join

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CommunityType, MemberType } from "../models/type";
+import { CommunityType, MemberType, UserType } from "../models/type";
 
 export const getCommunity = async () => {
     const res = await axios<CommunityType[]>("http://localhost:3000/community");
@@ -14,7 +14,7 @@ export const createCommunity = async (
     tag2: string,
     area: string,
     communityName: string,
-    member: MemberType[],
+    member: UserType[],
     last_chat_time: string,
     isPublic: string,
     isPopular: boolean,
@@ -44,6 +44,12 @@ export const joinCommunity = async (updateCommunity:CommunityType) => {
     return rqs;
 }
 
+export const okMember = async (ok: CommunityType) => {
+    const rqs = await axios.post(`http://localhost:3000/${ok.id}`,{
+        ...ok,
+    })
+    return rqs;
+}
 
 export const getUser = async () => {
     const res = await axios<MemberType[]>("http://localhost:3000/users");
