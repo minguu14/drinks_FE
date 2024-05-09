@@ -62,13 +62,14 @@ export default function SignUp() {
       setShowSameId(true);
     }
   };
+
   // 데이터를 서버에 전송하는 함수
   const handleSubmit = async () => {
     setCheckName(name !== "");
     setCheckUserId(userId !== "");
     setCheckPassword(password !== "");
     setCheckEmail(email !== "");
-    console.log(available);
+    console.log(checkName);
     if (checkName && checkUserId && checkPassword && checkEmail && available) {
       const response = await SignUpApi(name, userId, password, email);
 
