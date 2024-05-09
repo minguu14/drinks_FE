@@ -2,45 +2,50 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import logo from "../../img/logo.png";
 import nameIcon from "../../img/name.png";
 import redName from "../../img/redName.png";
-import emailIcon from "../../img/email.png";
-import redEmail from "../../img/redEmail.png";
-import { FindIdApi } from "../../Api/axios";
+import passwordIcon from "../../img/password.png";
+import redPassword from "../../img/redPassword.png";
+import { ChangePasswordApi } from "../../Api/axios";
 import PopUp from "../../components/PopUp/PopUp";
-import PopUp2 from "../../components/PopUp/PopUp2";
 import { Navigate, useNavigate } from "react-router-dom";
 
-export default function FindId() {
+export default function FindPassword() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [checkName, setCheckName] = useState(true);
-  const [checkEmail, setCheckEmail] = useState(true);
+  const [checkPassword, setCheckPassword] = useState(true);
+  const [checkPassword2, setCheckPassword2] = useState(true);
   const [failedPopUp, setFailedPopUp] = useState(false);
   const [successPopUp, setSuccessPopUp] = useState(false);
-  const [userId, setUserId] = useState("");
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
-  const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    setCheckEmail(email !== "");
+  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+  const onChangePassword2 = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword2(e.target.value);
   };
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     // 즉시 입력값을 검증하여 변수를 할당
     const isNameValid = name !== "";
-    const isEmailValid = email !== "";
+    const isPasswordValid = password !== "";
+    const isCheckPasswordValid = password2 !== "";
 
     // 상태값 업데이트
     setCheckName(isNameValid);
-    setCheckEmail(isEmailValid);
+    setCheckPassword(isPasswordValid);
+    setCheckPassword2(isCheckPasswordValid);
 
     console.log(checkName);
-    if (name && email) {
-      const response = await FindIdApi(name, email);
+    if (name && password && password2) {
+      const response = await ChangePasswordApi(name, password);
 
       if (response === "failed to login") {
         console.error("Failed to create recipe");
@@ -48,16 +53,22 @@ export default function FindId() {
         // 실패 처리, 예를 들어 에러 메시지 표시 등
       } else {
         console.log("Recipe created successfully:", response);
+        setMessage(response.message);
         setSuccessPopUp(true);
-        setUserId(response.userId);
+
         // 성공 처리, 예를 들어 알림 표시나 페이지 이동 등
       }
     }
   };
+
+  const handlePopup = () => {
+    setSuccessPopUp(false);
+    navigate("/login");
+  };
   return (
     <div className="flex flex-col justify-center items-center">
       <img src={logo} alt="logo" className="w-[401px] h-[123px] mt-12 mb-9" />
-      <div className="text-3xl mb-9">아이디 찾기</div>
+      <div className="text-3xl mb-9">비밀번호 변경</div>
       <form>
         <div className="mb-16">
           {checkName ? (
@@ -83,30 +94,65 @@ export default function FindId() {
               />
             </div>
           )}
-          {checkEmail ? (
+          {checkPassword ? (
             <div
               className={`${
                 checkName ? "border-t-2 " : " border-t-2 border-t-red-500"
-              } w-[595px] h-[90px] border-x-2 border-b-2 border-black  rounded-b-lg flex justify-center items-center`}
+              } w-[595px] h-[90px] border-x-2  border-black  flex justify-center items-center`}
             >
-              <img src={emailIcon} alt="emailIcon" className=" ml-9 mr-2" />
+              <img
+                src={passwordIcon}
+                alt="passwordIcon"
+                className=" ml-9 mr-2"
+              />
               <input
                 type="text"
-                placeholder="이메일"
+                placeholder="비밀번호변경"
                 className="w-full text-3xl outline-none focus:border-transparent"
-                value={email}
-                onChange={onChangeEmail}
+                value={password}
+                onChange={onChangePassword}
+              />
+            </div>
+          ) : (
+            <div className="w-[595px] h-[90px] border-x-2 border-t-2 border-red-500   flex justify-center items-center">
+              <img src={redPassword} alt="redPassword" className=" ml-9 mr-2" />
+              <input
+                type="text"
+                placeholder="비밀번호변경"
+                className="w-full text-3xl outline-none focus:border-transparent placeholder:text-red-500"
+                value={password}
+                onChange={onChangePassword}
+              />
+            </div>
+          )}
+          {checkPassword2 ? (
+            <div
+              className={`${
+                checkPassword ? "border-t-2 " : " border-t-2 border-t-red-500"
+              } w-[595px] h-[90px] border-x-2 border-b-2 border-black  rounded-b-lg flex justify-center items-center`}
+            >
+              <img
+                src={passwordIcon}
+                alt="passwordIcon"
+                className=" ml-9 mr-2"
+              />
+              <input
+                type="text"
+                placeholder="비밀번호변경 확인"
+                className="w-full text-3xl outline-none focus:border-transparent"
+                value={password2}
+                onChange={onChangePassword2}
               />
             </div>
           ) : (
             <div className="w-[595px] h-[90px] border-2 border-red-500  rounded-b-lg flex justify-center items-center">
-              <img src={redEmail} alt="redEmail" className=" ml-9 mr-2" />
+              <img src={redPassword} alt="redPassword" className=" ml-9 mr-2" />
               <input
                 type="text"
-                placeholder="이메일"
+                placeholder="비밀번호변경 확인"
                 className="w-full text-3xl outline-none focus:border-transparent placeholder:text-red-500"
-                value={email}
-                onChange={onChangeEmail}
+                value={password2}
+                onChange={onChangePassword2}
               />
             </div>
           )}
@@ -121,23 +167,21 @@ export default function FindId() {
       {failedPopUp && (
         <div className="absolute w-full h-full  flex justify-center items-center bg-white ">
           <PopUp
-            title="아이디 찾기"
+            title="비밀번호 변경"
             text1="정보가 일치하지않습니다."
             text2=""
             onButtonClick={() => setFailedPopUp(false)}
           ></PopUp>
         </div>
       )}
-
       {successPopUp && (
         <div className="absolute w-full h-full  flex justify-center items-center bg-white ">
-          <PopUp2
-            title="아이디 찾기"
-            text1={`${name}님의 아이디는 ${userId} 입니다.`}
+          <PopUp
+            title="비밀번호변경 완료"
+            text1={message}
             text2=""
-            onButtonClick={() => navigate("/login")}
-            onButtonClick2={() => navigate("/login/findpassword")}
-          ></PopUp2>
+            onButtonClick={handlePopup}
+          ></PopUp>
         </div>
       )}
     </div>

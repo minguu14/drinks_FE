@@ -26,7 +26,7 @@ export default function CreateRecipe() {
   const [whiskeyType, setWhiskeyType] = useState(false);
   const [makgeolliType, setMakgeolliType] = useState(false);
   const [foodIngredient, setFoodIngredient] = useState([
-    { id: 1, ingredientname: "", quantity: "" },
+    { id: 1, material: "", quantity: "" },
   ]);
   const [foodStep, setFoodStep] = useState<Step[]>([
     { id: 1, description: "", imageUrl: "" },
@@ -60,7 +60,7 @@ export default function CreateRecipe() {
   const addFoodIngredient = () => {
     const newData = {
       id: foodIngredient.length + 1,
-      ingredientname: "",
+      material: "",
       quantity: "",
     };
     setFoodIngredient([...foodIngredient, newData]);
@@ -78,7 +78,7 @@ export default function CreateRecipe() {
   ) => {
     const updatedFoodIngredient = foodIngredient.map((data, idx) => {
       if (idx === index) {
-        return { ...data, ingredientname: e.target.value };
+        return { ...data, material: e.target.value };
       }
       return data;
     });

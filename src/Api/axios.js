@@ -90,38 +90,54 @@ export const CheckUserId = async (userId) => {
   }
 };
 
-// 로그인
+// 로그인 API 요청
 export const LoginApi = async (userId, password) => {
   try {
     const response = await axios.post("/api/login", { userId, password });
-    return response.data;
-  } catch {
+
+    return response;
+  } catch (error) {
+    console.error("Login Error:", error);
     return "failed to login";
   }
 };
 
-// export const LoginApi = async (userId, password) => {
-//   try {
-//     const response = await axios.post("/login", { userId, password });
-//     const { accessToken, refreshToken } = response.data;
-
-//     // Access Token과 Refresh Token을 각각 저장
-//     localStorage.setItem("access", accessToken);
-//     localStorage.setItem("refresh", refreshToken);
-
-//     return { accessToken, refreshToken };
-//   } catch (error) {
-//     console.error("Login failed:", error);
-//     return "failed to login";
-//   }
-// };
 // 아이디 찾기
 export const FindIdApi = async (name, email) => {
   try {
-    const response = await axios.post("/api/find-userId", { name, email });
+    const response = await axios.post("/api/find-userId", {
+      name: name,
+      email: email,
+    });
     return response.data;
   } catch {
     return "failed to login";
   }
 };
 
+// 비밀번호 찾기
+export const FindPasswordApi = async (name, userId, email) => {
+  try {
+    const response = await axios.post("/api/find-password", {
+      name: name,
+      userId: userId,
+      email: email,
+    });
+    return response.data;
+  } catch {
+    return "failed to login";
+  }
+};
+
+// 비밀번호 변경
+export const ChangePasswordApi = async (name, password) => {
+  try {
+    const response = await axios.post("/api/find-password", {
+      name: name,
+      password: password,
+    });
+    return response.data;
+  } catch {
+    return "failed to login";
+  }
+};
