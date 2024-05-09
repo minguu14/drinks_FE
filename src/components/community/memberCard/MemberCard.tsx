@@ -4,14 +4,49 @@ import profileImg from "../../../img/whiskey.webp";
 import { useState } from "react";
 import MemberSetting from "../../modals/MemberSetting";
 import communityStore from "../../../stores/community";
-import userStore from "../../../stores/user";
+import { joinCommunity } from "../../../Api/community";
 
 export default function MemberCard({id, profile, userId, authority, state}: UserType) {
   const [memberModal, setMemberModal] = useState(false);
-  const { loginUser } = userStore();
-  const { community, selectedCommunity, setPending, pending } = communityStore();
+  const { community, selectedCommunity, fetchCommunity } = communityStore();
   const okay = () => {
+    const updateCommunity = community.map((u) => {
+      if(u.id === selectedCommunity.id){
+        const updateUser = u.member.map(mem => {
+          if(mem.id === id){
+            return {
+              ...mem,
+              state: true
+            }
+          }
+          return mem;
+        })
+        return {
+          ...u,
+          member:updateUser
+        }
+      }
+      return u;
+    });
+
+    const [filter] = updateCommunity.filter((community) => community.id === selectedCommunity.id);
+    joinCommunity(filter).then(() => fetchCommunity());
     
+  }
+
+  const no = () => {
+    const updatedCommunity = community.map(u => {
+      if (u.id === selectedCommunity.id) {
+          const updatedMembers = u.member.filter(mem => mem.id !== id);
+          return {
+              ...u,
+              member: updatedMembers
+          };
+      }
+      return u;
+    });
+    const [filter] = updatedCommunity.filter((community) => community.id === selectedCommunity.id);
+    joinCommunity(filter).then(() => fetchCommunity());
   }
 
   return (
@@ -34,7 +69,7 @@ export default function MemberCard({id, profile, userId, authority, state}: User
             : <td className="text-center">
               <div className="flex justify-center gap-x-3">
                 <button onClick={okay}>승인</button>
-                <button>거절</button>
+                <button onClick={no}>거절</button>
               </div>
               </td>
           }

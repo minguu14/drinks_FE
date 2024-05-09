@@ -3,9 +3,10 @@ import addChatRoom from "../../../img/addChatRoom.png";
 import SockJS from "sockjs-client"
 import Stomp from "stompjs"
 import ChatRoom from "../../community/chatroom/ChatRoom";
-import { ChatRoomType } from "../../../models/type";
+import { ChatRoomType, UserType } from "../../../models/type";
 import uuid from "react-uuid";
 import { ModalStoreType } from "../../../stores/modal";
+import communityStore from "../../../stores/community";
 
 
 export default function Chat({modalControl}: ModalStoreType) {
@@ -15,6 +16,7 @@ export default function Chat({modalControl}: ModalStoreType) {
     thumbnailUrl: "img",
     initialMembers: "맹구",
   }]);
+  
 
   const connect_socket = () => {
     const socket = new SockJS("https://cb42-120-142-108-113.ngrok-free.app/ws");
