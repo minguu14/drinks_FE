@@ -3,9 +3,17 @@ import { UserType } from "../../../models/type";
 import profileImg from "../../../img/whiskey.webp";
 import { useState } from "react";
 import MemberSetting from "../../modals/MemberSetting";
+import communityStore from "../../../stores/community";
+import userStore from "../../../stores/user";
 
 export default function MemberCard({id, profile, userId, authority, state}: UserType) {
   const [memberModal, setMemberModal] = useState(false);
+  const { loginUser } = userStore();
+  const { community, selectedCommunity, setPending, pending } = communityStore();
+  const okay = () => {
+    
+  }
+
   return (
     <tr className="border-b">
           <td className="text-center">
@@ -25,7 +33,7 @@ export default function MemberCard({id, profile, userId, authority, state}: User
             state ? <td className="text-center text-green-500">승인</td> 
             : <td className="text-center">
               <div className="flex justify-center gap-x-3">
-                <button>승인</button>
+                <button onClick={okay}>승인</button>
                 <button>거절</button>
               </div>
               </td>

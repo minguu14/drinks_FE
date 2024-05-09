@@ -2,12 +2,12 @@ import { ChangeEvent, useState } from "react";
 import InviteMemberCard from "../../../community/inviteMemberCard/InviteMemberCard";
 import { ModalStoreType } from "../../../../stores/modal";
 import communityStore from "../../../../stores/community";
-import { MemberType } from "../../../../models/type";
+import { MemberType, UserType } from "../../../../models/type";
 
 export default function CreateRoom({modals, modalControl}: ModalStoreType) {
   const [myImage, setMyImage] = useState<string>("");
   const { selectedCommunity } = communityStore();
-  const [inviteMembers, setInviteMembers] = useState<MemberType[]>(selectedCommunity.member);
+  const [inviteMembers, setInviteMembers] = useState<UserType[]>(selectedCommunity.member);
   
   const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -40,7 +40,7 @@ export default function CreateRoom({modals, modalControl}: ModalStoreType) {
                         <InviteMemberCard
                         key={member.id}
                         id={member.id}
-                        name={member.name}
+                        name={member.profile.nickname}
                         />
                       ))
                     }

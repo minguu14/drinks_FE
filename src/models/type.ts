@@ -22,7 +22,7 @@ export interface CommunityType {
     tag2: string;
     area: string;
     communityName: string;
-    member: MemberType[];
+    member: UserType[];
     last_chat_time: string;
     isPublic: string;
     isPopular: boolean;
@@ -36,14 +36,14 @@ export interface FormValue {
 }
 
 interface UserProfile {
-    image: string;
+    image?: string;
     nickname: string;
 }
 
 export interface UserType {
     id: string;
     profile: UserProfile;
-    userId: string;
+    userId?: string;
     authority: string;
     state: boolean;
 }

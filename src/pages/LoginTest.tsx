@@ -1,5 +1,4 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { MemberType } from "../models/type";
 import userStore from "../stores/user";
 import { useNavigate } from "react-router-dom";
 
@@ -28,12 +27,12 @@ useEffect(() => {
 },[])
 
   return (
-    <div className='ml-[800px] mt-[500px]'>
+    <form className='ml-[800px] mt-[500px]'>
         <input type="text"
         value={email}
         onChange={handleEmail}
         className='w-[300px] h-[30px] border-4 border-black mr-5'/>
-        <button className='border-4 border-black' onClick={()=>login(email)}>로그인</button>
-    </div>
+        <button type="submit" className='border-4 border-black' onClick={()=>login(email)}>로그인</button>
+    </form>
   )
 }
