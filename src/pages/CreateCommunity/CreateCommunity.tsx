@@ -34,7 +34,16 @@ export default function CreateCommunity() {
       "술 취향 타입",
       data.area,
       data.title,
-      [loginUser],
+      [{
+        id: loginUser.id,
+        profile:{
+          image: loginUser.profile_picture,
+          nickname: loginUser.name,
+        },
+        userId: loginUser.userId,
+        authority: "모임장",
+        state: true
+      }],
       "10분 전 마지막 대화",
       checkValue,
       true,

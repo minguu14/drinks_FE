@@ -44,7 +44,7 @@ export default function ClickCommunity() {
       {/* 모임정보 */}
       <div className="ml-[80px] fixed left-3">
         <CommunityInfo selectedCommunity={selectedCommunity}/>
-        {selectedCommunity.member.some((m) => m.id === loginUser.id) ?
+        {selectedCommunity.member.some((m) => m.id === loginUser.id && m.state === true) ?
           <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=> modalControl("join")}>
             글쓰기
           </button>
