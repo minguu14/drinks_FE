@@ -5,6 +5,7 @@ import passwordIcon from "../../img/password.png";
 import KakaoLogo from "../../img/kakaoLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginApi } from "../../Api/axios";
+import FindPassword from "./FindPassword";
 
 interface Login {
   userId: string;
@@ -43,9 +44,12 @@ export default function Login() {
     if (result === "failed to login") {
       alert("아이디와 비밀번호가 올바르지 않습니다.");
     } else {
-      const { accessToken } = result;
+      console.log(result);
 
-      // Access Token을 LocalStorage에 저장
+      const accessToken = result.headers.authorization.split(" ")[1];
+
+      console.log(accessToken);
+
       localStorage.setItem("access", accessToken);
 
       // 로그인 성공 후 홈으로 리디렉션
@@ -108,7 +112,9 @@ export default function Login() {
             <Link to="findid">
               <li className="after:content-['|'] after:mx-2">아이디 찾기</li>
             </Link>
-            <li>비밀번호 찾기</li>
+            <Link to="findPassword">
+              <li>비밀번호 찾기</li>
+            </Link>
           </ul>
         </div>
       </form>

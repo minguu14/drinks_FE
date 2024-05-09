@@ -18,6 +18,8 @@ import SignUp from "./pages/Login/SignUp";
 import Login from "./pages/Login/Login";
 import FindId from "./pages/Login/FindId";
 import LoginTest from "./pages/LoginTest";
+import FindPassword from "./pages/Login/FindPassword";
+import ChangePassword from "./pages/Login/ChangePassword";
 
 const LayOut = () => {
   return (
@@ -54,6 +56,14 @@ function App() {
       <Route path="/login/signup" element={<SignUp></SignUp>}></Route>
       <Route path="/Login" element={<Login></Login>}></Route>
       <Route path="/Login/findid" element={<FindId></FindId>}></Route>
+      <Route
+        path="/Login/findpassword"
+        element={<FindPassword></FindPassword>}
+      ></Route>
+      <Route
+        path="/Login/findpassword/changepassword"
+        element={<ChangePassword></ChangePassword>}
+      ></Route>
     </Routes>
   );
 }
