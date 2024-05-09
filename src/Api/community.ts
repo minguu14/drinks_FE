@@ -44,13 +44,6 @@ export const joinCommunity = async (updateCommunity:CommunityType) => {
     return rqs;
 }
 
-export const okMember = async (ok: CommunityType) => {
-    const rqs = await axios.post(`http://localhost:3000/${ok.id}`,{
-        ...ok,
-    })
-    return rqs;
-}
-
 export const getUser = async () => {
     const res = await axios<MemberType[]>("http://localhost:3000/users");
     return res.data;

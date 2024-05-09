@@ -8,9 +8,12 @@ export default function PopularCommunity() {
   const { community } = communityStore();
   const [popularCommunity, setPopularCommunity] = useState<CommunityType[]>([]);
 
+  const popularFilter = () => {
+    const filter = community.filter(popular => popular.isPopular);
+    setPopularCommunity(filter);
+  }
   useEffect(()=> {
-    const popularFilter = community.filter(popular => popular.isPopular);
-    setPopularCommunity(popularFilter);
+    popularFilter();
     },[community])
     
   return (

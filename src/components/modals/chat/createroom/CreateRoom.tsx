@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import InviteMemberCard from "../../../community/inviteMemberCard/InviteMemberCard";
 import { ModalStoreType } from "../../../../stores/modal";
 import communityStore from "../../../../stores/community";
@@ -7,8 +7,8 @@ import { MemberType, UserType } from "../../../../models/type";
 export default function CreateRoom({modals, modalControl}: ModalStoreType) {
   const [myImage, setMyImage] = useState<string>("");
   const { selectedCommunity } = communityStore();
-  const [inviteMembers, setInviteMembers] = useState<UserType[]>(selectedCommunity.member);
-  
+  const [inviteMembers, setInviteMembers] = useState<UserType[]>([]);
+
   const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     if (file) {
@@ -17,6 +17,15 @@ export default function CreateRoom({modals, modalControl}: ModalStoreType) {
       //URL.revokeObjectURL(imageUrl)
     }
   };
+
+  const CheckMember = () => {
+    const realMember = selectedCommunity.member.filter(m => m.state === true);
+    setInviteMembers(realMember);
+  }
+
+  useEffect(()=> {
+    CheckMember();
+  },[selectedCommunity])
   
   return (
     <div className="w-screen h-screen inset-0 bg-black/60 z-50 fixed top-0 flex justify-center items-center">

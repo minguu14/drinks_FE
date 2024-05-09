@@ -27,12 +27,12 @@ useEffect(() => {
 },[])
 
   return (
-    <form className='ml-[800px] mt-[500px]'>
+    <form className='ml-[800px] mt-[500px]' onSubmit={(e)=>{e.preventDefault(); login(email);}}>
         <input type="text"
         value={email}
         onChange={handleEmail}
         className='w-[300px] h-[30px] border-4 border-black mr-5'/>
-        <button type="submit" className='border-4 border-black' onClick={()=>login(email)}>로그인</button>
+        <button type="submit" className='border-4 border-black'>로그인</button>
     </form>
   )
 }

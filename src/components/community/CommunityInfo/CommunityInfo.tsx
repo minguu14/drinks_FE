@@ -11,19 +11,23 @@ interface CommunityInfoType {
 }
 
 export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
-  // const [realMember, setRealMember] = useState<UserType[]>([]);
-  // const [pending, setPending] = useState<UserType[]>([]);
-  const { realMember, pending, setRealMember, setPending } = communityStore();
+  const [realMember, setRealMember] = useState<UserType[]>([]);
+  const [pending, setPending] = useState<UserType[]>([]);
+  const [kingMember, setKingMember] = useState<UserType>();
   const navigate = useNavigate();
 
+  const getKing = () => {
+    const [k] = selectedCommunity.member.filter(king => king.authority === "모임장");
+    setKingMember(k);
+  }
   const CheckMember = () => {
     const realMember = selectedCommunity.member.filter(m => m.state === true);
     setRealMember(realMember);
-    
     const pendingMember = selectedCommunity.member.filter(p => p.state === false);
     setPending(pendingMember);
   }
   useEffect(()=> {
+    getKing();
     CheckMember();
   },[selectedCommunity])
   return (
@@ -40,16 +44,21 @@ export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
         <div className="w-[75px] h-[75px] border-2 rounded-[50%] items-center justify-center"></div>
         <div className="flex-col ml-3 relative">
         {
-          pending.length > 0 ?
-          <div 
-          className="absolute border rounded-[50%] w-[25px] h-[25px] left-[65px] bottom-[43px] text-[12px] bg-red-500 text-white flex justify-center items-center">
-            {pending.length}+
-          </div>
-          : <></>
+         
+          
+          
         }
           <div className="flex items-center gap-x-2">
             <div>{selectedCommunity.communityName}</div>
-            <div className="flex">
+            <div className="flex relative">
+              {
+                pending.length > 0 ?
+                <div 
+                  className="absolute border rounded-[50%] w-[25px] h-[25px] left-[3px] bottom-[18px] text-[12px] bg-red-500 text-white flex justify-center items-center">
+                  {pending.length}+
+                </div>
+                : <></>
+              }
               <img
                 src={member}
                 alt="people"
@@ -61,7 +70,7 @@ export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
           </div>
           <div className="flex">
             <img src={king} alt="king" className="w-[20px] h-[20px]" />
-            <div>{selectedCommunity.member[0].profile.nickname}</div>
+            <div>{kingMember?.profile.nickname}</div>
           </div>
         </div>
       </div>

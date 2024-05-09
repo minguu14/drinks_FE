@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import MemberCard from "../../../components/community/memberCard/MemberCard";
 import search from "../../../img/search.png";
-import uuid from "react-uuid";
-import { UserType } from "../../../models/type";
 import communityStore from "../../../stores/community";
 
 export default function MemberLists() {
-    const { selectedCommunity } = communityStore();
+    const { selectedCommunity, community, selectCommunity } = communityStore();
+
+    useEffect(() => {
+      const [filterItem] = community.filter(item => item.id === selectedCommunity.id);
+      selectCommunity(filterItem);
+      },[community])
+
   return (
     <div className="w-[660px] h-[700px] border-2 border-black">
     <p className="p-5 text-[20px]">멤버</p>
