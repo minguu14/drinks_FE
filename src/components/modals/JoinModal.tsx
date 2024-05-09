@@ -9,11 +9,11 @@ interface JoinModalType {
 }
 
 export default function JoinModal({modalControl, selectedCommunity}: JoinModalType) {
-    const { community, selectCommunity } = communityStore();
+    const { community, fetchCommunity } = communityStore();
     const { loginUser } = userStore();
     const join = () => {
         modalControl('join');
-        const [updateUser] = community.map((join) => {
+        const updateUser = community.map((join) => {
             if(join.id === selectedCommunity.id) {
                 return {
                     ...join,
@@ -31,7 +31,9 @@ export default function JoinModal({modalControl, selectedCommunity}: JoinModalTy
             }
             return join
         })
-        joinCommunity(updateUser).then(() => selectCommunity(updateUser));
+        
+        const [filter] = updateUser.filter((community) => community.id === selectedCommunity.id);
+        joinCommunity(filter).then(() => fetchCommunity());
     }
   return (
         <div className="w-screen h-screen inset-0 bg-black/60 z-50 fixed top-0 flex justify-center items-center">
