@@ -65,6 +65,7 @@ export default function FindPassword() {
     setSuccessPopUp(false);
     navigate("/login");
   };
+
   return (
     <div className="flex flex-col justify-center items-center">
       <img src={logo} alt="logo" className="w-[401px] h-[123px] mt-12 mb-9" />
