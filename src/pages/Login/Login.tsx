@@ -5,7 +5,6 @@ import passwordIcon from "../../img/password.png";
 import KakaoLogo from "../../img/kakaoLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginApi } from "../../Api/axios";
-import FindPassword from "./FindPassword";
 
 interface Login {
   userId: string;
@@ -15,6 +14,15 @@ interface Login {
 export default function Login() {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
+
+  // 카카오톡 코드
+  const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
+  const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
+
+  const onKakaoLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}`;
+  };
 
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
@@ -94,7 +102,10 @@ export default function Login() {
             >
               로그인
             </button>
-            <button className=" h-1/2 flex justify-center items-center bg-[#FFE600] border-2 border-black rounded-b-lg">
+            <button
+              className=" h-1/2 flex justify-center items-center bg-[#FFE600] border-2 border-black rounded-b-lg"
+              onClick={onKakaoLogin}
+            >
               <img src={KakaoLogo} alt="KakaoLogo" className="mr-2" />
               <p className="text-xl">카카오 로그인</p>
             </button>
