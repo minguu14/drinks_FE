@@ -38,6 +38,26 @@
           "userId": "cjftn123",
           "authority": "일반멤버",
           "state": true
+        },
+        {
+          "id": "5",
+          "profile": {
+            "image": "img",
+            "nickname": "유리"
+          },
+          "userId": "dbfl123",
+          "authority": "일반멤버",
+          "state": true
+        },
+        {
+          "id": "4",
+          "profile": {
+            "image": "img",
+            "nickname": "훈이"
+          },
+          "userId": "gnsdl123",
+          "authority": "일반멤버",
+          "state": true
         }
       ],
       "last_chat_time": "10분 전 마지막 대화",
