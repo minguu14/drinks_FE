@@ -1,71 +1,5 @@
 {
-  "community": [
-    {
-      "id": "62d29a0f-df99-8237-3e43-6cc3e8c289fc",
-      "thumbnail_url": "/static/media/image3.4ddd385129bd76d1e8d9.jpg",
-      "description": "떡잎방법대입니다.",
-      "tag1": "맥주",
-      "tag2": "술 취향 타입",
-      "area": "떡잎",
-      "communityName": "떡잎방범대",
-      "member": [
-        {
-          "id": "1",
-          "profile": {
-            "image": "img",
-            "nickname": "맹구"
-          },
-          "userId": "aodrn123",
-          "authority": "모임장",
-          "state": true
-        },
-        {
-          "id": "2",
-          "profile": {
-            "image": "img",
-            "nickname": "짱구"
-          },
-          "userId": "Wkdrn123",
-          "authority": "일반멤버",
-          "state": true
-        },
-        {
-          "id": "3",
-          "profile": {
-            "image": "img",
-            "nickname": "철수"
-          },
-          "userId": "cjftn123",
-          "authority": "일반멤버",
-          "state": true
-        },
-        {
-          "id": "5",
-          "profile": {
-            "image": "img",
-            "nickname": "유리"
-          },
-          "userId": "dbfl123",
-          "authority": "일반멤버",
-          "state": true
-        },
-        {
-          "id": "4",
-          "profile": {
-            "image": "img",
-            "nickname": "훈이"
-          },
-          "userId": "gnsdl123",
-          "authority": "일반멤버",
-          "state": true
-        }
-      ],
-      "last_chat_time": "10분 전 마지막 대화",
-      "isPublic": "public",
-      "isPopular": true,
-      "isNew": false
-    }
-  ],
+  "community": [],
   "users": [
     {
       "id": "1",
@@ -77,7 +11,7 @@
       "carrier": "kt",
       "phone_number": "01000000000",
       "verification_code": "123456",
-      "profile_picture": "img",
+      "profile_picture": "blob:http://localhost:3001/237faa7b-e509-4fa1-847d-02aef4594473",
       "gender": "남성",
       "introduction": "맹구입니다.",
       "mbti": "???"

@@ -20,11 +20,9 @@ import FindId from "./pages/Login/FindId";
 import LoginTest from "./pages/LoginTest";
 import FindPassword from "./pages/Login/FindPassword";
 import ChangePassword from "./pages/Login/ChangePassword";
-<<<<<<< HEAD
 import CommunitySetting from "./pages/CommunitySetting/CommunitySetting";
-=======
 // import KaKaoLogin from "./pages/Login/KaKaoLogin";
->>>>>>> 137f07f8c073ecc1a08a5c81d0e006bfc66a3f3a
+
 
 const LayOut = () => {
   return (
