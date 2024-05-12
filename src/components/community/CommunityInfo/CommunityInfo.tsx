@@ -2,9 +2,7 @@ import { CommunityType, UserType } from "../../../models/type";
 import member from "../../../img/people.png";
 import king from "../../../img/king.png"
 import { useNavigate } from "react-router-dom";
-import userStore from "../../../stores/user";
 import { useEffect, useState } from "react";
-import communityStore from "../../../stores/community";
 
 interface CommunityInfoType {
     selectedCommunity: CommunityType;
@@ -41,13 +39,8 @@ export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
         />
       </div>
       <div className="flex items-center mt-10">
-        <div className="w-[75px] h-[75px] border-2 rounded-[50%] items-center justify-center"></div>
+        <div className="w-[75px] h-[75px] border-2 rounded-[50%] items-center justify-center"><img src={kingMember?.profile.image} alt="thumbnail" className="rounded-[50%] w-full h-full"/></div>
         <div className="flex-col ml-3 relative">
-        {
-         
-          
-          
-        }
           <div className="flex items-center gap-x-2">
             <div>{selectedCommunity.communityName}</div>
             <div className="flex relative">

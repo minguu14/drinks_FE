@@ -1,4 +1,3 @@
-import setting from "../../../img/setting.png";
 import communityChat from "../../../img/communityChat.png";
 import schedule from "../../../img/schedule.png";
 import beer from "../../../img/beer.png";
@@ -13,6 +12,7 @@ import JoinRoom from "../../../components/modals/chat/joinroom/JoinRoom";
 import InviteRoomMember from "../../../components/modals/chat/room_member/inviteRoomMember/InviteRoomMember";
 import userStore from "../../../stores/user";
 import { useEffect } from "react";
+import LeftSection from "./LeftSection/LeftSection";
 
 export default function ClickCommunity() {
     const { selectedCommunity, community, selectCommunity } = communityStore();
@@ -41,21 +41,10 @@ export default function ClickCommunity() {
       {modals.joinModal && <JoinModal modalControl={modalControl} selectedCommunity={selectedCommunity}/>}
       {modals.createChatRoomModal && <CreateRoom modals={modals} modalControl={modalControl}/>}
       {modals.inviteRoomMember && <InviteRoomMember modals={modals} modalControl={modalControl}/>}
+
       {/* 모임정보 */}
-      <div className="ml-[80px] fixed left-3">
-        <CommunityInfo selectedCommunity={selectedCommunity}/>
-        {selectedCommunity.member.some((m) => m.id === loginUser.id && m.state === true) ?
-          <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=> modalControl("join")}>
-            글쓰기
-          </button>
-          :
-          <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=> modalControl("join")}>
-            가입하기
-          </button>
-        }
-        
-        <img src={setting} alt="setting" className="w-[35px] h-[35px] mt-[50px]" />
-      </div>
+      <LeftSection selectedCommunity={selectedCommunity} loginUser={loginUser} modalControl={modalControl}/>
+
       {/* 모임피드 */}
       <div className="flex-col absolute left-[650px]">
         <PostCard/>
@@ -80,13 +69,7 @@ export default function ClickCommunity() {
     : 
     <div className="flex mt-[200px] mb-10 relative">
       {/* 모임정보 */}
-      <div className="ml-[80px] fixed left-3">
-      <CommunityInfo selectedCommunity={selectedCommunity}/>
-        <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=>modalControl("join")}>
-          가입하기
-        </button>
-        <img src={setting} alt="setting" className="w-[35px] h-[35px] mt-[50px]" />
-      </div>
+      <LeftSection selectedCommunity={selectedCommunity} loginUser={loginUser} modalControl={modalControl}/>
       {/* 모임피드 */}
       <div className="absolute left-[850px] top-[250px] text-[20px]">
         <p>모임에서 비공개로 설정하였습니다.</p>

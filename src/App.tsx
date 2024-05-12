@@ -20,7 +20,9 @@ import FindId from "./pages/Login/FindId";
 import LoginTest from "./pages/LoginTest";
 import FindPassword from "./pages/Login/FindPassword";
 import ChangePassword from "./pages/Login/ChangePassword";
+import CommunitySetting from "./pages/CommunitySetting/CommunitySetting";
 // import KaKaoLogin from "./pages/Login/KaKaoLogin";
+
 
 const LayOut = () => {
   return (
@@ -42,6 +44,7 @@ function App() {
         <Route path="/newCommunity" element={<NewCommunity />}></Route>
         <Route path="/announcement" element={<Announcement />}></Route>
         <Route path="/createCommunity" element={<CreateCommunity />}></Route>
+        <Route path="/communitySetting" element={<CommunitySetting />}></Route>
         <Route path="/myCommunity" element={<MyCommunity />}></Route>
         <Route path="/community/:id" element={<Community />}></Route>
         <Route
