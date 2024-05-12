@@ -44,6 +44,12 @@ export const joinCommunity = async (updateCommunity:CommunityType) => {
     return rqs;
 }
 
+export const deleteCommunity = async (communityId:string) => {
+    const rqs = await axios.delete(`http://localhost:3000/community/${communityId}`);
+    console.log("삭제");
+    return rqs;
+}
+
 export const getUser = async () => {
     const res = await axios<MemberType[]>("http://localhost:3000/users");
     return res.data;

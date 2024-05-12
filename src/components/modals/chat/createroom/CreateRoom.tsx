@@ -32,7 +32,7 @@ export default function CreateRoom({modals, modalControl}: ModalStoreType) {
         <div className="w-[690px] h-[750px] border-2 rounded-[10px] bg-white">
             <div className="flex flex-col items-center justify-center mt-10 mx-[95px]">
                 <label htmlFor="fileInput" className="border-4 rounded-[10px] w-[200px] h-[200px]">
-                    {myImage && <img src={myImage} alt="myImage" className="w-[full] h-[full]"/>}
+                    {myImage && <img src={myImage} alt="myImage" className="w-full h-full"/>}
                     <input type="file"
                     id="fileInput"
                     onChange={onChangeImage}
