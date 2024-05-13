@@ -23,6 +23,7 @@ export interface CommunityType {
     area: string;
     communityName: string;
     member: UserType[];
+    posts: PostType[];
     last_chat_time: string;
     isPublic: string;
     isPopular: boolean;
@@ -46,6 +47,11 @@ export interface UserType {
     userId?: string;
     authority: string;
     state: boolean;
+}
+
+export interface PostType {
+    id: string;
+    content: string;
 }
 
 export interface ChatRoomType {

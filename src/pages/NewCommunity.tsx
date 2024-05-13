@@ -34,6 +34,7 @@ export default function PopularCommunity() {
                 area={newbie.area}  
                 communityName={newbie.communityName}  
                 member={newbie.member}  
+                posts={newbie.posts}  
                 last_chat_time={newbie.last_chat_time}
                 isPublic={newbie.isPublic}
                 isPopular={newbie.isPopular}  
@@ -52,6 +53,7 @@ export default function PopularCommunity() {
               area={newbie.area}
               communityName={newbie.communityName}  
               member={newbie.member}  
+              posts={newbie.posts}  
               last_chat_time={newbie.last_chat_time}  
               isPublic={newbie.isPublic}
               isPopular={newbie.isPopular}  

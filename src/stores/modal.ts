@@ -9,6 +9,7 @@ export interface ModalStoreType {
         inviteRoomMember: boolean;
         chatModal: boolean;
         createChatRoomModal: boolean;
+        writingModal: boolean;
     }
     modalControl: (by: string) => void
   }
@@ -22,6 +23,7 @@ export interface ModalStoreType {
         inviteRoomMember: false,
         chatModal: false,
         createChatRoomModal: false,
+        writingModal: false,
       },
       
       modalControl: (by: string) => set((state) => {
@@ -38,6 +40,8 @@ export interface ModalStoreType {
               return { modals: { ...state.modals, chatModal: !state.modals.chatModal } };
           case 'create':
             return { modals: { ...state.modals, createChatRoomModal: !state.modals.createChatRoomModal } };
+          case 'writing':
+            return { modals: { ...state.modals, writingModal: !state.modals.writingModal } };
           case 'closeAll':
             return { modals: {
               joinModal: false,
@@ -46,6 +50,7 @@ export interface ModalStoreType {
               inviteRoomMember: false,
               chatModal: false,
               createChatRoomModal: false,
+              writingModal: false,
             }};
           default:
             return state;
