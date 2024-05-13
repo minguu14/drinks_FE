@@ -13,6 +13,7 @@ import InviteRoomMember from "../../../components/modals/chat/room_member/invite
 import userStore from "../../../stores/user";
 import { useEffect } from "react";
 import LeftSection from "./LeftSection/LeftSection";
+import Writing from "../../../components/modals/Writing";
 
 export default function ClickCommunity() {
     const { selectedCommunity, community, selectCommunity } = communityStore();
@@ -41,17 +42,27 @@ export default function ClickCommunity() {
       {modals.joinModal && <JoinModal modalControl={modalControl} selectedCommunity={selectedCommunity}/>}
       {modals.createChatRoomModal && <CreateRoom modals={modals} modalControl={modalControl}/>}
       {modals.inviteRoomMember && <InviteRoomMember modals={modals} modalControl={modalControl}/>}
+      {modals.writingModal && <Writing modals={modals} modalControl={modalControl}/>}
 
       {/* 모임정보 */}
       <LeftSection selectedCommunity={selectedCommunity} loginUser={loginUser} modalControl={modalControl}/>
 
       {/* 모임피드 */}
       <div className="flex-col absolute left-[650px]">
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
+        { 
+          selectedCommunity.posts.length > 0 ?
+          selectedCommunity.posts.map((post) => (
+            <PostCard
+            key={post.id}
+            id={post.id}
+            content={post.content}
+            />
+          ))
+          :
+          <div className="w-[660px] h-[500px] flex justify-center items-center">
+            <span className="text-[20px]">포스트가 없습니다.</span>
+          </div>
+        }
       </div>
       {/* 사이드기능 */}
       <div className="mr-[80px] mt-[650px] fixed right-1">
