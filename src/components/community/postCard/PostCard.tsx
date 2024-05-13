@@ -2,8 +2,9 @@ import postSetting from "../../../img/postSetting.png";
 import plus from "../../../img/plus.png";
 import heart from "../../../img/heart.png";
 import comment from "../../../img/comment.png";
+import { PostType } from "../../../models/type";
 
-export default function PostCard() {
+export default function PostCard({id, content}: PostType) {
   return (
     <>
             {/* 글쓴이 및 글설정 */}
@@ -23,8 +24,12 @@ export default function PostCard() {
             {/* 게시글 */}
             <div className="flex justify-center">
             <div className="flex-col">
-                <p>짠~!</p>
-                <div className="w-[500px] h-[330px] border-2"></div>
+                <div
+                className="mt-[30px] overflow-hidden whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{
+                __html: content,
+                }}
+                />
             </div>
             </div>
             {/* 댓글 */}

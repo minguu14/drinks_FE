@@ -15,7 +15,7 @@ export default function LeftSection({selectedCommunity, loginUser, modalControl}
     <div className="ml-[80px] fixed left-3">
         <CommunityInfo selectedCommunity={selectedCommunity}/>
         {selectedCommunity.member.some((m) => m.id === loginUser.id && m.state === true) ?
-          <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=> modalControl("join")}>
+          <button className="w-[250px] h-[70px] rounded-[10px] bg-blue-500 text-white" onClick={()=> modalControl("writing")}>
             글쓰기
           </button>
           :

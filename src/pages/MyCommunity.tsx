@@ -42,11 +42,7 @@ export default function MyCommunity() {
       </div>
       {/* 모임피드 */}
       <div className="flex-col absolute left-[650px]">
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
+  
       </div>
       {/* 사이드기능 */}
       <div className="mr-[80px] mt-[650px] fixed right-1">

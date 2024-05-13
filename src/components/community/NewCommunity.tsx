@@ -34,7 +34,8 @@ export default function NewCommunity() {
             tag2={newbie.tag2}  
             area={newbie.area}  
             communityName={newbie.communityName}  
-            member={newbie.member}  
+            member={newbie.member}
+            posts={newbie.posts}
             last_chat_time={newbie.last_chat_time}  
             isPublic={newbie.isPublic}
             isPopular={newbie.isPopular}  
