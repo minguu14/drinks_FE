@@ -49,9 +49,17 @@ export interface UserType {
     state: boolean;
 }
 
+export interface CommentType {
+    id: string;
+    commenterThumbnail: string;
+    commenter: string;
+    comment: string;
+}
+
 export interface PostType {
     id: string;
     content: string;
+    comments: CommentType[];
 }
 
 export interface ChatRoomType {

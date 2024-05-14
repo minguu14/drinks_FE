@@ -1,5 +1,6 @@
 {
   "community": [
+    
   ],
   "users": [
     {
@@ -12,7 +13,7 @@
       "carrier": "kt",
       "phone_number": "01000000000",
       "verification_code": "123456",
-      "profile_picture": "blob:http://localhost:3001/3d04480d-774b-4dac-97ac-f9253da57a86",
+      "profile_picture": "blob:http://localhost:3001/b7498cc9-e7e9-4623-ae02-2e344d67814d",
       "gender": "남성",
       "introduction": "맹구입니다.",
       "mbti": "???"
