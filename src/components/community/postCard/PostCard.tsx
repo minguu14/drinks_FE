@@ -2,23 +2,76 @@ import postSetting from "../../../img/postSetting.png";
 import plus from "../../../img/plus.png";
 import heart from "../../../img/heart.png";
 import comment from "../../../img/comment.png";
-import { PostType } from "../../../models/type";
+import { CommentType, CommunityType, MemberType, PostType } from "../../../models/type";
+import PostSetting from "../../modals/post/PostSetting";
+import { ChangeEvent, useState } from "react";
+import Comments from "./Comments/Comments";
+import communityStore from "../../../stores/community";
+import uuid from "react-uuid";
+import { joinCommunity } from "../../../Api/community";
+import modalStore from "../../../stores/modal";
 
-export default function PostCard({id, content}: PostType) {
+interface PostCardType {
+    id: string;
+    content: string;
+    comments: CommentType[];
+    loginUser: MemberType;
+}
+
+export default function PostCard({id, content, comments, loginUser}: PostCardType) {
+    const { community, selectedCommunity, fetchCommunity } = communityStore();
+    const { modalControl } = modalStore();
+    const [postSettingModal, setPostSettingModal] = useState(false);
+    const [showComments, setShowComments] = useState(false);
+    const [value, setValue] = useState('');
+    const openPostSettingModal = () => {
+       setPostSettingModal(!postSettingModal);
+    }
+    
+    const postComment = () => {
+        const [updateCommunity] = community.map((u) => {
+            if(u.id === selectedCommunity.id){
+              const editPosts = u.posts.map(po => {
+                if(po.id === id){
+                  return {
+                    ...po,
+                    comments:[...po.comments,{
+                        id: uuid(),
+                        commenterThumbnail: loginUser.profile_picture,
+                        commenter: loginUser.name,
+                        comment: value
+                    }]
+                  }
+                }
+                return po;
+              })
+              return {
+                ...u,
+                posts:editPosts
+              }
+            }
+            return u;
+          }) as CommunityType[];
+          
+          joinCommunity(updateCommunity).then(() => fetchCommunity());
+          setValue('');
+    }
+    
   return (
     <>
             {/* 글쓴이 및 글설정 */}
             <div className="w-[660px] border-2 mb-5">
             <div className="flex justify-between items-center">
             <div className="flex items-center gap-x-2 p-3">
-                <div className="w-[50px] h-[50px] rounded-[50%] border-2"></div>
+                <div className="w-[50px] h-[50px] rounded-[50%] border-2"><img src={loginUser.profile_picture} alt="postUserThumbnail" className="w-full h-full"/></div>
                 <div className="flex-col">
-                <div>모임장</div>
+                <div>{loginUser.name}</div>
                 <div>5분 전</div>
                 </div>
             </div>
-            <div>
-                <img src={postSetting} alt="postSetting" className="mr-5" />
+            <div className="relative">
+                <img src={postSetting} alt="postSetting" className="mr-5 cursor-pointer" onClick={openPostSettingModal}/>
+                {postSettingModal && <PostSetting id={id} content={content} setPostSettingModal={setPostSettingModal}/>}
             </div>
             </div>
             {/* 게시글 */}
@@ -38,11 +91,12 @@ export default function PostCard({id, content}: PostType) {
                 {/* 댓글 수 및 좋아요 */}
                 <div className="flex justify-between items-center h-[60px] border-b-2">
                 <div className="flex items-center gap-x-2">
-                    <span>댓글 5 </span>
+                    <span>{`댓글 ${comments.length}`}</span>
                     <img
                     src={comment}
                     alt="comment"
-                    className="w-[20px] h-[20px]"
+                    className={`w-[20px] h-[20px] cursor-pointer ${showComments ? 'rotate-180' : ''}`}
+                    onClick={() => setShowComments(!showComments)}
                     />
                 </div>
 
@@ -52,36 +106,20 @@ export default function PostCard({id, content}: PostType) {
                 </div>
                 </div>
                 {/* 댓글 보여주기 */}
-                <div className="flex items-center h-[70px] border-b-2">
-                <div className="flex gap-x-2">
-                    <div className="w-[35px] h-[35px] border-2 rounded-[50%]"></div>
-                    <div className="flex-col text-[10px]">
-                    <div className="text-[15px]">팀원</div>
-                    <div className="text-[12px]">한잔해!</div>
-                    <div className="text-[10px] text-gray-500/40">5분 전</div>
-                    </div>
-                </div>
-                </div>
-                <div className="flex items-center h-[70px] border-b-2">
-                <div className="flex gap-x-2">
-                    <div className="w-[35px] h-[35px] border-2 rounded-[50%]"></div>
-                    <div className="flex-col text-[10px]">
-                    <div className="text-[15px]">팀원</div>
-                    <div className="text-[12px]">한잔해!</div>
-                    <div className="text-[10px] text-gray-500/40">5분 전</div>
-                    </div>
-                </div>
-                </div>
-                <div className="flex items-center h-[70px] border-b-2">
-                <div className="flex gap-x-2">
-                    <div className="w-[35px] h-[35px] border-2 rounded-[50%]"></div>
-                    <div className="flex-col text-[10px]">
-                    <div className="text-[15px]">팀원</div>
-                    <div className="text-[12px]">한잔해!</div>
-                    <div className="text-[10px] text-gray-500/40">5분 전</div>
-                    </div>
-                </div>
-                </div>
+                {
+                    showComments ?
+                    comments.map((c) => (
+                        <Comments
+                        key={c.id}
+                        id={c.id}
+                        comment={c.comment}
+                        commenter={c.commenter}
+                        commenterThumbnail={c.commenterThumbnail}
+                        />
+                    ))
+                    :
+                    <></>
+                }
             </div>
             </div>
             {/* 댓글 쓰기 */}
@@ -91,10 +129,12 @@ export default function PostCard({id, content}: PostType) {
             </div>
             <input
                 type="text"
+                value={value}
+                onChange={(e)=>setValue(e.target.value)}
                 placeholder="댓글을 입력해주세요"
                 className="border-2 rounded-[50px] w-[430px] h-[40px]"
             />
-            <button className="rounded-[50px] w-[90px] h-[40px] bg-blue-500 text-white">
+            <button className="rounded-[50px] w-[90px] h-[40px] bg-blue-500 text-white" onClick={postComment}>
                 쓰기
             </button>
             </div>
