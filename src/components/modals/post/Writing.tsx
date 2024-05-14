@@ -1,10 +1,10 @@
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
-import { ModalStoreType } from "../../stores/modal";
+import { ModalStoreType } from "../../../stores/modal";
 import { useEffect, useState } from "react";
-import communityStore from "../../stores/community";
+import communityStore from "../../../stores/community";
 import uuid from "react-uuid";
-import { joinCommunity } from "../../Api/community";
+import { joinCommunity } from "../../../Api/community";
 
 
 export default function Writing({modals, modalControl}: ModalStoreType) {
@@ -57,7 +57,8 @@ export default function Writing({modals, modalControl}: ModalStoreType) {
                     ...u,
                     posts: [...u.posts, {
                         id: uuid(),
-                        content: values
+                        content: values,
+                        comments:[],
                     }]
                 }
             }

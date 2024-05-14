@@ -4,7 +4,6 @@ import beer from "../../../img/beer.png";
 import PostCard from "../../../components/community/postCard/PostCard";
 import communityStore from "../../../stores/community"
 import JoinModal from "../../../components/modals/JoinModal";
-import CommunityInfo from "../../../components/community/CommunityInfo/CommunityInfo";
 import Chat from "../../../components/modals/chat/Chat";
 import modalStore from "../../../stores/modal";
 import CreateRoom from "../../../components/modals/chat/createroom/CreateRoom";
@@ -13,7 +12,8 @@ import InviteRoomMember from "../../../components/modals/chat/room_member/invite
 import userStore from "../../../stores/user";
 import { useEffect } from "react";
 import LeftSection from "./LeftSection/LeftSection";
-import Writing from "../../../components/modals/Writing";
+import Writing from "../../../components/modals/post/Writing";
+import EditPost from "../../../components/modals/post/EditPost";
 
 export default function ClickCommunity() {
     const { selectedCommunity, community, selectCommunity } = communityStore();
@@ -27,7 +27,7 @@ export default function ClickCommunity() {
         modalControl("chat");
       }
     }
-
+    
     useEffect(() => {
     const [filterItem] = community.filter(item => item.id === selectedCommunity.id);
     selectCommunity(filterItem);
@@ -43,6 +43,7 @@ export default function ClickCommunity() {
       {modals.createChatRoomModal && <CreateRoom modals={modals} modalControl={modalControl}/>}
       {modals.inviteRoomMember && <InviteRoomMember modals={modals} modalControl={modalControl}/>}
       {modals.writingModal && <Writing modals={modals} modalControl={modalControl}/>}
+      {modals.editModal && <EditPost modals={modals} modalControl={modalControl}/>}
 
       {/* 모임정보 */}
       <LeftSection selectedCommunity={selectedCommunity} loginUser={loginUser} modalControl={modalControl}/>
@@ -56,6 +57,8 @@ export default function ClickCommunity() {
             key={post.id}
             id={post.id}
             content={post.content}
+            comments={post.comments}
+            loginUser={loginUser}
             />
           ))
           :
