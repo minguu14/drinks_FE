@@ -53,7 +53,7 @@ export default function FindPassword() {
         // 실패 처리, 예를 들어 에러 메시지 표시 등
       } else {
         console.log("Recipe created successfully:", response);
-        navigate("/changepassword");
+        navigate("/Login/findpassword/changepassword");
 
         // 성공 처리, 예를 들어 알림 표시나 페이지 이동 등
       }

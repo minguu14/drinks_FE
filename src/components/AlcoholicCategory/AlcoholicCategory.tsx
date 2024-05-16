@@ -9,6 +9,7 @@ export default function AlcoholicCategory() {
   const [vodkaPage, setVodkaPage] = useState(false);
   const [whiskeyPage, setWhiskeyPage] = useState(false);
   const [makgeolliPage, setmakgeolliPage] = useState(false);
+
   const showAllPage = () => {
     setAllPage(true);
     setSojuPage(false);
