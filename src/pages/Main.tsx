@@ -32,8 +32,7 @@ useEffect(() => {
           {/* 레시피 */}
           <Recipe/>
           {/* 새싹모임 */}
-          <NewCommunity
-          />
+          <NewCommunity/>
           {/* 공지사항 */}
           <Announcement/>
         </div>
