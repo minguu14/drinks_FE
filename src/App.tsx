@@ -20,9 +20,7 @@ import FindId from "./pages/Login/FindId";
 import LoginTest from "./pages/LoginTest";
 import FindPassword from "./pages/Login/FindPassword";
 import ChangePassword from "./pages/Login/ChangePassword";
-import CommunitySetting from "./pages/CommunitySetting/CommunitySetting";
-// import KaKaoLogin from "./pages/Login/KaKaoLogin";
-
+import AlcoholsPage from "./pages/Alcohols/AlcoholsPage";
 
 const LayOut = () => {
   return (
@@ -38,13 +36,13 @@ function App() {
     <Routes>
       <Route path="/" element={<LayOut />}>
         <Route index element={<Main />}></Route>
+        <Route path="/Alcohols" element={<AlcoholsPage />}></Route>
         <Route path="/logintest" element={<LoginTest />}></Route>
         <Route path="/popularCommunity" element={<PopularCommunity />}></Route>
         <Route path="/recipe" element={<RecipesPage />}></Route>
         <Route path="/newCommunity" element={<NewCommunity />}></Route>
         <Route path="/announcement" element={<Announcement />}></Route>
         <Route path="/createCommunity" element={<CreateCommunity />}></Route>
-        <Route path="/communitySetting" element={<CommunitySetting />}></Route>
         <Route path="/myCommunity" element={<MyCommunity />}></Route>
         <Route path="/community/:id" element={<Community />}></Route>
         <Route
@@ -58,17 +56,16 @@ function App() {
         <Route path="/recipe/test" element={<AlcoholicCategory />}></Route>
       </Route>
       <Route path="/login/signup" element={<SignUp></SignUp>}></Route>
-      <Route path="/login" element={<Login></Login>}></Route>
-      <Route path="/login/findid" element={<FindId></FindId>}></Route>
+      <Route path="/Login" element={<Login></Login>}></Route>
+      <Route path="/Login/findid" element={<FindId></FindId>}></Route>
       <Route
-        path="/login/findpassword"
+        path="/Login/findpassword"
         element={<FindPassword></FindPassword>}
       ></Route>
       <Route
-        path="/login/findpassword/changepassword"
+        path="/Login/findpassword/changepassword"
         element={<ChangePassword></ChangePassword>}
       ></Route>
-      {/* <Route path="/kakaologin" element={<KaKaoLogin></KaKaoLogin>}></Route> */}
     </Routes>
   );
 }
