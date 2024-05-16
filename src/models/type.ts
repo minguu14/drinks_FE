@@ -24,6 +24,7 @@ export interface CommunityType {
     communityName: string;
     member: UserType[];
     posts: PostType[];
+    schedule: ScheduleType[];
     last_chat_time: string;
     isPublic: string;
     isPopular: boolean;
@@ -60,6 +61,15 @@ export interface PostType {
     id: string;
     content: string;
     comments: CommentType[];
+}
+
+export interface ScheduleType {
+    id: string;
+    scheduleTitle: string;
+    scheduleDescription: string;
+    scheduleLocation: string;
+    scheduleDate: string;
+    scheduleTime: string;
 }
 
 export interface ChatRoomType {
