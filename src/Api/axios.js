@@ -132,12 +132,34 @@ export const FindPasswordApi = async (name, userId, email) => {
 // 비밀번호 변경
 export const ChangePasswordApi = async (name, password) => {
   try {
-    const response = await axios.post("/api/find-password", {
-      name: name,
-      password: password,
+    const response = await axios.post("/api/reset-password", {
+      userId: name,
+      newPassword: password,
+      newPasswordCheck: password,
     });
     return response.data;
   } catch {
     return "failed to login";
+  }
+};
+
+// 주류 모아보기 데이터 가져오기
+export const Alcoholsdata = async () => {
+  try {
+    const response = await axios.get("/api/api/alcohols", {
+      headers: {
+        "ngrok-skip-browser-warning": "69420",
+      },
+      params: {
+        type: "soju",
+        page: 0,
+        size: 10,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log("Error fetching data", error);
+    return "error";
   }
 };

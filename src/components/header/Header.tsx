@@ -10,11 +10,11 @@ import { MemberType } from "../../models/type";
 import { useState } from "react";
 
 export default function Header() {
-  const [user, setUser] = useState<MemberType>()
+  const [user, setUser] = useState<MemberType>();
   const { loginCheck } = userStore();
   const logOutTest = () => {
     loginCheck(user);
-  }
+  };
   return (
     <header className="flex items-center justify-between mb-5 fixed top-0 bg-white z-50">
       <Link to="/">
@@ -24,9 +24,11 @@ export default function Header() {
         <div>
           <span className="text-blue-600">주종</span> 설명
         </div>
-        <div>
-          <span className="text-blue-600">주류</span> 모아보기
-        </div>
+        <Link to="/Alcohols">
+          <div>
+            <span className="text-blue-600">주류</span> 모아보기
+          </div>
+        </Link>
         <Link to="/PopularCommunity">모임</Link>
         <Link to="/Recipe">레시피</Link>
       </div>
@@ -48,7 +50,7 @@ export default function Header() {
           <img src={mask} alt="scrap" className="mr-[10px]" />
         </Link>
         <img src={scrap} alt="scrap" className="mr-[10px]" />
-        <img src={info} alt="info" onClick={logOutTest}/>
+        <img src={info} alt="info" onClick={logOutTest} />
       </div>
     </header>
   );
