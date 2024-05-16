@@ -64,6 +64,7 @@ export default function Login() {
       navigate("/");
     }
   };
+
   return (
     <div className="w-full h-full flex flex-col items-center">
       <img src={logo} alt="logo" className="w-[401px] h-[123px] mt-12 mb-9" />
