@@ -132,7 +132,7 @@ export default function PostCard({id, content, comments, loginUser}: PostCardTyp
                 value={value}
                 onChange={(e)=>setValue(e.target.value)}
                 placeholder="댓글을 입력해주세요"
-                className="border-2 rounded-[50px] w-[430px] h-[40px]"
+                className="border-2 rounded-[50px] w-[430px] h-[40px] p-5"
             />
             <button className="rounded-[50px] w-[90px] h-[40px] bg-blue-500 text-white" onClick={postComment}>
                 쓰기

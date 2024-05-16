@@ -25,6 +25,7 @@ const communityStore = create<CommunityStoreType>()(
       communityName: "",
       member: [],
       posts: [],
+      schedule: [],
       last_chat_time: "",
       isPublic: "",
       isPopular: false,

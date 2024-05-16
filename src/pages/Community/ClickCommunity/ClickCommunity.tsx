@@ -14,11 +14,14 @@ import { useEffect } from "react";
 import LeftSection from "./LeftSection/LeftSection";
 import Writing from "../../../components/modals/post/Writing";
 import EditPost from "../../../components/modals/post/EditPost";
+import Schedule from "../../../components/modals/schedule/Schedule";
+import CreateSchedule from "../../../components/modals/schedule/createschedule/CreateSchedule";
 
 export default function ClickCommunity() {
     const { selectedCommunity, community, selectCommunity } = communityStore();
     const { modals, modalControl } = modalStore();
     const { loginUser } = userStore();
+
     const handleChat = () => {
       if(Object.values(modals).some((modal) => modal === true))
       {
@@ -26,6 +29,15 @@ export default function ClickCommunity() {
       }else{
         modalControl("chat");
       }
+    }
+
+    const handleSchedule = () => {
+      if(Object.values(modals).some((modal) => modal === true))
+        {
+          modalControl('closeAll');
+        }else{
+          modalControl("schedule");
+        }
     }
     
     useEffect(() => {
@@ -71,10 +83,12 @@ export default function ClickCommunity() {
       <div className="mr-[80px] mt-[650px] fixed right-1">
         <div className="flex gap-x-[30px]">
           <img src={beer} alt="beer" />
-          <img src={schedule} alt="schedule"/>
+          <img src={schedule} alt="schedule" onClick={handleSchedule}/>
           <img src={communityChat} alt="communityChat" onClick={handleChat}/>
         </div>
         {modals.chatModal && <Chat modals={modals} modalControl={modalControl}/>}
+        {modals.scheduleModal && <Schedule modals={modals} modalControl={modalControl}/>}
+        {modals.createScheduleModal && <CreateSchedule modals={modals} modalControl={modalControl}/>}
         {modals.joinRoomModal && <JoinRoom modals={modals} modalControl={modalControl}/>}
       </div>
     </div>
@@ -93,10 +107,12 @@ export default function ClickCommunity() {
       <div className="mr-[80px] mt-[650px] fixed right-1">
         <div className="flex gap-x-[30px]">
           <img src={beer} alt="beer" />
-          <img src={schedule} alt="schedule"/>
+          <img src={schedule} alt="schedule" onClick={handleSchedule}/>
           <img src={communityChat} alt="communityChat" onClick={handleChat}/>
         </div>
         {modals.chatModal && <Chat modals={modals} modalControl={modalControl}/>}
+        {modals.scheduleModal && <Schedule modals={modals} modalControl={modalControl}/>}
+        {modals.createScheduleModal && <CreateSchedule modals={modals} modalControl={modalControl}/>}
         {modals.joinRoomModal && <JoinRoom modals={modals} modalControl={modalControl}/>}
       </div>
     </div>
