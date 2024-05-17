@@ -1,4 +1,3 @@
-
 import Recipe from "../components/recipe/Recipe";
 import Announcement from "../components/announcement/Announcement";
 import Nav from "../components/nav/Nav";
@@ -14,28 +13,27 @@ export default function Main() {
   const { loginUser } = userStore();
   const navigate = useNavigate();
 
-useEffect(() => {
-  console.log(loginUser);
-  if(loginUser === undefined || Object.values(loginUser).every(value => value === '')) navigate('/logintest');
-  fetchCommunity();
-},[loginUser])
+  // useEffect(() => {
+  //   console.log(loginUser);
+  //   if(loginUser === undefined || Object.values(loginUser).every(value => value === '')) navigate('/logintest');
+  //   fetchCommunity();
+  // },[loginUser])
 
   return (
     <div className="App">
       {/* 네브 */}
-      <Nav/>
+      <Nav />
       {/* 컨텐츠 */}
       <div className="flex justify-center mt-10">
-        <div className='w-[1200px] flex flex-wrap justify-between'>
+        <div className="w-[1200px] flex flex-wrap justify-between">
           {/* 인기모임 */}
-          <PopularCommunity/>
+          <PopularCommunity />
           {/* 레시피 */}
-          <Recipe/>
+          <Recipe />
           {/* 새싹모임 */}
-          <NewCommunity
-          />
+          <NewCommunity />
           {/* 공지사항 */}
-          <Announcement/>
+          <Announcement />
         </div>
       </div>
     </div>
