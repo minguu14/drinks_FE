@@ -11,7 +11,7 @@ export default function KaKaoLogin() {
   return (
     <div>
       <div>
-        <button onClick={onKakaoSocialLogin}>카카오톡 로그인</button>
+        <button onClick={onKakaoSocialLogin}>카카오톡 로.그인</button>
       </div>
     </div>
   );
