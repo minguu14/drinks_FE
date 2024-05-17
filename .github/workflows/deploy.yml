@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
@@ -61,4 +61,4 @@ jobs:
             docker rm web || true
             docker run -d --name web -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:main
 
- #123
+  #123
