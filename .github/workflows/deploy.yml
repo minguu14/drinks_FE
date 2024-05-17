@@ -59,6 +59,6 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:main
             docker stop web || true
             docker rm web || true
-            docker run -d --name web -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:main
+            docker run -d --name web -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/hanzanhazo-deploy:main
 
   #123
