@@ -44,6 +44,8 @@ export default function CreateCommunity() {
         authority: "모임장",
         state: true
       }],
+      [],
+      [],
       "10분 전 마지막 대화",
       checkValue,
       true,

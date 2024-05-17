@@ -8,8 +8,11 @@ export interface ModalStoreType {
         roomMember: boolean;
         inviteRoomMember: boolean;
         chatModal: boolean;
+        scheduleModal: boolean;
+        createScheduleModal: boolean;
         createChatRoomModal: boolean;
         writingModal: boolean;
+        editModal: boolean;
     }
     modalControl: (by: string) => void
   }
@@ -22,8 +25,11 @@ export interface ModalStoreType {
         roomMember: false,
         inviteRoomMember: false,
         chatModal: false,
+        scheduleModal: false,
+        createScheduleModal: false,
         createChatRoomModal: false,
         writingModal: false,
+        editModal: false,
       },
       
       modalControl: (by: string) => set((state) => {
@@ -38,10 +44,16 @@ export interface ModalStoreType {
             return { modals: { ...state.modals, inviteRoomMember: !state.modals.inviteRoomMember } };
           case 'chat':
               return { modals: { ...state.modals, chatModal: !state.modals.chatModal } };
+          case 'schedule':
+              return { modals: { ...state.modals, scheduleModal: !state.modals.scheduleModal } };
+          case 'createSchedule':
+              return { modals: { ...state.modals, createScheduleModal: !state.modals.createScheduleModal } };
           case 'create':
             return { modals: { ...state.modals, createChatRoomModal: !state.modals.createChatRoomModal } };
           case 'writing':
             return { modals: { ...state.modals, writingModal: !state.modals.writingModal } };
+          case 'edit':
+            return { modals: { ...state.modals, editModal: !state.modals.editModal } };
           case 'closeAll':
             return { modals: {
               joinModal: false,
@@ -51,6 +63,10 @@ export interface ModalStoreType {
               chatModal: false,
               createChatRoomModal: false,
               writingModal: false,
+              postSettingModal: false,
+              editModal: false,
+              scheduleModal: false,
+              createScheduleModal: false,
             }};
           default:
             return state;
