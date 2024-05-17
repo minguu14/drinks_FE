@@ -12,7 +12,7 @@ RUN npm run build
 
 FROM nginx:1.18.0
 
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/conf.d/default.conf || true
 
 COPY config/default.conf /etc/nginx/conf.d/
 
