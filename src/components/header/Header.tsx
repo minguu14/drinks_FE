@@ -7,7 +7,7 @@ import sun from "../../img/sun.png";
 import { Link } from "react-router-dom";
 import userStore from "../../stores/user";
 import { MemberType } from "../../models/type";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const [user, setUser] = useState<MemberType>();
@@ -15,6 +15,14 @@ export default function Header() {
   const logOutTest = () => {
     loginCheck(user);
   };
+  const [accessToken, setAccessToken] = useState<string | null>("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setAccessToken(token);
+  }, []);
+
+  console.log(accessToken);
   return (
     <header className="flex items-center justify-between mb-5 fixed top-0 bg-white z-50">
       <Link to="/">
