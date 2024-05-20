@@ -7,7 +7,6 @@ import NewCommunity from "./pages/NewCommunity";
 import Announcement from "./pages/Announcement";
 import Header from "./components/header/Header";
 import CreateCommunity from "./pages/CreateCommunity/CreateCommunity";
-import MyCommunity from "./pages/MyCommunity";
 import Community from "./pages/Community/Community";
 import CommunityMember from "./pages/CommunityMember/CommunityMember";
 import CreateRecipe from "./pages/Recipe/CreateRecipe";
@@ -21,6 +20,7 @@ import LoginTest from "./pages/LoginTest";
 import FindPassword from "./pages/Login/FindPassword";
 import ChangePassword from "./pages/Login/ChangePassword";
 import AlcoholsPage from "./pages/Alcohols/AlcoholsPage";
+import CommunitySetting from "./pages/CommunitySetting/CommunitySetting";
 
 const LayOut = () => {
   return (
@@ -43,7 +43,7 @@ function App() {
         <Route path="/newCommunity" element={<NewCommunity />}></Route>
         <Route path="/announcement" element={<Announcement />}></Route>
         <Route path="/createCommunity" element={<CreateCommunity />}></Route>
-        <Route path="/myCommunity" element={<MyCommunity />}></Route>
+        <Route path="/communitySetting" element={<CommunitySetting />}></Route>
         <Route path="/community/:id" element={<Community />}></Route>
         <Route
           path="/popularCommunity/community/:id"

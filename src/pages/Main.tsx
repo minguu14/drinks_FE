@@ -13,11 +13,11 @@ export default function Main() {
   const { loginUser } = userStore();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   console.log(loginUser);
-  //   if(loginUser === undefined || Object.values(loginUser).every(value => value === '')) navigate('/logintest');
-  //   fetchCommunity();
-  // },[loginUser])
+  useEffect(() => {
+    console.log(loginUser);
+    if(loginUser === undefined || Object.values(loginUser).every(value => value === '')) navigate('/logintest');
+    fetchCommunity();
+  },[loginUser])
 
   return (
     <div className="App">

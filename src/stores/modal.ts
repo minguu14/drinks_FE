@@ -9,6 +9,7 @@ export interface ModalStoreType {
         inviteRoomMember: boolean;
         chatModal: boolean;
         scheduleModal: boolean;
+        voteScheduleModal: boolean;
         createScheduleModal: boolean;
         createChatRoomModal: boolean;
         writingModal: boolean;
@@ -26,6 +27,7 @@ export interface ModalStoreType {
         inviteRoomMember: false,
         chatModal: false,
         scheduleModal: false,
+        voteScheduleModal: false,
         createScheduleModal: false,
         createChatRoomModal: false,
         writingModal: false,
@@ -46,6 +48,8 @@ export interface ModalStoreType {
               return { modals: { ...state.modals, chatModal: !state.modals.chatModal } };
           case 'schedule':
               return { modals: { ...state.modals, scheduleModal: !state.modals.scheduleModal } };
+          case 'vote':
+              return { modals: { ...state.modals, voteScheduleModal: !state.modals.voteScheduleModal } };
           case 'createSchedule':
               return { modals: { ...state.modals, createScheduleModal: !state.modals.createScheduleModal } };
           case 'create':
@@ -66,6 +70,7 @@ export interface ModalStoreType {
               postSettingModal: false,
               editModal: false,
               scheduleModal: false,
+              voteScheduleModal: false,
               createScheduleModal: false,
             }};
           default:

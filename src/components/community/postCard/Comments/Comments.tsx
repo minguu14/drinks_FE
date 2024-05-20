@@ -9,7 +9,7 @@ export default function Comments({id, comment, commenter, commenterThumbnail}: C
         <div className="flex-col text-[10px]">
           <div className="text-[15px]">{commenter}</div>
           <div className="text-[12px]">{comment}</div>
-          <div className="text-[10px] text-gray-500/40">5분 전</div>
+          <div className="text-[10px] text-gray-500/40">1분 전</div>
         </div>
       </div>
     </div>

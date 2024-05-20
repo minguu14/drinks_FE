@@ -28,6 +28,7 @@ export default function Schedule({modals, modalControl}: ModalStoreType) {
                     scheduleLocation={sc.scheduleLocation}
                     scheduleDate={sc.scheduleDate}
                     scheduleTime={sc.scheduleTime}
+                    users={sc.users}
                   />
               ))
             }
@@ -42,7 +43,7 @@ export default function Schedule({modals, modalControl}: ModalStoreType) {
                 </div>
             </div>
         </div>
-        <div className="flex justify-end p-4">
+        <div className="flex justify-end p-4 cursor-pointer">
             <img src={plus} alt="plus" className="w-[43px] h-[43px]" onClick={openCreateSchedule}/>
         </div>
     </div>
