@@ -1,33 +1,88 @@
 import communityStore from "../../../../stores/community";
 import participationIcon from "../../../../img/comment.png";
 import userStore from "../../../../stores/user";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ParticipationList from "../participationListModal/ParticipationList";
+import uuid from "react-uuid";
+import { CommunityType } from "../../../../models/type";
+import { joinCommunity } from "../../../../Api/community";
 
 export default function VoteSchedule() {
-  const { selectedVote, selectVote } = communityStore();
+  const { selectedVote, selectVote, community, selectedCommunity, fetchCommunity } = communityStore();
   const { loginUser } = userStore();
   const [list, setList] = useState(false);
   
   const participation = () => {
-    selectVote({
-      ...selectedVote,
-      users: [
-        ...selectedVote.users,
-        {
-          userImg: loginUser.profile_picture,
-          userName: loginUser.name,
-        },
-      ],
-    });
+    const [updateCommunity] = community.map((u) => {
+      if(u.id === selectedCommunity.id){
+        const vote = u.schedule.map(sc => {
+          if(sc.id === selectedVote.id){
+            return {
+              ...sc,
+              users:[...sc.users,{
+                id: uuid(),
+                userImg: loginUser.profile_picture,
+                userName: loginUser.name,
+              }]
+            }
+          }
+          return sc;
+        })
+        return {
+          ...u,
+          schedule: vote
+        }
+      }
+      return u;
+    }) as CommunityType[];
+    
+    joinCommunity(updateCommunity).then(() => fetchCommunity());
+    // selectVote({
+    //   ...selectedVote,
+    //   users: [
+    //     ...selectedVote.users,
+    //     {
+    //       id: uuid(),
+    //       userImg: loginUser.profile_picture,
+    //       userName: loginUser.name,
+    //     },
+    //   ],
+    // });
   };
   const nonappearance = () => {
-    const filterUsers = selectedVote.users.filter((u) => u.userName !== loginUser.name);
-    selectVote({
-        ...selectedVote,
-        users: filterUsers
-      });
+    const [updateCommunity] = community.map((u) => {
+      if(u.id === selectedCommunity.id){
+        const vote = u.schedule.map(sc => {
+          if(sc.id === selectedVote.id){
+            const filter = sc.users.filter(f => f.userName !== loginUser.name);
+            return {
+              ...sc,
+              users: filter
+            }
+          }
+          return sc;
+        })
+        return {
+          ...u,
+          schedule: vote
+        }
+      }
+      return u;
+    }) as CommunityType[];
+    
+    joinCommunity(updateCommunity).then(() => fetchCommunity());
+    // const filterUsers = selectedVote.users.filter((u) => u.userName !== loginUser.name);
+    // selectVote({
+    //     ...selectedVote,
+    //     users: filterUsers
+    //   });
   };
+
+  useEffect(() => {
+    const [filterItem] = community.filter(f => f.id === selectedCommunity.id);
+    const [updateVote] = filterItem.schedule;
+    selectVote(updateVote);
+    },[community])
 
   return (
     <div className="border border-black rounded-[10px] w-[490px] h-[685px] absolute top-[-690px] right-[-25px]">

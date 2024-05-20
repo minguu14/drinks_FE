@@ -67,6 +67,7 @@ export interface PostType {
 
 
 export interface VoteUserType {
+    id: string;
     userImg: string | undefined;
     userName: string;
 }

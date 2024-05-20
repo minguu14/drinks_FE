@@ -9,6 +9,7 @@ import MemberLists from "./MemberLists/MemberLists";
 import modalStore from "../../stores/modal";
 import LeftSection from "../Community/ClickCommunity/LeftSection/LeftSection";
 import userStore from "../../stores/user";
+import RightSection from "../Community/ClickCommunity/RightSection/RightSection";
 
 export default function CommunityMember() {
     const { selectedCommunity } = communityStore();
@@ -29,13 +30,7 @@ export default function CommunityMember() {
          <MemberLists/>
       </div>
       {/* 사이드기능 */}
-      <div className="mr-[80px] mt-[650px] fixed right-1">
-        <div className="flex gap-x-[30px]">
-          <img src={beer} alt="beer" />
-          <img src={schedule} alt="schedule" />
-          <img src={communityChat} alt="communityChat" />
-        </div>
-      </div>
+      <RightSection/>
     </div>
     : 
     <div className="flex mt-[200px] mb-10 relative">
@@ -53,13 +48,7 @@ export default function CommunityMember() {
         <p>게시물을 보려면 모임에 가입해주세요.</p>
       </div>
       {/* 사이드기능 */}
-      <div className="mr-[80px] mt-[650px] fixed right-1">
-        <div className="flex gap-x-[30px]">
-          <img src={beer} alt="beer" />
-          <img src={schedule} alt="schedule" />
-          <img src={communityChat} alt="communityChat" />
-        </div>
-      </div>
+      <RightSection/>
     </div>
     }
     </div>

@@ -1,12 +1,12 @@
 {
   "community": [
     {
-      "id": "66aecb7a-b893-c283-7254-8ef7c0d585da",
+      "id": "0abc5d0d-6c79-ae27-051b-3d956ea27cd5",
       "thumbnail_url": "/static/media/image3.4ddd385129bd76d1e8d9.jpg",
-      "description": "모임투표",
-      "tag1": "막걸리",
+      "description": "투표 테스트",
+      "tag1": "양주",
       "tag2": "술 취향 타입",
-      "area": "부평",
+      "area": "인천",
       "communityName": "투표",
       "member": [
         {
@@ -20,6 +20,16 @@
           "state": true
         },
         {
+          "id": "3",
+          "profile": {
+            "image": "img",
+            "nickname": "철수"
+          },
+          "userId": "cjftn123",
+          "authority": "일반멤버",
+          "state": true
+        },
+        {
           "id": "2",
           "profile": {
             "image": "img",
@@ -30,36 +40,27 @@
           "state": true
         }
       ],
-      "posts": [
-        {
-          "id": "95595f41-51bd-0cac-0bd8-f7a43749176b",
-          "content": "<p>fff</p>",
-          "comments": [],
-          "author": "맹구"
-        },
-        {
-          "id": "cc4585c0-25c1-39d4-64e5-e77f3c0530ed",
-          "content": "<p>짱구가 씀</p>",
-          "comments": [
-            {
-              "id": "6ff5bcef-3525-c03d-8da9-fe7d52f58b9b",
-              "commenterThumbnail": "blob:http://localhost:3001/3d04480d-774b-4dac-97ac-f9253da57a86",
-              "commenter": "맹구",
-              "comment": "ㅎㅇㅎㅇ"
-            }
-          ],
-          "author": "짱구"
-        }
-      ],
+      "posts": [],
       "schedule": [
         {
-          "id": "032b9e01-0110-4ac2-06ec-7054fbeba431",
-          "scheduleTitle": "qq",
-          "scheduleDescription": "ww",
-          "scheduleLocation": "2",
-          "scheduleDate": "2024년 05월 17일 금요일",
-          "scheduleTime": "오후 12:31",
-          "users": []
+          "id": "a9b41fbb-c757-90b1-5031-9ff195981af1",
+          "scheduleTitle": "투표",
+          "scheduleDescription": "ㅁㄴㅇ",
+          "scheduleLocation": "123",
+          "scheduleDate": "2024년 05월 23일 목요일",
+          "scheduleTime": "오후 12:00",
+          "users": [
+            {
+              "id": "3b3291bd-6d0a-8624-f902-cc0e4558cb86",
+              "userImg": "img",
+              "userName": "짱구"
+            },
+            {
+              "id": "84686b42-040e-9321-8596-71ca1c7e40e3",
+              "userImg": "blob:http://localhost:3001/3bd5f685-4845-45a3-b73f-a8921edd6dcd",
+              "userName": "맹구"
+            }
+          ]
         }
       ],
       "last_chat_time": "10분 전 마지막 대화",
