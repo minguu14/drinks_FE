@@ -62,6 +62,7 @@ export default function Writing({modals, modalControl}: ModalStoreType) {
                         id: uuid(),
                         content: values,
                         comments:[],
+                        likeLists: [],
                         author: loginUser.name,
                         authorImg: loginUser.profile_picture,
                     }]

@@ -46,6 +46,7 @@ const communityStore = create<CommunityStoreType>()(
       id: "",
       content: "",
       comments: [],
+      likeLists: [],
       author: "",
       authorImg: "",
     },

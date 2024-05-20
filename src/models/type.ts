@@ -37,7 +37,7 @@ export interface FormValue {
     area: string;
 }
 
-interface UserProfile {
+export interface UserProfile {
     image?: string;
     nickname: string;
 }
@@ -57,10 +57,16 @@ export interface CommentType {
     comment: string;
 }
 
+export interface LikeListType {
+    id: string;
+    userName: string;
+}
+
 export interface PostType {
     id: string;
     content: string;
     comments: CommentType[];
+    likeLists: LikeListType[];
     author: string;
     authorImg: string;
 }

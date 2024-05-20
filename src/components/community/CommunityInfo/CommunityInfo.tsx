@@ -3,6 +3,7 @@ import member from "../../../img/people.png";
 import king from "../../../img/king.png"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import userStore from "../../../stores/user";
 
 interface CommunityInfoType {
     selectedCommunity: CommunityType;
@@ -12,6 +13,8 @@ export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
   const [realMember, setRealMember] = useState<UserType[]>([]);
   const [pending, setPending] = useState<UserType[]>([]);
   const [kingMember, setKingMember] = useState<UserType>();
+  const [ userCheck, setUserCheck ] = useState<UserType>();
+  const { loginUser } = userStore();
   const navigate = useNavigate();
 
   const getKing = () => {
@@ -24,9 +27,20 @@ export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
     const pendingMember = selectedCommunity.member.filter(p => p.state === false);
     setPending(pendingMember);
   }
+
+  const watchMembers = () => {
+    if(userCheck?.state === true){
+      navigate('/communityMember');
+    }else{
+      console.log('가입모달');
+    }
+  }
+  
   useEffect(()=> {
     getKing();
     CheckMember();
+    const [check] = selectedCommunity.member.filter(f => f.id === loginUser.id);
+    setUserCheck(check);
   },[selectedCommunity])
   return (
     <>
@@ -45,7 +59,7 @@ export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
             <div>{selectedCommunity.communityName}</div>
             <div className="flex relative">
               {
-                pending.length > 0 ?
+                pending.length > 0 && userCheck?.authority === '모임장' || userCheck?.authority === '부모임장' ?
                 <div 
                   className="absolute border rounded-[50%] w-[25px] h-[25px] left-[3px] bottom-[18px] text-[12px] bg-red-500 text-white flex justify-center items-center">
                   {pending.length}+
@@ -56,7 +70,7 @@ export default function CommunityInfo({selectedCommunity}: CommunityInfoType) {
                 src={member}
                 alt="people"
                 className="w-[20px] h-[20px] cursor-pointer"
-                onClick={() => navigate('/communityMember')}
+                onClick={() => watchMembers()}
               />
               <div>{`${realMember.length}/100`}</div>
             </div>

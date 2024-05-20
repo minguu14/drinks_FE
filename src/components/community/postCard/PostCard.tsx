@@ -1,29 +1,32 @@
 import postSetting from "../../../img/postSetting.png";
 import plus from "../../../img/plus.png";
-import heart from "../../../img/heart.png";
+import whiteHeart from "../../../img/whiteHeart.png";
+import redHeart from "../../../img/redHeart.png";
 import comment from "../../../img/comment.png";
-import { CommentType, CommunityType, MemberType, PostType } from "../../../models/type";
+import { CommentType, CommunityType, LikeListType, MemberType } from "../../../models/type";
 import PostSetting from "../../modals/post/PostSetting";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Comments from "./Comments/Comments";
 import communityStore from "../../../stores/community";
 import uuid from "react-uuid";
 import { joinCommunity } from "../../../Api/community";
-import modalStore from "../../../stores/modal";
+
 
 interface PostCardType {
     id: string;
     content: string;
     comments: CommentType[];
+    likeLists: LikeListType[];
     author: string;
     authorImg: string;
     loginUser: MemberType;
 }
 
-export default function PostCard({id, content, comments, loginUser, author, authorImg}: PostCardType) {
+export default function PostCard({id, content, comments, loginUser, author, authorImg, likeLists}: PostCardType) {
     const { community, selectedCommunity, fetchCommunity } = communityStore();
     const [postSettingModal, setPostSettingModal] = useState(false);
     const [showComments, setShowComments] = useState(false);
+    const [like, setLike] = useState(false);
     const [value, setValue] = useState('');
     const openPostSettingModal = () => {
        setPostSettingModal(!postSettingModal);
@@ -58,6 +61,64 @@ export default function PostCard({id, content, comments, loginUser, author, auth
           setValue('');
     }
     
+    const likeBtn = () => {
+        const [updateCommunity] = community.map((u) => {
+            if(u.id === selectedCommunity.id){
+              const like = u.posts.map(po => {
+                if(po.id === id){
+                  return {
+                    ...po,
+                    likeLists:[...po.likeLists,{
+                        id: loginUser.id,
+                        userName: loginUser.name
+                    }]
+                  }
+                }
+                return po;
+              })
+              return {
+                ...u,
+                posts:like
+              }
+            }
+            return u;
+          }) as CommunityType[];
+          
+          joinCommunity(updateCommunity).then(() => fetchCommunity());
+          setLike(!like)
+    }
+
+    const cancelLike = () => {
+        const [updateCommunity] = community.map((u) => {
+            if(u.id === selectedCommunity.id){
+              const like = u.posts.map(po => {
+                if(po.id === id){
+                  const filter = po.likeLists.filter(f => f.id !== loginUser.id);
+                  return {
+                    ...po,
+                    likeLists: filter
+                }
+                }
+              })
+              return {
+                ...u,
+                posts:like
+              }
+            }
+            return u;
+          }) as CommunityType[];
+          
+          joinCommunity(updateCommunity).then(() => fetchCommunity());
+          setLike(!like)
+    }
+
+    useEffect(()=> {
+      if(likeLists.some(l => l.id === loginUser.id)){
+        setLike(true);
+      }else{
+        setLike(false);
+      }
+    },[loginUser])
   return (
     <>
             {/* 글쓴이 및 글설정 */}
@@ -67,7 +128,7 @@ export default function PostCard({id, content, comments, loginUser, author, auth
                 <div className="w-[50px] h-[50px] rounded-[50%] border-2"><img src={authorImg} alt="postUserThumbnail" className="w-full h-full"/></div>
                 <div className="flex-col">
                 <div>{author}</div>
-                <div>5분 전</div>
+                <div>1분 전</div>
                 </div>
             </div>
             <div className="relative">
@@ -101,9 +162,16 @@ export default function PostCard({id, content, comments, loginUser, author, auth
                     />
                 </div>
 
-                <div className="flex items-center gap-x-2">
-                    <img src={heart} alt="heart" className="w-[20px] h-[20px]" />
-                    <span>0</span>
+                <div className="flex items-center gap-x-1">
+                    {
+                        like ?  
+                        <img src={redHeart} alt="redHeart" className="w-[20px] h-[20px] cursor-pointer" onClick={()=>cancelLike()}/>
+                        :
+                        <img src={whiteHeart} alt="whiteHeart" className="w-[20px] h-[20px] cursor-pointer" onClick={()=>likeBtn()}/>
+                        
+                    }
+                    <span>{likeLists.length}</span>
+                    
                 </div>
                 </div>
                 {/* 댓글 보여주기 */}
