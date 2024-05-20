@@ -5,11 +5,14 @@ import { useEffect, useState } from "react";
 import communityStore from "../../../stores/community";
 import uuid from "react-uuid";
 import { joinCommunity } from "../../../Api/community";
+import userStore from "../../../stores/user";
+import { CommunityType } from "../../../models/type";
 
 
 export default function Writing({modals, modalControl}: ModalStoreType) {
     const [values, setValues] = useState('');
     const { community, selectedCommunity, fetchCommunity } = communityStore();
+    const { loginUser } = userStore();
     
     const formats = [
         'font',
@@ -59,11 +62,13 @@ export default function Writing({modals, modalControl}: ModalStoreType) {
                         id: uuid(),
                         content: values,
                         comments:[],
+                        author: loginUser.name,
+                        authorImg: loginUser.profile_picture,
                     }]
                 }
             }
             return u;
-        })
+        }) as CommunityType[]
         joinCommunity(updateCommunity).then(() => fetchCommunity());
         modalControl('writing');
     }

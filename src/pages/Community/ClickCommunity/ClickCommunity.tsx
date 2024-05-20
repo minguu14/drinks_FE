@@ -16,6 +16,7 @@ import Writing from "../../../components/modals/post/Writing";
 import EditPost from "../../../components/modals/post/EditPost";
 import Schedule from "../../../components/modals/schedule/Schedule";
 import CreateSchedule from "../../../components/modals/schedule/createschedule/CreateSchedule";
+import VoteSchedule from "../../../components/modals/schedule/voteSchedule/VoteSchedule";
 
 export default function ClickCommunity() {
     const { selectedCommunity, community, selectCommunity } = communityStore();
@@ -70,6 +71,8 @@ export default function ClickCommunity() {
             id={post.id}
             content={post.content}
             comments={post.comments}
+            author={post.author}
+            authorImg={post.authorImg}
             loginUser={loginUser}
             />
           ))
@@ -89,6 +92,7 @@ export default function ClickCommunity() {
         {modals.chatModal && <Chat modals={modals} modalControl={modalControl}/>}
         {modals.scheduleModal && <Schedule modals={modals} modalControl={modalControl}/>}
         {modals.createScheduleModal && <CreateSchedule modals={modals} modalControl={modalControl}/>}
+        {modals.voteScheduleModal && <VoteSchedule/>}
         {modals.joinRoomModal && <JoinRoom modals={modals} modalControl={modalControl}/>}
       </div>
     </div>
@@ -113,6 +117,7 @@ export default function ClickCommunity() {
         {modals.chatModal && <Chat modals={modals} modalControl={modalControl}/>}
         {modals.scheduleModal && <Schedule modals={modals} modalControl={modalControl}/>}
         {modals.createScheduleModal && <CreateSchedule modals={modals} modalControl={modalControl}/>}
+        {modals.voteScheduleModal && <VoteSchedule/>}
         {modals.joinRoomModal && <JoinRoom modals={modals} modalControl={modalControl}/>}
       </div>
     </div>

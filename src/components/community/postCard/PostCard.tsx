@@ -15,12 +15,13 @@ interface PostCardType {
     id: string;
     content: string;
     comments: CommentType[];
+    author: string;
+    authorImg: string;
     loginUser: MemberType;
 }
 
-export default function PostCard({id, content, comments, loginUser}: PostCardType) {
+export default function PostCard({id, content, comments, loginUser, author, authorImg}: PostCardType) {
     const { community, selectedCommunity, fetchCommunity } = communityStore();
-    const { modalControl } = modalStore();
     const [postSettingModal, setPostSettingModal] = useState(false);
     const [showComments, setShowComments] = useState(false);
     const [value, setValue] = useState('');
@@ -63,9 +64,9 @@ export default function PostCard({id, content, comments, loginUser}: PostCardTyp
             <div className="w-[660px] border-2 mb-5">
             <div className="flex justify-between items-center">
             <div className="flex items-center gap-x-2 p-3">
-                <div className="w-[50px] h-[50px] rounded-[50%] border-2"><img src={loginUser.profile_picture} alt="postUserThumbnail" className="w-full h-full"/></div>
+                <div className="w-[50px] h-[50px] rounded-[50%] border-2"><img src={authorImg} alt="postUserThumbnail" className="w-full h-full"/></div>
                 <div className="flex-col">
-                <div>{loginUser.name}</div>
+                <div>{author}</div>
                 <div>5분 전</div>
                 </div>
             </div>
@@ -102,7 +103,7 @@ export default function PostCard({id, content, comments, loginUser}: PostCardTyp
 
                 <div className="flex items-center gap-x-2">
                     <img src={heart} alt="heart" className="w-[20px] h-[20px]" />
-                    <span>5</span>
+                    <span>0</span>
                 </div>
                 </div>
                 {/* 댓글 보여주기 */}

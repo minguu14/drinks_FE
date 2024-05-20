@@ -34,6 +34,7 @@ export default function CreateSchedule({
                         scheduleLocation,
                         scheduleDate: formattedDate,
                         scheduleTime: formattedTime,
+                        users: [],
                     }]
                 }
             }

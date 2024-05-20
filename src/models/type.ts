@@ -61,6 +61,14 @@ export interface PostType {
     id: string;
     content: string;
     comments: CommentType[];
+    author: string;
+    authorImg: string;
+}
+
+
+export interface VoteUserType {
+    userImg: string | undefined;
+    userName: string;
 }
 
 export interface ScheduleType {
@@ -70,6 +78,7 @@ export interface ScheduleType {
     scheduleLocation: string;
     scheduleDate: string;
     scheduleTime: string;
+    users: VoteUserType[];
 }
 
 export interface ChatRoomType {
