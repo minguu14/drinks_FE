@@ -1,6 +1,104 @@
 {
   "community": [
-   
+    {
+      "id": "0abc5d0d-6c79-ae27-051b-3d956ea27cd5",
+      "thumbnail_url": "blob:http://localhost:3001/91d8f7fa-5677-4236-83f8-6df5e3b68dc5",
+      "description": "투표 테스트",
+      "tag1": "양주",
+      "tag2": "술 취향 타입",
+      "area": "인천",
+      "communityName": "투표",
+      "member": [
+        {
+          "id": "1",
+          "profile": {
+            "image": "blob:http://localhost:3001/bd8289f7-8a9e-47f7-9a33-7734cb41b585",
+            "nickname": "맹구"
+          },
+          "userId": "aodrn123",
+          "authority": "모임장",
+          "state": true
+        },
+        {
+          "id": "3",
+          "profile": {
+            "image": "img",
+            "nickname": "철수"
+          },
+          "userId": "cjftn123",
+          "authority": "일반멤버",
+          "state": true
+        },
+        {
+          "id": "2",
+          "profile": {
+            "image": "img",
+            "nickname": "짱구"
+          },
+          "userId": "Wkdrn123",
+          "authority": "일반멤버",
+          "state": true
+        },
+        {
+          "id": "5",
+          "profile": {
+            "image": "img",
+            "nickname": "유리"
+          },
+          "userId": "dbfl123",
+          "authority": "일반멤버",
+          "state": true
+        }
+      ],
+      "posts": [
+        {
+          "id": "68417597-0f44-7c63-ae76-2fe71622a99b",
+          "content": "<p><strong style=\"background-color: rgb(230, 0, 0); color: rgb(255, 255, 255);\">좋아요</strong></p>",
+          "comments": [
+            {
+              "id": "4733464b-500f-2f82-dddd-045a8976e160",
+              "commenterThumbnail": "blob:http://localhost:3001/bd8289f7-8a9e-47f7-9a33-7734cb41b585",
+              "commenter": "맹구",
+              "comment": "dddddddd"
+            }
+          ],
+          "likeLists": [
+            {
+              "id": "2",
+              "userName": "짱구"
+            }
+          ],
+          "author": "맹구",
+          "authorImg": "blob:http://localhost:3001/bd8289f7-8a9e-47f7-9a33-7734cb41b585"
+        }
+      ],
+      "schedule": [
+        {
+          "id": "a9b41fbb-c757-90b1-5031-9ff195981af1",
+          "scheduleTitle": "투표",
+          "scheduleDescription": "ㅁㄴㅇ",
+          "scheduleLocation": "123",
+          "scheduleDate": "2024년 05월 23일 목요일",
+          "scheduleTime": "오후 12:00",
+          "users": [
+            {
+              "id": "3b3291bd-6d0a-8624-f902-cc0e4558cb86",
+              "userImg": "img",
+              "userName": "짱구"
+            },
+            {
+              "id": "e42e734c-4ff0-5228-c83b-09481aa73111",
+              "userImg": "blob:http://localhost:3001/3bd5f685-4845-45a3-b73f-a8921edd6dcd",
+              "userName": "맹구"
+            }
+          ]
+        }
+      ],
+      "last_chat_time": "10분 전 마지막 대화",
+      "isPublic": "public",
+      "isPopular": true,
+      "isNew": false
+    }
   ],
   "users": [
     {
@@ -13,7 +111,7 @@
       "carrier": "kt",
       "phone_number": "01000000000",
       "verification_code": "123456",
-      "profile_picture": "blob:http://localhost:3001/3d04480d-774b-4dac-97ac-f9253da57a86",
+      "profile_picture": "blob:http://localhost:3001/bd8289f7-8a9e-47f7-9a33-7734cb41b585",
       "gender": "남성",
       "introduction": "맹구입니다.",
       "mbti": "???"

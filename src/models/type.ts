@@ -37,7 +37,7 @@ export interface FormValue {
     area: string;
 }
 
-interface UserProfile {
+export interface UserProfile {
     image?: string;
     nickname: string;
 }
@@ -57,10 +57,25 @@ export interface CommentType {
     comment: string;
 }
 
+export interface LikeListType {
+    id: string;
+    userName: string;
+}
+
 export interface PostType {
     id: string;
     content: string;
     comments: CommentType[];
+    likeLists: LikeListType[];
+    author: string;
+    authorImg: string;
+}
+
+
+export interface VoteUserType {
+    id: string;
+    userImg: string | undefined;
+    userName: string;
 }
 
 export interface ScheduleType {
@@ -70,6 +85,7 @@ export interface ScheduleType {
     scheduleLocation: string;
     scheduleDate: string;
     scheduleTime: string;
+    users: VoteUserType[];
 }
 
 export interface ChatRoomType {
