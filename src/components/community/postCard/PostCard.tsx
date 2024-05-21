@@ -125,7 +125,7 @@ export default function PostCard({id, content, comments, loginUser, author, auth
             <div className="w-[660px] border-2 mb-5">
             <div className="flex justify-between items-center">
             <div className="flex items-center gap-x-2 p-3">
-                <div className="w-[50px] h-[50px] rounded-[50%] border-2"><img src={authorImg} alt="postUserThumbnail" className="w-full h-full"/></div>
+                <div className="w-[50px] h-[50px] rounded-[50%] border-2"><img src={authorImg} alt="postUserThumbnail" className="w-full h-full rounded-[50%]"/></div>
                 <div className="flex-col">
                 <div>{author}</div>
                 <div>1분 전</div>
