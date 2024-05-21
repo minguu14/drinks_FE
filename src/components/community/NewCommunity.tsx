@@ -37,6 +37,7 @@ export default function NewCommunity() {
             member={newbie.member}
             posts={newbie.posts}
             schedule={newbie.schedule}
+            chatRoom={newbie.chatRoom}
             last_chat_time={newbie.last_chat_time}  
             isPublic={newbie.isPublic}
             isPopular={newbie.isPopular}  
