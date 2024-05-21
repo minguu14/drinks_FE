@@ -1,7 +1,6 @@
 import communityChat from "../../img/communityChat.png";
 import schedule from "../../img/schedule.png";
 import beer from "../../img/beer.png";
-import profileImg from "../../img/whiskey.webp";
 import communityStore from "../../stores/community";
 import JoinModal from "../../components/modals/JoinModal";
 import Chat from "../../components/modals/chat/Chat";
@@ -15,14 +14,15 @@ import LeftSection from "../Community/ClickCommunity/LeftSection/LeftSection";
 import { deleteCommunity, joinCommunity } from "../../Api/community";
 import { updateImg } from "../../Api/user";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function CommunitySetting() {
   const { selectedCommunity, community, selectCommunity, fetchCommunity } = communityStore();
-  const [myImage, setMyImage] = useState<string>(profileImg);
   const [communityThumbnail, setCommunityThumbnail] = useState<string>(selectedCommunity.thumbnail_url);
   const [communityDescription, setCommunityDescription] = useState<string>(selectedCommunity.description);
   const { modals, modalControl } = modalStore();
   const { loginUser } = userStore();
+  const [myImage, setMyImage] = useState<string | undefined>(loginUser.profile_picture);
   const navigate = useNavigate();
 
   const handleChat = () => {
@@ -33,20 +33,43 @@ export default function CommunitySetting() {
     }
   };
 
-  const onChangeImage = (e: ChangeEvent<HTMLInputElement>, setting: string) => {
+  // const onChangeImage = (e: ChangeEvent<HTMLInputElement>, setting: string) => {
+  //   const file = e.target.files && e.target.files[0];
+  //   if (file) {
+  //     const imageUrl = URL.createObjectURL(file);
+  //     switch (setting) {
+  //       case "profile":
+  //       setMyImage(imageUrl);
+  //       return;
+  //       case "community":
+  //       setCommunityThumbnail(imageUrl);
+  //       return;  
+  //     }
+      
+  //     URL.revokeObjectURL(imageUrl)
+  //   }
+  // };
+
+  const onChangeImage = async (e: ChangeEvent<HTMLInputElement>, setting: string) => {
     const file = e.target.files && e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      switch (setting) {
-        case "profile":
-        setMyImage(imageUrl);
-        return;
-        case "community":
-        setCommunityThumbnail(imageUrl);
-        return;  
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', `${process.env.REACT_APP_UPLOAD_PRESETS_NAME}`);
+        const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_NAME}/image/upload`, formData);
+        const imageUrl = response.data.secure_url;
+        switch (setting) {
+                case "profile":
+                setMyImage(imageUrl);
+                return;
+                case "community":
+                setCommunityThumbnail(imageUrl);
+                return;  
+              }
+      } catch (error) {
+        console.error('이미지 업로드 실패:', error);
       }
-      
-      //URL.revokeObjectURL(imageUrl)
     }
   };
 

@@ -1,14 +1,14 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { CommunityType, MemberType, PostType, ScheduleType, UserType } from '../models/type';
-import { getCommunity, joinCommunity } from '../Api/community';
+import { CommunityType, PostType, ScheduleType } from '../models/type';
+import { getCommunity } from '../Api/community';
 
 export interface CommunityStoreType {
     community: CommunityType[]
     selectedCommunity: CommunityType
     selectedVote: ScheduleType
     editPost: PostType
-    fetchCommunity: () => void
+    fetchCommunity: () => Promise<any>
     selectCommunity: (by: CommunityType) => void
     selectVote: (by: ScheduleType) => void
     edit: (by: PostType) => void
@@ -52,7 +52,7 @@ const communityStore = create<CommunityStoreType>()(
     },
     fetchCommunity: async () => {
       const res = await getCommunity();
-      set({community: res});
+      set({community: res},false,'fetchCommunity');
     },
     selectCommunity: (by: CommunityType) => set(({selectedCommunity: by}), false, 'selectCommunity'),
     selectVote: (by: ScheduleType) => set(({selectedVote: by}), false, 'selectVote'),
