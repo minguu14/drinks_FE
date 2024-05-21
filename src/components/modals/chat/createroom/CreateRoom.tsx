@@ -2,16 +2,20 @@ import { ChangeEvent, useEffect, useState } from "react";
 import InviteMemberCard from "../../../community/inviteMemberCard/InviteMemberCard";
 import { ModalStoreType } from "../../../../stores/modal";
 import communityStore from "../../../../stores/community";
-import { MemberType, UserType } from "../../../../models/type";
+import { CommunityType, MemberType, UserType } from "../../../../models/type";
 import axios from "axios";
 import { createRoom } from "../../../../Api/chat";
+import { joinCommunity } from "../../../../Api/community";
+import userStore from "../../../../stores/user";
+import InitialMembersCard from "../../../community/chatroom/initialMembersCard/InitialMembersCard";
 
 export default function CreateRoom({modals, modalControl}: ModalStoreType) {
   const [myImage, setMyImage] = useState<string>("");
   const [roomName, setRoomName] = useState<string>("");
-  const { selectedCommunity } = communityStore();
-  const [initialMembers, setInitialMembers] = useState<string[]>([]);
+  const [user, setUser] = useState<string[]>([]);
+  const { selectedCommunity, community, fetchCommunity } = communityStore();
   const [inviteMembers, setInviteMembers] = useState<UserType[]>([]);
+  const { loginUser } = userStore();
 
   const onChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -28,21 +32,37 @@ export default function CreateRoom({modals, modalControl}: ModalStoreType) {
       }
     }
   };
-
+  
   const CheckMember = () => {
     const realMember = selectedCommunity.member.filter(m => m.state === true);
     setInviteMembers(realMember);
   }
-
-  const create = () => {
-    const memberNicknames = inviteMembers.map((r) => r.profile.nickname);
-    const payload = {
-        name: roomName,
-        thumbnailUrl: myImage,
-        initialMembers: memberNicknames
-    };
-
-    createRoom(roomName, myImage, memberNicknames);
+  console.log(user);
+  const create = async () => {
+    const memberNicknames = user;
+    const room = await createRoom(roomName, myImage, memberNicknames);
+    console.log(room);
+    const [updateCommunity] = community.map((u) => {
+      if(u.id === selectedCommunity.id){
+          return {
+              ...u,
+              chatRoom: [...u.chatRoom,{
+                  id: room.roomId,
+                  roomName: room.name,
+                  thumbnailUrl: room.thumbnailUrl,
+                  initialMembers: room.userIds,
+              }]
+          }
+      }
+      return u;
+  }) as CommunityType[]
+  joinCommunity(updateCommunity).then(() => fetchCommunity());
+  modalControl('create')
+     // const payload = {
+    //     name: roomName,
+    //     thumbnailUrl: myImage,
+    //     initialMembers: memberNicknames
+    // };
     // try {
     //     const response = await axios.post('https://k102d93527f43a.user-app.krampoline.com/chat/createRoom', payload);
     //     console.log(response.data);
@@ -78,10 +98,13 @@ export default function CreateRoom({modals, modalControl}: ModalStoreType) {
                 <div className="border-4 rounded-[10px] w-[500px] h-[200px] mt-2 overflow-y-scroll">
                     {
                       inviteMembers.map((member) => (
-                        <InviteMemberCard
+                        member.id !== loginUser.id &&
+                        <InitialMembersCard
                         key={member.id}
                         id={member.id}
                         name={member.profile.nickname}
+                        setUser={setUser}
+                        user={user}
                         />
                       ))
                     }

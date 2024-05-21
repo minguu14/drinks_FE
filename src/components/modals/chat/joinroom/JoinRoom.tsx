@@ -3,9 +3,10 @@ import chatmember from "../../../../img/chatmember.png";
 import send from "../../../../img/send.png";
 import RoomMember from "../room_member/RoomMember";
 import { ModalStoreType } from "../../../../stores/modal";
+import communityStore from "../../../../stores/community";
 
 export default function JoinRoom({modals, modalControl}: ModalStoreType) {
-
+  const { selectedChatRoom } = communityStore();
   const exitRoom = () => {
     modalControl('joinRoom');
     modalControl('chat');
@@ -20,12 +21,12 @@ export default function JoinRoom({modals, modalControl}: ModalStoreType) {
     <div className="p-10">
         <div className="flex justify-between items-center">
             <div className="flex">
-                <div className="border w-[50px] h-[50px] rounded-[5px]"></div>
+                <div className="border w-[50px] h-[50px] rounded-[5px]"><img src={selectedChatRoom.thumbnailUrl} alt="selectedChatRoomThumbnailUrl" className="w-full h-full rounded-[5px]"/></div>
                 <div className="ml-3">
-                    <span className="text-[20px]">채팅방</span>
+                    <span className="text-[20px]">{selectedChatRoom.roomName}</span>
                     <div className="flex">
                         <img src={chatmember} alt="chatmember" className="w-[15px] h-[15px] cursor-pointer" onClick={roomMemberModal}/>
-                        <span className="text-[13px]">2</span>
+                        <span className="text-[13px]">{selectedChatRoom.initialMembers.length}</span>
                     </div>
                 </div>
             </div>

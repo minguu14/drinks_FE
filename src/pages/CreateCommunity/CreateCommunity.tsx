@@ -47,6 +47,7 @@ export default function CreateCommunity() {
       }],
       [],
       [],
+      [],
       "10분 전 마지막 대화",
       checkValue,
       true,
