@@ -1,16 +1,18 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { CommunityType, PostType, ScheduleType } from '../models/type';
+import { ChatRoomType, CommunityType, PostType, ScheduleType } from '../models/type';
 import { getCommunity } from '../Api/community';
 
 export interface CommunityStoreType {
     community: CommunityType[]
     selectedCommunity: CommunityType
     selectedVote: ScheduleType
+    selectedChatRoom: ChatRoomType
     editPost: PostType
     fetchCommunity: () => Promise<any>
     selectCommunity: (by: CommunityType) => void
     selectVote: (by: ScheduleType) => void
+    selectChatRoom: (by: ChatRoomType) => void
     edit: (by: PostType) => void
 }
 
@@ -28,6 +30,7 @@ const communityStore = create<CommunityStoreType>()(
       member: [],
       posts: [],
       schedule: [],
+      chatRoom:[],
       last_chat_time: "",
       isPublic: "",
       isPopular: false,
@@ -41,6 +44,12 @@ const communityStore = create<CommunityStoreType>()(
       scheduleDate: "",
       scheduleTime: "",
       users: [],
+    },
+    selectedChatRoom: {
+      id: "",
+      roomName: "",
+      thumbnailUrl: "",
+      initialMembers: [],
     },
     editPost: {
       id: "",
@@ -56,6 +65,7 @@ const communityStore = create<CommunityStoreType>()(
     },
     selectCommunity: (by: CommunityType) => set(({selectedCommunity: by}), false, 'selectCommunity'),
     selectVote: (by: ScheduleType) => set(({selectedVote: by}), false, 'selectVote'),
+    selectChatRoom: (by: ChatRoomType) => set(({selectedChatRoom: by}), false, 'selectChatRoom'),
     edit: (by: PostType) => set(({editPost: by}), false, 'editPost'),
   }))
 );

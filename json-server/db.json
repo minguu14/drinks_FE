@@ -1,13 +1,13 @@
 {
   "community": [
     {
-      "id": "25fcaba1-b6e8-9b72-96af-7c03917842f1",
-      "thumbnail_url": "/static/media/image2.0659771ace6d81bcfd84.jpg",
-      "description": "we",
-      "tag1": "와인",
+      "id": "79586d8c-d688-f014-f8d3-5f1838ed8d3b",
+      "thumbnail_url": "/static/media/image3.4ddd385129bd76d1e8d9.jpg",
+      "description": "채팅만들기",
+      "tag1": "양주",
       "tag2": "술 취향 타입",
-      "area": "qw",
-      "communityName": "ere",
+      "area": "인천",
+      "communityName": "채팅",
       "member": [
         {
           "id": "1",
@@ -17,6 +17,16 @@
           },
           "userId": "aodrn123",
           "authority": "모임장",
+          "state": true
+        },
+        {
+          "id": "3",
+          "profile": {
+            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261344/beo5ib4apwsdmo0o6hmg.png",
+            "nickname": "철수"
+          },
+          "userId": "cjftn123",
+          "authority": "일반멤버",
           "state": true
         },
         {
@@ -30,68 +40,45 @@
           "state": true
         },
         {
-          "id": "3",
+          "id": "5",
           "profile": {
-            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261344/beo5ib4apwsdmo0o6hmg.png",
-            "nickname": "철수"
+            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261335/tmfmrqrsivpbvtzzsauj.png",
+            "nickname": "유리"
           },
-          "userId": "cjftn123",
+          "userId": "dbfl123",
+          "authority": "일반멤버",
+          "state": true
+        },
+        {
+          "id": "4",
+          "profile": {
+            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261340/l6ayvyjtfgk5ogyv5a6s.png",
+            "nickname": "훈이"
+          },
+          "userId": "gnsdl123",
           "authority": "일반멤버",
           "state": true
         }
       ],
-      "posts": [
+      "posts": [],
+      "schedule": [],
+      "chatRoom": [
         {
-          "id": "81b0118c-b4bf-5b0c-7530-0967b219eb69",
-          "content": "<p>e</p>",
-          "comments": [
-            {
-              "id": "ee8a59fd-037d-0a9c-767c-d3827ecaeefe",
-              "commenterThumbnail": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261355/oow22uyxeipuwxoy1cef.png",
-              "commenter": "맹구",
-              "comment": "dde"
-            },
-            {
-              "id": "4c09b521-5394-8258-38a3-b3f341e60bb2",
-              "commenterThumbnail": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261355/oow22uyxeipuwxoy1cef.png",
-              "commenter": "맹구",
-              "comment": "ddw"
-            },
-            {
-              "id": "82305364-becb-d6a4-e683-ebe33b31d690",
-              "commenterThumbnail": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261355/oow22uyxeipuwxoy1cef.png",
-              "commenter": "맹구",
-              "comment": "ㅇㄷ"
-            }
-          ],
-          "likeLists": [
-            {
-              "id": "1",
-              "userName": "맹구"
-            },
-            {
-              "id": "3",
-              "userName": "철수"
-            }
-          ],
-          "author": "맹구",
-          "authorImg": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261355/oow22uyxeipuwxoy1cef.png"
-        }
-      ],
-      "schedule": [
+          "id": "4f9d0189-77e0-4adb-91ea-dc30dea5ee86",
+          "roomName": "짱훈",
+          "thumbnailUrl": "",
+          "initialMembers": [
+            "짱구",
+            "훈이"
+          ]
+        },
         {
-          "id": "ce67eba6-c117-0cfd-7b16-49d7fb2597df",
-          "scheduleTitle": "일정",
-          "scheduleDescription": "일정테스트",
-          "scheduleLocation": "부평역",
-          "scheduleDate": "2024년 05월 22일 수요일",
-          "scheduleTime": "오후 5:30",
-          "users": [
-            {
-              "id": "93eb2863-9661-d1ab-32ee-450d0daa1142",
-              "userImg": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261344/beo5ib4apwsdmo0o6hmg.png",
-              "userName": "철수"
-            }
+          "id": "da16f409-62b9-437a-bd46-c40822f5857d",
+          "roomName": "철유",
+          "thumbnailUrl": "",
+          "initialMembers": [
+            "철수",
+            "유리"
           ]
         }
       ],
@@ -99,33 +86,6 @@
       "isPublic": "public",
       "isPopular": true,
       "isNew": false
-    },
-    {
-      "id": "878b2aae-6695-0781-0d0e-b56146d89ed3",
-      "thumbnail_url": "/static/media/image3.4ddd385129bd76d1e8d9.jpg",
-      "description": "뉴비입니다.",
-      "tag1": "와인",
-      "tag2": "술 취향 타입",
-      "area": "서울",
-      "communityName": "새싹모임",
-      "member": [
-        {
-          "id": "1",
-          "profile": {
-            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261355/oow22uyxeipuwxoy1cef.png",
-            "nickname": "맹구"
-          },
-          "userId": "aodrn123",
-          "authority": "모임장",
-          "state": true
-        }
-      ],
-      "posts": [],
-      "schedule": [],
-      "last_chat_time": "10분 전 마지막 대화",
-      "isPublic": "public",
-      "isPopular": false,
-      "isNew": true
     }
   ],
   "users": [
