@@ -10,6 +10,7 @@ import { FormValue, MemberType } from "../../models/type";
 import Tag from "./Tag/Tag";
 import { createCommunity } from "../../Api/community";
 import userStore from "../../stores/user";
+import axios from "axios";
 
 export default function CreateCommunity() {
   const [myImage, setMyImage] = useState<string>(image1);
@@ -76,24 +77,41 @@ export default function CreateCommunity() {
     setCheckValue(e.target.defaultValue);
   }
 
-  const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+  // const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files && e.target.files[0];
+  //   if (file) {
+  //     const imageUrl = URL.createObjectURL(file);
+  //     setMyImage(imageUrl);
+  //     URL.revokeObjectURL(imageUrl)
+  //   }
+
+  //   const file = e.target.files && e.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       const imageUrl = reader.result as string;
+  //       setMyImage(imageUrl);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
+
+  const onChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setMyImage(imageUrl);
-      URL.revokeObjectURL(imageUrl)
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', `${process.env.REACT_APP_UPLOAD_PRESETS_NAME}`);
+        const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_NAME}/image/upload`, formData);
+        const imageUrl = response.data.secure_url;
+        setMyImage(imageUrl);
+      } catch (error) {
+        console.error('이미지 업로드 실패:', error);
+      }
     }
-    
-    // const file = e.target.files && e.target.files[0];
-    // if (file) {
-    //   const reader = new FileReader();
-    //   reader.onload = () => {
-    //     const imageUrl = reader.result as string;
-    //     setMyImage(imageUrl);
-    //   };
-    //   reader.readAsDataURL(file);
-    // }
   };
+  
 
   const clickImage = (image: string) => {
     switch(image){

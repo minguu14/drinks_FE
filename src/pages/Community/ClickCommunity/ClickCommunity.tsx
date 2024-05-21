@@ -10,22 +10,25 @@ import LeftSection from "./LeftSection/LeftSection";
 import Writing from "../../../components/modals/post/Writing";
 import EditPost from "../../../components/modals/post/EditPost";
 import RightSection from "./RightSection/RightSection";
+import { useParams } from "react-router-dom";
 
 export default function ClickCommunity() {
     const { selectedCommunity, community, selectCommunity } = communityStore();
     const { modals, modalControl } = modalStore();
     const { loginUser } = userStore();
-    
-    useEffect(() => {
-    const [filterItem] = community.filter(item => item.id === selectedCommunity.id);
+    const params = useParams();
+    //const navigate = useNavigate();
+  
+  useEffect(() => {
+    const [filterItem]  = community.filter(f => f.id === params.id);
     selectCommunity(filterItem);
-    },[community])
-
+  },[community])
+    
   return (
     <div>
       {
       // 모임 공개
-      selectedCommunity.isPublic === 'public' ?
+      selectedCommunity?.isPublic === 'public' ?
       <div className="flex mt-[200px] mb-10 relative">
       {modals.joinModal && <JoinModal modalControl={modalControl} selectedCommunity={selectedCommunity}/>}
       {modals.createChatRoomModal && <CreateRoom modals={modals} modalControl={modalControl}/>}

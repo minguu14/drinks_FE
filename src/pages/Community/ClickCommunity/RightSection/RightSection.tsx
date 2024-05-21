@@ -32,7 +32,7 @@ export default function RightSection() {
   return (
     <>
       {
-        selectedCommunity.member.some((m) => m.id === loginUser.id && m.state === true) ?
+        selectedCommunity?.member.some((m) => m.id === loginUser.id && m.state === true) ?
         <div className="mr-[80px] mt-[650px] fixed right-1">
           <div className="flex gap-x-[30px]">
             <img src={beer} alt="beer" />

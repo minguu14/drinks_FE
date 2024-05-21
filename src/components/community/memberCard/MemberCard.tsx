@@ -69,7 +69,7 @@ export default function MemberCard({id, profile, userId, authority, state}: User
               <td className="py-4">
                 <div className="flex justify-center items-center gap-x-2">
                     <div className="w-[50px] h-[50px] border border-black rounded-[50%]">
-                      <img src={profileImg} alt="profileImg" className="w-full h-full object-cover rounded-[50%]"/>
+                      <img src={profile.image} alt="profileImg" className="w-full h-full object-cover rounded-[50%]"/>
                     </div>
                     <span>{profile.nickname}</span>
                 </div>
@@ -87,7 +87,7 @@ export default function MemberCard({id, profile, userId, authority, state}: User
               }
               <td className="relative">
                 <img src={postSetting} alt="postSetting" className="cursor-pointer" onClick={()=>setMemberModal(!memberModal)}/>
-                {memberModal && <MemberSetting/>}
+                {memberModal && <MemberSetting id={id} authority={authority}/>}
               </td>
             </tr>
             :
@@ -98,7 +98,7 @@ export default function MemberCard({id, profile, userId, authority, state}: User
               <td className="py-4">
                 <div className="flex justify-center items-center gap-x-2">
                     <div className="w-[50px] h-[50px] border border-black rounded-[50%]">
-                      <img src={profileImg} alt="profileImg" className="w-full h-full object-cover rounded-[50%]"/>
+                      <img src={profile.image} alt="profileImg" className="w-full h-full object-cover rounded-[50%]"/>
                     </div>
                     <span>{profile.nickname}</span>
                 </div>
