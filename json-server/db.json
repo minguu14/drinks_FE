@@ -1,5 +1,92 @@
 {
   "community": [
+    {
+      "id": "79586d8c-d688-f014-f8d3-5f1838ed8d3b",
+      "thumbnail_url": "/static/media/image3.4ddd385129bd76d1e8d9.jpg",
+      "description": "채팅만들기",
+      "tag1": "양주",
+      "tag2": "술 취향 타입",
+      "area": "인천",
+      "communityName": "채팅",
+      "member": [
+        {
+          "id": "1",
+          "profile": {
+            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261355/oow22uyxeipuwxoy1cef.png",
+            "nickname": "맹구"
+          },
+          "userId": "aodrn123",
+          "authority": "모임장",
+          "state": true
+        },
+        {
+          "id": "3",
+          "profile": {
+            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261344/beo5ib4apwsdmo0o6hmg.png",
+            "nickname": "철수"
+          },
+          "userId": "cjftn123",
+          "authority": "일반멤버",
+          "state": true
+        },
+        {
+          "id": "2",
+          "profile": {
+            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261813/jrenwqz2pd1bqfhuxxmp.png",
+            "nickname": "짱구"
+          },
+          "userId": "Wkdrn123",
+          "authority": "부모임장",
+          "state": true
+        },
+        {
+          "id": "5",
+          "profile": {
+            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261335/tmfmrqrsivpbvtzzsauj.png",
+            "nickname": "유리"
+          },
+          "userId": "dbfl123",
+          "authority": "일반멤버",
+          "state": true
+        },
+        {
+          "id": "4",
+          "profile": {
+            "image": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261340/l6ayvyjtfgk5ogyv5a6s.png",
+            "nickname": "훈이"
+          },
+          "userId": "gnsdl123",
+          "authority": "일반멤버",
+          "state": true
+        }
+      ],
+      "posts": [],
+      "schedule": [],
+      "chatRoom": [
+        {
+          "id": "4f9d0189-77e0-4adb-91ea-dc30dea5ee86",
+          "roomName": "짱훈",
+          "thumbnailUrl": "",
+          "initialMembers": [
+            "짱구",
+            "훈이"
+          ]
+        },
+        {
+          "id": "da16f409-62b9-437a-bd46-c40822f5857d",
+          "roomName": "철유",
+          "thumbnailUrl": "",
+          "initialMembers": [
+            "철수",
+            "유리"
+          ]
+        }
+      ],
+      "last_chat_time": "10분 전 마지막 대화",
+      "isPublic": "public",
+      "isPopular": true,
+      "isNew": false
+    }
   ],
   "users": [
     {
@@ -12,7 +99,7 @@
       "carrier": "kt",
       "phone_number": "01000000000",
       "verification_code": "123456",
-      "profile_picture": "blob:http://localhost:3001/3d04480d-774b-4dac-97ac-f9253da57a86",
+      "profile_picture": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261355/oow22uyxeipuwxoy1cef.png",
       "gender": "남성",
       "introduction": "맹구입니다.",
       "mbti": "???"
@@ -27,7 +114,7 @@
       "carrier": "kt",
       "phone_number": "01000000000",
       "verification_code": "123456",
-      "profile_picture": "img",
+      "profile_picture": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261813/jrenwqz2pd1bqfhuxxmp.png",
       "gender": "남성",
       "introduction": "짱구입니다.",
       "mbti": "???"
@@ -42,7 +129,7 @@
       "carrier": "kt",
       "phone_number": "01000000000",
       "verification_code": "123456",
-      "profile_picture": "img",
+      "profile_picture": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261344/beo5ib4apwsdmo0o6hmg.png",
       "gender": "남성",
       "introduction": "철수입니다.",
       "mbti": "???"
@@ -57,7 +144,7 @@
       "carrier": "kt",
       "phone_number": "01000000000",
       "verification_code": "123456",
-      "profile_picture": "img",
+      "profile_picture": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261340/l6ayvyjtfgk5ogyv5a6s.png",
       "gender": "남성",
       "introduction": "훈이입니다.",
       "mbti": "???"
@@ -72,7 +159,7 @@
       "carrier": "kt",
       "phone_number": "01000000000",
       "verification_code": "123456",
-      "profile_picture": "img",
+      "profile_picture": "https://res.cloudinary.com/dq7lfyc1t/image/upload/v1716261335/tmfmrqrsivpbvtzzsauj.png",
       "gender": "여성",
       "introduction": "유리입니다.",
       "mbti": "???"

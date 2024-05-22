@@ -29,7 +29,6 @@ export default function PopularCommunityCard({id, thumbnail_url, tag1, tag2, are
   useEffect(() => {
     getKing();
     showMember();
-    selectedItem();
   },[community])
   
   return (

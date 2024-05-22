@@ -35,6 +35,8 @@ export default function PopularCommunity() {
                 communityName={newbie.communityName}  
                 member={newbie.member}  
                 posts={newbie.posts}  
+                schedule={newbie.schedule}  
+                chatRoom={newbie.chatRoom}  
                 last_chat_time={newbie.last_chat_time}
                 isPublic={newbie.isPublic}
                 isPopular={newbie.isPopular}  
@@ -54,6 +56,8 @@ export default function PopularCommunity() {
               communityName={newbie.communityName}  
               member={newbie.member}  
               posts={newbie.posts}  
+              schedule={newbie.schedule}  
+              chatRoom={newbie.chatRoom}  
               last_chat_time={newbie.last_chat_time}  
               isPublic={newbie.isPublic}
               isPopular={newbie.isPopular}  

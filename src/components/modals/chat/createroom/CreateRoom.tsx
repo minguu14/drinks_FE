@@ -2,26 +2,74 @@ import { ChangeEvent, useEffect, useState } from "react";
 import InviteMemberCard from "../../../community/inviteMemberCard/InviteMemberCard";
 import { ModalStoreType } from "../../../../stores/modal";
 import communityStore from "../../../../stores/community";
-import { MemberType, UserType } from "../../../../models/type";
+import { CommunityType, MemberType, UserType } from "../../../../models/type";
+import axios from "axios";
+import { createRoom } from "../../../../Api/chat";
+import { joinCommunity } from "../../../../Api/community";
+import userStore from "../../../../stores/user";
+import InitialMembersCard from "../../../community/chatroom/initialMembersCard/InitialMembersCard";
 
 export default function CreateRoom({modals, modalControl}: ModalStoreType) {
   const [myImage, setMyImage] = useState<string>("");
-  const { selectedCommunity } = communityStore();
+  const [roomName, setRoomName] = useState<string>("");
+  const [user, setUser] = useState<string[]>([]);
+  const { selectedCommunity, community, fetchCommunity } = communityStore();
   const [inviteMembers, setInviteMembers] = useState<UserType[]>([]);
+  const { loginUser } = userStore();
 
-  const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setMyImage(imageUrl);
-      //URL.revokeObjectURL(imageUrl)
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', `${process.env.REACT_APP_UPLOAD_PRESETS_NAME}`);
+        const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_NAME}/image/upload`, formData);
+        const imageUrl = response.data.secure_url;
+        setMyImage(imageUrl);
+      } catch (error) {
+        console.error('이미지 업로드 실패:', error);
+      }
     }
   };
-
+  
   const CheckMember = () => {
     const realMember = selectedCommunity.member.filter(m => m.state === true);
     setInviteMembers(realMember);
   }
+  console.log(user);
+  const create = async () => {
+    const memberNicknames = user;
+    const room = await createRoom(roomName, myImage, memberNicknames);
+    console.log(room);
+    const [updateCommunity] = community.map((u) => {
+      if(u.id === selectedCommunity.id){
+          return {
+              ...u,
+              chatRoom: [...u.chatRoom,{
+                  id: room.roomId,
+                  roomName: room.name,
+                  thumbnailUrl: room.thumbnailUrl,
+                  initialMembers: room.userIds,
+              }]
+          }
+      }
+      return u;
+  }) as CommunityType[]
+  joinCommunity(updateCommunity).then(() => fetchCommunity());
+  modalControl('create')
+     // const payload = {
+    //     name: roomName,
+    //     thumbnailUrl: myImage,
+    //     initialMembers: memberNicknames
+    // };
+    // try {
+    //     const response = await axios.post('https://k102d93527f43a.user-app.krampoline.com/chat/createRoom', payload);
+    //     console.log(response.data);
+    // } catch (error) {
+    //     console.error('Error creating room:');
+    // }
+}
 
   useEffect(()=> {
     CheckMember();
@@ -41,22 +89,29 @@ export default function CreateRoom({modals, modalControl}: ModalStoreType) {
                     
                 </label>
                 <p className="mt-5 self-start">채팅방 이름</p>
-                <input type="text" className="w-[500px] h-[50px] border-4 rounded-[10px] mt-2"/>
+                <input 
+                type="text"
+                value={roomName}
+                onChange={(e)=>setRoomName(e.target.value)}
+                className="w-[500px] h-[50px] border-4 rounded-[10px] mt-2"/>
                 <p className="mt-2 self-start">대화멤버</p>
                 <div className="border-4 rounded-[10px] w-[500px] h-[200px] mt-2 overflow-y-scroll">
                     {
                       inviteMembers.map((member) => (
-                        <InviteMemberCard
+                        member.id !== loginUser.id &&
+                        <InitialMembersCard
                         key={member.id}
                         id={member.id}
                         name={member.profile.nickname}
+                        setUser={setUser}
+                        user={user}
                         />
                       ))
                     }
                     
                 </div>
                 <div className="flex gap-x-5 mt-20">
-                    <button className="border rounded-[10px] w-[90px] h-[40px] bg-blue-500 text-white" onClick={()=>modalControl('create')}>생성</button>
+                    <button className="border rounded-[10px] w-[90px] h-[40px] bg-blue-500 text-white" onClick={create}>생성</button>
                     <button className="border rounded-[10px] w-[90px] h-[40px] bg-red-500 text-white" onClick={()=>modalControl('create')}>취소</button>
                 </div>
             </div>

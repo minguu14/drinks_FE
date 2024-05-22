@@ -7,17 +7,20 @@ import { useEffect, useState } from "react";
 import communityStore from "../stores/community";
 import userStore from "../stores/user";
 import { useNavigate } from "react-router-dom";
+import modalStore from "../stores/modal";
 
 export default function Main() {
   const { fetchCommunity } = communityStore();
   const { loginUser } = userStore();
+  const { modalControl } = modalStore();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   console.log(loginUser);
-  //   if(loginUser === undefined || Object.values(loginUser).every(value => value === '')) navigate('/logintest');
-  //   fetchCommunity();
-  // },[loginUser])
+  useEffect(() => {
+    console.log(loginUser);
+    if(loginUser === undefined || Object.values(loginUser).every(value => value === '')) navigate('/logintest');
+    fetchCommunity();
+    modalControl('closeAll');
+  },[loginUser])
 
   return (
     <div className="App">
@@ -31,7 +34,8 @@ export default function Main() {
           {/* 레시피 */}
           <Recipe />
           {/* 새싹모임 */}
-          <NewCommunity />
+
+          <NewCommunity/>
           {/* 공지사항 */}
           <Announcement />
         </div>

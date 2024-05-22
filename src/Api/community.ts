@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CommunityType, MemberType, UserType } from "../models/type";
+import { CommunityType, MemberType, PostType, UserType } from "../models/type";
 
 export const getCommunity = async () => {
     const res = await axios<CommunityType[]>("http://localhost:3000/community");
@@ -15,6 +15,9 @@ export const createCommunity = async (
     area: string,
     communityName: string,
     member: UserType[],
+    posts: PostType[],
+    schedule: PostType[],
+    chatRoom: any[],
     last_chat_time: string,
     isPublic: string,
     isPopular: boolean,
@@ -29,6 +32,9 @@ export const createCommunity = async (
       area,
       communityName,
       member,
+      posts,
+      schedule,
+      chatRoom,
       last_chat_time,
       isPublic,
       isPopular,
@@ -46,7 +52,6 @@ export const joinCommunity = async (updateCommunity:CommunityType) => {
 
 export const deleteCommunity = async (communityId:string) => {
     const rqs = await axios.delete(`http://localhost:3000/community/${communityId}`);
-    console.log("삭제");
     return rqs;
 }
 
