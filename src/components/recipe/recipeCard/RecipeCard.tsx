@@ -1,6 +1,15 @@
-export default function RecipeCard() {
-    return (
-      <div className='border-2 w-[160px] h-[160px] rounded-[10px]'></div>
-    )
-  }
-  
+import { useAppDispatch, useAppSelector } from "../../../stores/hook";
+import testpictured from "../../../img/logo.png";
+
+export default function RecipeCard({ index }: any) {
+  const recipes = useAppSelector((state) => state.Recipe);
+  return (
+    <div className="border-2 w-[160px] h-[160px] rounded-[10px]">
+      {recipes[index].imageUrl ? (
+        <img src={recipes[0].imageUrl} alt="" />
+      ) : (
+        <img src={testpictured} alt="" />
+      )}
+    </div>
+  );
+}

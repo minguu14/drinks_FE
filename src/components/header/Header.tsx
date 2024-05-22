@@ -30,7 +30,9 @@ export default function Header() {
       </Link>
       <div className="flex items-center text-[20px] font-['TTLaundryGothicB'] space-x-10 mr-[140px]">
         <div>
-          <span className="text-blue-600">주종</span> 설명
+          <Link to="/AlcoholsExplantion">
+            <span className="text-blue-600">주종</span> 설명
+          </Link>
         </div>
         <Link to="/Alcohols">
           <div>

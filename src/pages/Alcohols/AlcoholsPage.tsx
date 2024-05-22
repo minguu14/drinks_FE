@@ -16,8 +16,10 @@ import whiskey from "../../img/whiskey.webp";
 import makgeorlli from "../../img/makgeorlli.webp";
 
 import LikeButton from "../../components/LikeButton";
+import Suntory from "../../img/Suntory.jpeg";
+import { Navigate, useNavigate } from "react-router-dom";
 
-import { Alcoholsdata } from "../../Api/axios";
+// import { Alcoholsdata } from "../../Api/axios";
 
 export default function AlcoholsPage() {
   const [goodConunt, setGoodConunt] = useState(0);
@@ -35,34 +37,103 @@ export default function AlcoholsPage() {
   const [twoPage, setTwoPage] = useState(false);
   const [contents, setContents] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await Alcoholsdata();
-      console.log(data);
-      if (data !== "error") {
-        setContents(data);
-      }
-    };
-    fetchData();
+  const navigate = useNavigate();
 
-    interface AlcoholsDatas {
-      id: number;
-      name: string;
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await Alcoholsdata();
+  //     console.log(data);
+  //     if (data !== "error") {
+  //       setContents(data);
+  //     }
+  //   };
+  //   fetchData();
+
+  //   interface AlcoholsDatas {
+  //     id: number;
+  //     name: string;
+  //     description: string;
+  //     type: string;
+  //     imageUrl: string;
+  //   }
+  // }, []);
+
+  interface ImageUrl {
+    Suntory: string;
+  }
+
+  interface datas {
+    id: number;
+    name: string;
+    Aroma: string[];
+    description: string;
+    type: string;
+    volume: number;
+    alcoholContent: number;
+    country: string;
+    imageUrl: ImageUrl;
+    testingNotes: {
+      aroma: string[];
+      taste: string[];
+      finish: string[];
+    };
+    information: {
+      kind: string;
+      volume: string;
+      degree: string;
+      country: string;
+    };
+    recommendRecipe: {
+      recipe: string;
       description: string;
-      type: string;
-      imageUrl: string;
-    }
-  }, []);
-  const contentss = [
+    };
+    materials: { id: number; material: string; volume: string }[];
+    steps: {
+      step1: string;
+      step2: string;
+      step3: string;
+      step4: string;
+    };
+  }
+  const datas = [
     {
       id: 1,
-      name: "참이슬",
-      description: "맑고 깔끔한 국민 소주",
-      type: "soju",
+      imageUrl: { Suntory },
+      name: "산토리 카쿠빈",
+      testingNotes: {
+        aroma: ["바닐라", "벌집", "아이스크림", "꽃"],
+        taste: ["감귤", "시트러스", "계피", "자몽"],
+        finish: ["꿀", "몰트", "후추", "견과류"],
+      },
+      information: {
+        kind: "재패니스 블렌드디 위스키",
+        volume: "700ml",
+        degree: "40%",
+        country: "일 본",
+      },
+      description:
+        "최근 하이볼로 큰 인기를 누리고 있는 가쿠빈은 1937년에 개발된 이후 가장 큰 사랑을 받아온 산토리의 대표 위시키입니다. 평균 8년 숙성의 몰트 위스키와 엄선한 그레인 위스키를 블렌딩한 것으로 더욱 부드럽고 달콤한 맛이 특징입니다. 밝은 금색, 달콤한 곡물,바닐라,배 향. 가볍고 부드러우며 순한 과일향과 깔끔한 스파이시. 개운하고 드라이하며 과수원의 과일과 건초맛 피니쉬.",
+      recommendRecipe: {
+        recipe: "얼그레이 하이볼",
+        description:
+          "나 혼자 산다 박나래 편에서 일명 '나래바'에 초대된 지인들에게 웰컴 드링크로 선사했던 그 술. 바로 얼그레이  하이볼! 방송에 나오자마자 박나래 얼그레이 하이볼 레시피로 화제가 됐었죠. 오늘은 집에서 나 홀로 즐겨도 좋고, 지인들에게 가볍게 대접하기 좋은 얼그레이 하이볼 레시피를 준비했어요. 얼그레이의 진한 맛과 뒤이어 올라오는 단맛, 알싸한 알콜의 조합. 얼그레이 하이볼로 하루의 피로를 날려보세요.",
+      },
+      materials: [
+        { id: 1, material: "얼그레이시럽", volume: "20ml" },
+        { id: 2, material: "위스키", volume: "40ml" },
+        { id: 3, material: "토니워터", volume: "150ml" },
+        { id: 4, material: "레몬즙", volume: "약간" },
+        { id: 5, material: "얼음", volume: "" },
+      ],
+      steps: {
+        step1: "컵에 얼음을 충분히 담아주세요.",
+        step2: "얼그레이 시럽 20ml 넣어주세요",
+        step3: "위스키 40ml 넣어주세요(시럽:위스키 비율=1:2)",
+        step4: "토니워터 150ml 및 레몬즙을 적당히 넣어서 잘 섞어주세요",
+      },
       volume: 360,
       alcoholContent: 20.1,
       country: "South Korea",
-      imageUrl: "http://example.com/image.jpg",
     },
   ];
   const sojuItems = [
@@ -352,7 +423,7 @@ export default function AlcoholsPage() {
           <div className="mr-1">{orderMethodName ? "추천순" : "최신순"}</div>
           <DownOutlined />
           {orderMethod && (
-            <div className="w-[92px] h-[84px] border-[3px] border-black rounded-xl flex flex-col justify-center items-center absolute fixed right-2 top-1 bg-white">
+            <div className="w-[92px] h-[84px] border-[3px] border-black rounded-xl flex flex-col justify-center items-center  right-2 top-1 bg-white">
               <div
                 className="text-xl w-[80px] h-[38px] rounded-lg text-center  flex flex-col justify-center items-center hover:bg-sky-300 cursor-pointer "
                 onClick={() => setOrderMethodName(false)}
@@ -372,14 +443,18 @@ export default function AlcoholsPage() {
         <div className="w-[1300px] flex flex-wrap justify-between mt-8">
           {allPage &&
             onePage &&
-            contentss.slice(0, 10).map((item) => (
-              <div key={item.id}>
+            datas.slice(0, 10).map((data) => (
+              <div key={data.id} className=" cursor-pointer">
                 <div className="flex justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[44px] z-0">
                   <LikeButton></LikeButton>
-                  <img src={item.imageUrl} alt={item.description} />
+                  <img
+                    src={data.imageUrl.Suntory}
+                    alt=""
+                    onClick={() => navigate("/Alcohols/AlcoholDescript")}
+                  />
                 </div>
                 <div className="text-[23px] relative top-[43px] w-[230px] h-[64px] text-center">
-                  {item.description}
+                  {data.name}
                 </div>
               </div>
             ))}
