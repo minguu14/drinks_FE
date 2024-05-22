@@ -1,7 +1,9 @@
 import React, { ChangeEvent, useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CameraOutlined } from "@ant-design/icons";
 import { createRecipe } from "../../Api/axios";
+import { useAppDispatch, useAppSelector } from "../../stores/hook";
+import { addRecipe } from "../../stores/reducers/CreateRecipeSlice";
 
 type foodIngredientField = {
   id: number;
@@ -15,6 +17,9 @@ type Step = {
 };
 
 export default function CreateRecipe() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const [imageUrl, setImageUrl] = useState<string>("");
   const [createRecipeName, setCreateRecipeName] = useState("");
   const [createRecipeIntroduce, setCreateRecipeIntroduce] = useState("");
@@ -31,7 +36,6 @@ export default function CreateRecipe() {
   const [foodStep, setFoodStep] = useState<Step[]>([
     { id: 1, description: "", imageUrl: "" },
   ]);
-  console.log(foodIngredient);
 
   const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -145,29 +149,52 @@ export default function CreateRecipe() {
     setFoodStep(updatedSteps);
   };
   // 데이터를 서버에 전송하는 함수
-  const handleSubmit = async () => {
-    const response = await createRecipe(
-      imageUrl,
-      createRecipeName,
-      createRecipeIntroduce,
-      sojuType,
-      beerType,
-      wineType,
-      sakeType,
-      vodkaType,
-      whiskeyType,
-      makgeolliType,
-      foodIngredient,
-      foodStep
-    );
+  // const handleSubmit = async () => {
+  //   const response = await createRecipe(
+  //     imageUrl,
+  //     createRecipeName,
+  //     createRecipeIntroduce,
+  //     sojuType,
+  //     beerType,
+  //     wineType,
+  //     sakeType,
+  //     vodkaType,
+  //     whiskeyType,
+  //     makgeolliType,
+  //     foodIngredient,
+  //     foodStep
+  //   );
 
-    if (response) {
-      console.log("Recipe created successfully:", response);
-      // 성공 처리, 예를 들어 알림 표시나 페이지 이동 등
-    } else {
-      console.error("Failed to create recipe");
-      // 실패 처리, 예를 들어 에러 메시지 표시 등
-    }
+  //   if (response) {
+  //     console.log("Recipe created successfully:", response);
+  //     // 성공 처리, 예를 들어 알림 표시나 페이지 이동 등
+  //   } else {
+  //     console.error("Failed to create recipe");
+  //     // 실패 처리, 예를 들어 에러 메시지 표시 등
+  //   }
+  // };
+  // 데이터를 서버에 전송하는 함수
+  const handleSubmit = () => {
+    dispatch(
+      addRecipe({
+        id: 0,
+        imageUrl,
+        name: createRecipeName,
+        introduce: createRecipeIntroduce,
+        types: {
+          soju: sojuType,
+          beer: beerType,
+          wine: wineType,
+          sake: sakeType,
+          vodka: vodkaType,
+          whiskey: whiskeyType,
+          makgeolli: makgeolliType,
+        },
+        ingredients: foodIngredient,
+        steps: foodStep,
+      })
+    );
+    navigate("/");
   };
 
   return (
@@ -338,13 +365,13 @@ export default function CreateRecipe() {
           <div className="text-2xl">제조 순서</div>
           <div className="flex">
             <div
-              className="w-[71px] h-[47px]  border-2 border-sky-500 bg-sky-200 rounded-lg text-2xl flex justify-center items-center mr-4"
+              className="w-[71px] h-[47px]  border-2 border-sky-500 bg-sky-200 rounded-lg text-2xl flex justify-center items-center mr-4 cursor-pointer"
               onClick={removeFoodStep}
             >
               삭제
             </div>
             <div
-              className="w-[71px] h-[47px]  border-2 border-sky-500 bg-sky-200 rounded-lg text-2xl flex justify-center items-center"
+              className="w-[71px] h-[47px]  border-2 border-sky-500 bg-sky-200 rounded-lg text-2xl flex justify-center items-center cursor-pointer"
               onClick={addFoodStep}
             >
               추가

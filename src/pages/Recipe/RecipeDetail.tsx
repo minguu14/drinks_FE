@@ -4,6 +4,9 @@ import { CameraOutlined } from "@ant-design/icons";
 import { createRecipe } from "../../Api/axios";
 import alcoholicTest from "../../img/alcoholicTest.webp";
 import { UserRecipeList } from "../../Api/axios";
+import { useAppDispatch, useAppSelector } from "../../stores/hook";
+import { useNavigate } from "react-router-dom";
+import testPicture from "../../img/testpicture.png";
 
 type foodIngredientField = {
   id: number;
@@ -79,27 +82,30 @@ export default function RecipeDetail() {
   const [newComment, setNewComment] = useState("");
   console.log(comment);
   console.log(newComment);
-  useEffect(() => {
-    const UserRecipeData = async () => {
-      const data = await UserRecipeList(); // 레시피 데이터 가져오기
-      if (data) {
-        setImageUrl(items.imageUrl);
-        setCreateRecipeName(items.createRecipeName);
-        setCreateRecipeIntroduce(items.createRecipeIntroduce);
-        setSojuType(items.sojuType);
-        setBeerType(items.beerType);
-        setWineType(items.wineType);
-        setSakeType(items.sakeType);
-        setVodkaType(items.vodkaType);
-        setWhiskeyType(items.whiskeyType);
-        setMakgeolliType(items.makgeolliType);
-        setFoodIngredient(items.foodIngredient);
-        setFoodStep(items.foodStep);
-      }
-    };
 
-    UserRecipeData();
-  }, []);
+  const recipes = useAppSelector((state) => state.Recipe);
+  console.log(recipes);
+  // useEffect(() => {
+  //   const UserRecipeData = async () => {
+  //     const data = await UserRecipeList(); // 레시피 데이터 가져오기
+  //     if (data) {
+  //       setImageUrl(items.imageUrl);
+  //       setCreateRecipeName(items.createRecipeName);
+  //       setCreateRecipeIntroduce(items.createRecipeIntroduce);
+  //       setSojuType(items.sojuType);
+  //       setBeerType(items.beerType);
+  //       setWineType(items.wineType);
+  //       setSakeType(items.sakeType);
+  //       setVodkaType(items.vodkaType);
+  //       setWhiskeyType(items.whiskeyType);
+  //       setMakgeolliType(items.makgeolliType);
+  //       setFoodIngredient(items.foodIngredient);
+  //       setFoodStep(items.foodStep);
+  //     }
+  //   };
+
+  //   UserRecipeData();
+  // }, []);
 
   // step 별로 textvalue 주기
   const onChangeStepValue = (
@@ -161,24 +167,25 @@ export default function RecipeDetail() {
   return (
     <div>
       <section className="ml-[404px] mt-[200px]">
-        <div className="text-4xl mb-16 text-[#FFB739]">{createRecipeName}</div>
+        <div className="text-4xl mb-16 text-[#FFB739]"></div>
         <form className="flex">
-          <input
-            type="file"
-            style={{ display: "none" }} // input을 숨김
-            accept="image/*"
-          />
-          {imageUrl ? (
-            <div className="w-[320px] h-[232px] border-2 border-sky-500 bg-sky-200 rounded-lg flex flex-col justify-center items-center ml-[97px] mr-[34px] overflow-hidden">
-              <img src={imageUrl} alt="Uploaded Image" className="size-full" />
+          {recipes[0].imageUrl ? (
+            <div className="w-[320px] h-[232px] border-2 border-sky-500 bg-sky-200 rounded-2xl flex flex-col justify-center items-center ml-[97px] mr-[34px] overflow-hidden">
+              <img
+                src={recipes[0].imageUrl}
+                alt="Uploaded Image"
+                className="size-full"
+              />
             </div>
           ) : (
-            <div className="w-[320px] h-[232px] border-2 border-sky-500 bg-sky-200 rounded-lg flex flex-col justify-center items-center ml-[97px] mr-[34px]">
-              <CameraOutlined className="text-[206px] text-white" />
-              <div className="text-2xl text-white">사진을 등록 해주세요</div>
+            <div className="w-[320px] h-[232px] border-2 border-sky-500 bg-sky-200 rounded-2xl flex flex-col justify-center items-center ml-[97px] mr-[34px] overflow-hidden">
+              <img
+                src={testPicture}
+                alt="Uploaded Image"
+                className="size-full"
+              />
             </div>
           )}
-
           <form>
             <div className="flex flex-row justify-center items-center"></div>
             <div className="flex mt-4">
@@ -186,13 +193,13 @@ export default function RecipeDetail() {
                 <div className="text-2xl">종 류</div>
               </div>
               <ul className="flex flex-row w-[546px] flex-wrap text-xl">
-                {sojuType && <li className="mr-4">소 주</li>}
-                {beerType && <li className="mr-4">맥 주</li>}
-                {wineType && <li className="mr-4">와 인</li>}
-                {sakeType && <li className="mr-4">사 케</li>}
-                {vodkaType && <li className="mr-4">보드카</li>}
-                {whiskeyType && <li className="mr-4">위스키</li>}
-                {makgeolliType && <li className="mr-4">막걸리</li>}
+                {recipes[0].types.soju && <li className="mr-4">소 주</li>}
+                {recipes[0].types.beer && <li className="mr-4">맥 주</li>}
+                {recipes[0].types.wine && <li className="mr-4">와 인</li>}
+                {recipes[0].types.sake && <li className="mr-4">사 케</li>}
+                {recipes[0].types.vodka && <li className="mr-4">보드카</li>}
+                {recipes[0].types.whiskey && <li className="mr-4">위스키</li>}
+                {recipes[0].types.makgeolli && <li className="mr-4">막걸리</li>}
               </ul>
             </div>
             <div className="flex flex-row mt-6">
@@ -200,20 +207,20 @@ export default function RecipeDetail() {
               <div className="w-[546px] h-[110px]  flex items-start">
                 <textarea
                   placeholder="이 레시피 탄생 배경을 적어주세요"
-                  className="w-full h-full text-2xl rounded-lg placeholder-white resize-none"
-                  value={createRecipeIntroduce}
+                  className="w-full h-full text-2xl rounded-2xl placeholder-white resize-none"
+                  value={recipes[0].introduce}
                 />
               </div>
             </div>
           </form>
         </form>
       </section>
-      <section className="w-[1115px] ml-[404px] mt-16 rounded-lg bg-[#003A66] flex flex-col justify-center items-center">
+      <section className="w-[1115px] ml-[404px] mt-16 rounded-2xl bg-[#003A66] flex flex-col justify-center items-center">
         <form className="w-[1050px] flex justify-between mb-4">
           <div className="text-3xl text-[#FFB739] mt-3">재료</div>
         </form>
         <form className="w-[1050px] flex flex-row flex-wrap justify-between">
-          {foodIngredient.map((data, index) => (
+          {recipes[0].ingredients.map((data, index) => (
             <form
               className={`${
                 data.id % 2 !== 0 ? "mr-5" : ""
@@ -221,10 +228,10 @@ export default function RecipeDetail() {
             >
               <div className="w-[500px] flex justify-between">
                 <div className=" bg-[#003A66]  text-xl text-white">
-                  {foodIngredient[index].value}
+                  {recipes[0].ingredients[index].material}
                 </div>
                 <div className=" bg-[#003A66]  text-xl text-white">
-                  {foodIngredient[index].value2}
+                  {recipes[0].ingredients[index].quantity}
                 </div>
               </div>
             </form>
@@ -235,22 +242,21 @@ export default function RecipeDetail() {
         <form className="w-[1115px] flex justify-between mb-16">
           <div className="text-4xl text-[#FFB739]">제조 순서</div>
         </form>
-        {foodStep.map((data, index) => (
+        {recipes[0].steps.map((data, index) => (
           <form key={data.id} className={`${data.id > 1 ? "mt-8" : ""} flex`}>
-            <div className="w-[320px] h-[232px] border-2 border-sky-500 bg-sky-200 rounded-lg flex flex-col justify-center items-center ml-[97px] mr-[34px] overflow-hidden">
+            <div className="w-[320px] h-[232px] border-2 border-sky-500 bg-sky-200 rounded-2xl flex flex-col justify-center items-center ml-[97px] mr-[34px] overflow-hidden">
               {data.imageUrl ? (
                 <img
-                  src={data.imageUrl}
+                  src={recipes[0].steps[index].imageUrl}
                   alt={`Uploaded for step ${data.id}`}
                   className="size-full"
                 />
               ) : (
-                <>
-                  <CameraOutlined className="text-[206px] text-white" />
-                  <div className="text-2xl text-white">
-                    사진을 등록 해주세요
-                  </div>
-                </>
+                <img
+                  src={testPicture}
+                  alt={`Uploaded for step ${data.id}`}
+                  className="size-full"
+                />
               )}
             </div>
             <div>
@@ -258,7 +264,7 @@ export default function RecipeDetail() {
 
               <textarea
                 className="w-[488px] h-[190px] text-2xl flex items-start resize-none"
-                value={foodStep[index].value}
+                value={recipes[0].steps[index].description}
                 onChange={(e) => onChangeStepValue(index, e)}
               />
             </div>
@@ -266,7 +272,7 @@ export default function RecipeDetail() {
         ))}
       </section>
       <div className="ml-[404px] w-[1115px] flex flex-col justify-center my-20 ">
-        <div className="text-4xl text-[#003A66] mb-5">댓글</div>
+        {/* <div className="text-4xl text-[#003A66] mb-5">댓글</div>
         <ul>
           {comment.map((comment) => (
             <li key={comment.id} className="flex mb-4">
@@ -280,7 +286,7 @@ export default function RecipeDetail() {
             </li>
           ))}
         </ul>
-        <div className="border-2 rounded-lg w-[1115px] h-[200px] flex justify-center items-center">
+        <div className="border-2 rounded-2xl w-[1115px] h-[200px] flex justify-center items-center">
           <textarea
             className="w-[885px] h-[115px] resize-none text-xl"
             placeholder="댓글을 남겨주세요"
@@ -288,12 +294,17 @@ export default function RecipeDetail() {
             onChange={onChangeComment}
           ></textarea>
           <button
-            className="w-[140px] h-[115px] bg-[#003A66] rounded-lg text-3xl text-[#FFB739]"
+            className="w-[140px] h-[115px] bg-[#003A66] rounded-2xl text-3xl text-[#FFB739]"
             onClick={addComment}
           >
             등록
           </button>
-        </div>
+        </div> */}
+        <Link to="/Recipe" className="flex justify-center">
+          <button className="w-[166px] h-[66px] border-2 rounded-lg  text-[#FFB739] bg-[#003A66] text-2xl flex justify-center items-center">
+            확인
+          </button>
+        </Link>
       </div>
     </div>
   );
