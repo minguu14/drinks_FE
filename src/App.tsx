@@ -20,7 +20,12 @@ import LoginTest from "./pages/LoginTest";
 import FindPassword from "./pages/Login/FindPassword";
 import ChangePassword from "./pages/Login/ChangePassword";
 import AlcoholsPage from "./pages/Alcohols/AlcoholsPage";
+
+import AlcoholDescript from "./pages/Alcohols/AlcoholDescript";
+import AlcoholsExplantion from "./pages/AlcoholsExplantion/AlcoholsExplantion";
+
 import CommunitySetting from "./pages/CommunitySetting/CommunitySetting";
+
 
 const LayOut = () => {
   return (
@@ -36,7 +41,15 @@ function App() {
     <Routes>
       <Route path="/" element={<LayOut />}>
         <Route index element={<Main />}></Route>
+        <Route
+          path="/AlcoholsExplantion"
+          element={<AlcoholsExplantion />}
+        ></Route>
         <Route path="/Alcohols" element={<AlcoholsPage />}></Route>
+        <Route
+          path="/Alcohols/AlcoholDescript"
+          element={<AlcoholDescript />}
+        ></Route>
         <Route path="/logintest" element={<LoginTest />}></Route>
         <Route path="/popularCommunity" element={<PopularCommunity />}></Route>
         <Route path="/recipe" element={<RecipesPage />}></Route>

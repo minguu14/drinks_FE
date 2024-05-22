@@ -143,23 +143,23 @@ export const ChangePasswordApi = async (name, password) => {
   }
 };
 
-// 주류 모아보기 데이터 가져오기
-export const Alcoholsdata = async () => {
-  try {
-    const response = await axios.get("/api/api/alcohols", {
-      headers: {
-        "ngrok-skip-browser-warning": "69420",
-      },
-      params: {
-        type: "soju",
-        page: 0,
-        size: 10,
-      },
-    });
+// // 주류 모아보기 데이터 가져오기
+// export const Alcoholsdata = async () => {
+//   try {
+//     const response = await axios.get("/api/api/alcohols", {
+//       headers: {
+//         "ngrok-skip-browser-warning": "69420",
+//       },
+//       params: {
+//         type: "soju",
+//         page: 0,
+//         size: 10,
+//       },
+//     });
 
-    return response.data;
-  } catch (error) {
-    console.log("Error fetching data", error);
-    return "error";
-  }
-};
+//     return response.data;
+//   } catch (error) {
+//     console.log("Error fetching data", error);
+//     return "error";
+//   }
+// };

@@ -34,9 +34,16 @@ import vodka from "../img/vodka.webp";
 import whiskey from "../img/whiskey.webp";
 import makgeorlli from "../img/makgeorlli.webp";
 
+import testpicture from "../img/logo.png";
+
 import LikeButton from "../components/LikeButton";
 
+import { useAppDispatch, useAppSelector } from "../stores/hook";
+import { useNavigate } from "react-router-dom";
+
 export default function RecipesPage() {
+  const navigate = useNavigate();
+
   const [goodConunt, setGoodConunt] = useState(0);
   const [orderMethod, setOrderMethod] = useState(false);
   const [orderMethodName, setOrderMethodName] = useState(false);
@@ -50,6 +57,9 @@ export default function RecipesPage() {
   const [makgeolliPage, setmakgeolliPage] = useState(false);
   const [onePage, setOnePage] = useState(true);
   const [twoPage, setTwoPage] = useState(false);
+
+  const recipes = useAppSelector((state) => state.Recipe);
+  console.log(recipes);
 
   const items = [
     { id: 1, title: "제목 1", image: alcoholicTest },
@@ -591,14 +601,22 @@ export default function RecipesPage() {
         <div className="w-[1300px] flex flex-wrap justify-between mt-8">
           {allPage &&
             onePage &&
-            items.slice(0, 10).map((item) => (
-              <div key={item.id}>
+            recipes.slice(0, 10).map((data) => (
+              <div
+                key={data.id}
+                onClick={() => navigate("/recipe/recipeDetail")}
+                className=" cursor-pointer"
+              >
                 <div className="flex justify-center items-center w-[230px] h-[306px] border-2 border-sky-500 rounded-lg relative top-[44px] z-0">
                   <LikeButton></LikeButton>
-                  <img src={item.image} alt={item.title} />
+                  {data.imageUrl ? (
+                    <img src={data.imageUrl} alt="" />
+                  ) : (
+                    <img src={testpicture} alt="" />
+                  )}
                 </div>
                 <div className="text-[23px] relative top-[43px] w-[230px] h-[64px] text-center">
-                  {item.title}
+                  {data.name}
                 </div>
               </div>
             ))}
