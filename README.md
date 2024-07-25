@@ -8,15 +8,21 @@
 ### 기능1
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/56a38efe-73b5-440a-a9d8-65c3b85af9af">
+  <img src="https://github.com/user-attachments/assets/8700387f-f3e0-4d47-b8a7-035b3a157513">
 </div>
 
 ### 기능2
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/56a38efe-73b5-440a-a9d8-65c3b85af9af">
+</div>
+
+### 기능3
 <div align="center">
   <img src="https://github.com/user-attachments/assets/582f1e3e-a635-4592-abb6-c48674388e3a">
 </div>
 
-### 기능3
+### 기능4
 <div align="center">
   <img src="https://github.com/user-attachments/assets/d523b21e-8523-4275-9263-a427c1dd2d13">
 </div>
